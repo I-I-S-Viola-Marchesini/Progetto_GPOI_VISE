@@ -11,9 +11,7 @@ switch ($page) {
         include("login.php");
         break;
     case '1':
-        include("header.php");
-        include("homepage.php");
-        include("footer.php");
+        include("checkout.php");
         break;
     default:
         include("error-404.php");
