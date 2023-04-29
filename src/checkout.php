@@ -32,11 +32,12 @@
                         </div>
                         <div class="form-check">
                             <img src="img/credit-card-solid.svg" class="mx-2" style="width:25px;" alt="" srcset="">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Default checked radio
                             </label>
                         </div>
+
                         <button class="col-6 col-md-4 col-lg-3 col-xl-3 btn btn-outline-dark mt-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />

@@ -13,6 +13,9 @@ switch ($page) {
     case '1':
         include("checkout.php");
         break;
+    case '2':
+        include("add-card.php");
+        break;
     default:
         include("error-404.php");
         break;
