@@ -1,4 +1,6 @@
 {
     "name": "itis/5f-2022-23-visentin",
-    "require": {}
+    "require": {
+        "twbs/bootstrap": "5.3.0-alpha3"
+    }
 }
