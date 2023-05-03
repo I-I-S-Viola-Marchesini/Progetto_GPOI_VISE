@@ -10,6 +10,7 @@ USE vise_db;
 
 CREATE TABLE vise_db.user(
     user_name VARCHAR(30) PRIMARY KEY,
+    `password` VARCHAR(200) NOT NULL,
     gender VARCHAR(10) NOT NULL,
     `name` VARCHAR(30) NOT NULL,
     surname VARCHAR(30) NOT NULL,
