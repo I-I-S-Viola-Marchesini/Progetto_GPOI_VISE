@@ -5,8 +5,8 @@
 * N.B. : lo script è valido SOLO per MySQL
 **/
 
-CREATE DATABASE Intesa_San_Paolo;
-USE Intesa_San_Paolo;
+CREATE DATABASE unicredit_db;
+USE unicredit_db;
 
 CREATE TABLE customer(
     tax_code VARCHAR(16) PRIMARY KEY,
@@ -20,7 +20,8 @@ CREATE TABLE customer(
     mobile_number VARCHAR(15) NOT NULL,
     registration_date DATE NOT NULL,
     residence_id INT NOT NULL,
-    abode_id INT -- id_domicilio
+    abode_id INT, -- id_domicilio
+    active BOOLEAN NOT NULL
 );
 
 CREATE TABLE account(
@@ -45,7 +46,7 @@ CREATE TABLE address(
 );
 
 CREATE TABLE card(
-    pan VARCHAR(16) NOT NULL PRIMARY KEY,
+    pan VARCHAR(16) PRIMARY KEY,
     cvc_cvv VARCHAR(3) NOT NULL,
     expiration_date VARCHAR(5) NOT NULL,
     account_id INT,

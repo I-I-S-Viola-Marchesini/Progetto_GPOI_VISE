@@ -5,14 +5,14 @@
 * N.B. : lo script è valido SOLO per MySQL
 **/
 
-CREATE DATABASE Poste_Italiane;
-USE Poste_Italiane;
+CREATE DATABASE intesa_san_paolo_db;
+USE intesa_san_paolo_db;
 
 CREATE TABLE customer(
     tax_code VARCHAR(16) PRIMARY KEY,
-    gender VARCHAR(10) NOT NULL,
     `name` VARCHAR(30) NOT NULL,
     surname VARCHAR(30) NOT NULL,
+    gender VARCHAR(10) NOT NULL,
     email VARCHAR(100) NOT NULL,
     birth_date date NOT NULL,
     birth_place VARCHAR(30) NOT NULL,
@@ -20,7 +20,8 @@ CREATE TABLE customer(
     mobile_number VARCHAR(15) NOT NULL,
     registration_date DATE NOT NULL,
     residence_id INT NOT NULL,
-    abode_id INT -- id_domicilio
+    abode_id INT, -- id_domicilio
+    abled BOOLEAN NOT NULL 
 );
 
 CREATE TABLE account(
@@ -45,7 +46,7 @@ CREATE TABLE address(
 );
 
 CREATE TABLE card(
-    pan VARCHAR(16) NOT NULL PRIMARY KEY,
+    pan VARCHAR(16) PRIMARY KEY,
     cvc_cvv VARCHAR(3) NOT NULL,
     expiration_date VARCHAR(5) NOT NULL,
     account_id INT,

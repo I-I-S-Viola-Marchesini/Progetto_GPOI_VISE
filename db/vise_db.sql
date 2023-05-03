@@ -8,7 +8,7 @@
 CREATE DATABASE vise_db;
 USE vise_db;
 
-CREATE TABLE vise_db.customer(
+CREATE TABLE vise_db.user(
     user_name VARCHAR(30) PRIMARY KEY,
     gender VARCHAR(10) NOT NULL,
     `name` VARCHAR(30) NOT NULL,

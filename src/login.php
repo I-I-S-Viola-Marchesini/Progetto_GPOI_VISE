@@ -27,9 +27,9 @@
                 <small class="row mb-2"><a href="">Hai dimenticato la password?</a></small>
                 <small class="row mb-4"><a href="">Non hai un account?</a></small>
 
-                <button type="submit" id="send-button" class="btn btn-primary col-6 mb-3">
+                <a href="?p=1" type="submit" id="send-button" class="btn btn-primary col-6 mb-3">
                     Accedi
-                </button>
+                </a>
             </form>
         </div>
     </div>
