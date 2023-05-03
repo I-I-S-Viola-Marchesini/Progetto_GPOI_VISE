@@ -33,6 +33,16 @@
                     </div>
 
                     <div class="col-12">
+                        <label for="fiscal-code" class="form-label">Codice Fiscale</label>
+                        <div class="input-group has-validation">
+                            <input type="text" class="form-control" id="fiscal-code" placeholder="LVZNDR04S09H620S" required>
+                            <div class="invalid-feedback">
+                                Your username is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
                         <label for="username" class="form-label">Nome utente</label>
                         <div class="input-group has-validation">
                             <input type="text" class="form-control" id="username" placeholder="mariorossi07" required>
@@ -98,7 +108,7 @@
 
                 <hr class="my-4">
 
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Torna al Pagamento</button>
+                <button class="w-100 btn btn-primary btn-lg" type="submit">Conferma e torna al pagamento</button>
             </form>
         </div>
     </div>
