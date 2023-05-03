@@ -5,8 +5,8 @@
 * N.B. : lo script è valido SOLO per MySQL
 **/
 
-CREATE DATABASE credit_institute;
-USE credit_institute;
+CREATE DATABASE Poste_Italiane;
+USE Poste_Italiane;
 
 CREATE TABLE customer(
     tax_code VARCHAR(16) PRIMARY KEY,

@@ -5,8 +5,8 @@
 * N.B. : lo script è valido SOLO per MySQL
 **/
 
-CREATE DATABASE credit_institute;
-USE credit_institute;
+CREATE DATABASE Intesa_San_Paolo;
+USE Intesa_San_Paolo;
 
 CREATE TABLE customer(
     tax_code VARCHAR(16) PRIMARY KEY,

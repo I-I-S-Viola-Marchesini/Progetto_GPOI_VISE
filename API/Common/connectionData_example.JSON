@@ -1,0 +1,24 @@
+{
+    "Unicredit": {
+      "server": "",
+      "port": 0,
+      "user": "",
+      "password": "",
+      "database": "Unicredit"
+    },
+    "Intesa": {
+        "server": "",
+        "port": 0,
+        "user": "",
+        "password": "",
+      "database": "Intesa_Sanpaolo"
+    },
+    "Poste": {
+        "server": "",
+        "port": 0,
+        "user": "",
+        "password": "",
+      "database": "Poste_Italiane"
+    }
+  }
+  
