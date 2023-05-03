@@ -1,5 +1,5 @@
 <?php
-class Database_Poste_Italiane
+class Database_Vise
 {
     public $conn;
     public $ConnectionData;
