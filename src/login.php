@@ -13,26 +13,56 @@
         </div>
 
         <div class="row justify-content-center">
-            <form class="col-10 col-md-6 col-lg-4 mt-4" action="">
+            <div class="col-10 col-md-6 col-lg-4 mt-4">
 
                 <div class="mb-4" id="username-container">
                     <label for="username" class="form-label ms-1">Username</label>
-                    <input type="text" class="form-control" id="username"
-                        placeholder="Inserisci il tuo username o email">
+                    <input type="text" class="form-control" id="username" placeholder="Inserisci il tuo username o email">
                 </div>
 
                 <div class="mb-4" id="username-container">
                     <label for="username" class="form-label ms-1">Password</label>
-                    <input type="password" class="form-control" id="username" placeholder="Inserisci la password">
+                    <input type="password" class="form-control" id="password" placeholder="Inserisci la password">
                 </div>
 
                 <small class="row mb-2"><a href="">Hai dimenticato la password?</a></small>
                 <small class="row mb-4"><a href="">Non hai un account?</a></small>
 
-                <button type="submit" id="send-button" class="btn btn-primary col-6 mb-3">
+                <button id="send-button" class="btn btn-primary col-6 mb-3">
                     Accedi
                 </button>
-            </form>
+            </div>
         </div>
+
+        <script>
+            const sendButton = document.getElementById("send-button");
+            const username = document.getElementById("username");
+            const password = document.getElementById("password");
+
+            sendButton.addEventListener("click", () => {
+                if (username.value == "" || password.value == "") {
+                    alert("Inserisci le credenziali");
+                    return;
+                }
+
+                const data = {
+                    username: username.value,
+                    password: password.value
+                }
+
+                let loginRequest = new XMLHttpRequest();
+                loginRequest.open("POST", 'API/Vise/API/user/login.php', true);
+                loginRequest.setRequestHeader('Content-type', 'application/json');
+                loginRequest.onreadystatechange = function() {
+                    if (loginRequest.readyState == 4 && loginRequest.status == 200) {
+                        location.href = "/?p=1";
+                    } else if (loginRequest.readyState == 4) {
+                        alert("Login non riuscito, controlla il nome utente o la password.");
+                    }
+                };
+                loginRequest.send(JSON.stringify(data));
+
+            });
+        </script>
     </div>
 </main>
