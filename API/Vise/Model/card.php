@@ -19,6 +19,12 @@ class Card
         return $result;
     }
 
+    public function getArchiveCardsByUserID($userID){
+        $query = "SELECT * FROM vise_db.card INNER JOIN vise_db.user_card ON card.id = user_card.card_id WHERE user_card.user_id = '$userID'";
+        $result = $this->conn->query($query);
+        return $result;
+    }
+
 }
 
 ?>
