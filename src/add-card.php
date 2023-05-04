@@ -13,102 +13,76 @@
     <div class="row g-5">
 
         <div class="col">
-            <h4 class="mb-3">Dati personali</h4>
             <form class="needs-validation" novalidate>
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <label for="firstName" class="form-label">Nome</label>
+                        <label for="firstName" class="form-label">Nome Intestatario</label>
                         <input type="text" class="form-control" id="firstName" placeholder="Mario" value="" required>
                         <div class="invalid-feedback">
-                            Inserisci un nome 
+                            Inserisci un nome.
                         </div>
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="lastName" class="form-label">Cognome</label>
+                        <label for="lastName" class="form-label">Cognome Intestatario</label>
                         <input type="text" class="form-control" id="lastName" placeholder="Rossi" value="" required>
                         <div class="invalid-feedback">
-                            Valid last name is required.
+                            Inserisci un cognome.
                         </div>
                     </div>
 
-                    <div class="col-12">
-                        <label for="fiscal-code" class="form-label">Codice Fiscale</label>
-                        <div class="input-group has-validation">
-                            <input type="text" class="form-control" id="fiscal-code" placeholder="LVZNDR04S09H620S" required>
-                            <div class="invalid-feedback">
-                                Your username is required.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="username" class="form-label">Nome utente</label>
-                        <div class="input-group has-validation">
-                            <input type="text" class="form-control" id="username" placeholder="mariorossi07" required>
-                            <div class="invalid-feedback">
-                                Your username is required.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="email" class="form-label">Email <span class="text-body-secondary"></span></label>
-                        <input type="email" class="form-control" id="email" placeholder="mariorossi@gmail.com">
+                    <div class="col-sm-6">
+                        <label for="cardType" class="form-label">Tipo di Carta</label>
+                        <select class="form-select" id="cardType" required>
+                            <option value="">Scegli...</option>
+                            <option>Visa</option>
+                            <option>Mastercard</option>
+                            <option>American Express</option>
+                            <option>JCB</option>
+                            <option>China Union Pay</option>
+                        </select>
                         <div class="invalid-feedback">
-                            Please enter a valid email address for shipping updates.
+                            Seleziona un circuito bancario.
                         </div>
                     </div>
 
                     
-
-                    <!-- <div class="col-12">
-                        <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
-                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                    </div> -->
-
-                    <div class="col-md-5">
-                        <label for="country" class="form-label">Stato</label>
-                        <select class="form-select" id="country" required>
-                            <option value="">Scegli...</option>
-                            <option>Italia</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select a valid country.
+                    <div class="col-sm-6">
+                        <label for="fiscal-code" class="form-label">Numero della carta</label>
+                        <div class="input-group has-validation">
+                            <input type="text" class="form-control" id="fiscal-code" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+                            <div class="invalid-feedback">
+                                Inserisci il numero della carta.
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <label for="state" class="form-label">Città</label>
-                        <select class="form-select" id="state" required>
-                            <option value="">Scegli...</option>
-                            <option>Rovigo</option>
-                        </select>
+                    <div class="col-sm-6">
+                        <label for="expireDate" class="form-label">Data di Scadenza</label>
+                        <input type="month" class="form-control" id="expireDate" placeholder="XX/XX" value="" required>
                         <div class="invalid-feedback">
-                            Please provide a valid state.
+                            Inserisci un cognome.
                         </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <label for="zip" class="form-label">CAP</label>
-                        <input type="text" class="form-control" id="zip" placeholder="" required>
-                        <div class="invalid-feedback">
-                            Zip code required.
+                    <div class="col-sm-6">
+                        <label for="fiscal-code" class="form-label">CVV</label>
+                        <div class="input-group has-validation">
+                            <input type="text" class="form-control" id="fiscal-code" placeholder="CVV" required>
+                            <div class="invalid-feedback">
+                                Inserisci il CVV della carta.
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-12">
-                        <label for="address" class="form-label">Indirizzo</label>
-                        <input type="text" class="form-control" id="address" placeholder="123 Via Roma" required>
-                        <div class="invalid-feedback">
-                            Please enter your shipping address.
-                        </div>
-                    </div>
-                </div>
 
                 <hr class="my-4">
 
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Conferma e torna al pagamento</button>
+                <div class="col-sm-6">
+                    <button class="w-100 btn btn-danger btn-lg" type="submit">Annulla e Torna Indietro</button>  
+                </div>
+                <div class="col-sm-6">   
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Conferma e Torna al Pagamento</button>
+                </div>
             </form>
         </div>
     </div>

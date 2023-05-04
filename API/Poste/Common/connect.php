@@ -1,5 +1,5 @@
 <?php
-class Database_Poste_Italiane
+class Database_Intesa_Sanpaolo
 {
     public $conn;
     public $ConnectionData;
