@@ -35,6 +35,13 @@
         </div>
 
         <script>
+
+            document.addEventListener("DOMContentLoaded", () => {
+                if (document.cookie.includes("username") && document.cookie.includes("account_id")) {
+                    location.href = "/?p=1";
+                }
+            });
+
             const sendButton = document.getElementById("send-button");
             const username = document.getElementById("username");
             const password = document.getElementById("password");
@@ -55,6 +62,8 @@
                 loginRequest.setRequestHeader('Content-type', 'application/json');
                 loginRequest.onreadystatechange = function() {
                     if (loginRequest.readyState == 4 && loginRequest.status == 200) {
+                        document.cookie = "username=" + username.value + "; path=/";
+                        document.cookie = "account_id=" + JSON.parse(loginRequest.responseText).account_id + "; path=/";
                         location.href = "/?p=1";
                     } else if (loginRequest.readyState == 4) {
                         alert("Login non riuscito, controlla il nome utente o la password.");

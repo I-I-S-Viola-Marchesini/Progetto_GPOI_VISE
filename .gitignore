@@ -1,3 +1,4 @@
-/vendor/
-src/API/API/connectionData.json
-API/Vise/Common/connectionData.json
+
+API/Intesa/Common/connectionData.json
+API/Poste/Common/connectionData.json
+API/Unicredit/Common/connectionData.json
