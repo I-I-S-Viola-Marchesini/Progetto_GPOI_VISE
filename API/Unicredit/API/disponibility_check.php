@@ -13,7 +13,7 @@ $db = $database->connect();
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (empty($data->importo) || empty($data->token)) {
+if (empty($data->amount) || empty($data->token)) {
     http_response_code(400);
     echo json_encode(array("message" => "Payment could not be made. Incomplete data."));
     die();

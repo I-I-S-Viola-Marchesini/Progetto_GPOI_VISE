@@ -1,5 +1,5 @@
 <?php
-class Database_Intesa_Sanpaolo
+class Database
 {
     public $conn;
     public $ConnectionData;

@@ -27,23 +27,22 @@ $reciver = $data->reciver;
 $amount = $data->amount;
 $token = $data->token;
 
-$sender -> get_name_surname($token);
-$account_number -> get_account_number($token);
+$sender = $Payment->get_name_surname($token);
+$account = $Payment->get_account_number($token);
 
 if ($Payment->Withdrawal_amount($amount, $token)) {
     http_response_code(200);
     echo json_encode(array("message" => "Paid."));
-    if ($transaction->register_transactions($datetime, $transaction_type, $amount, $sender, $reciver, $account_number)) {
+    if ($Payment->register_transactions($datetime, $transaction_type, $amount, $sender, $reciver, $account)) {
         http_response_code(200);
         echo json_encode(array("message" => "Recorded transaction."));
     } else {
         http_response_code(503);
-        echo json_encode(array("message" => "Error during the payment."));
+        echo json_encode(array("message" => "Error during the payment.1"));
         die();
     }
 } else {
     http_response_code(503);
-    echo json_encode(array("message" => "Error during the payment."));
+    echo json_encode(array("message" => "Error during the payment.2"));
     die();
 }
-?>
