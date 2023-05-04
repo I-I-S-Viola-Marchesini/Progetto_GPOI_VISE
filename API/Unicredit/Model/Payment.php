@@ -1,5 +1,5 @@
 <?php
-class Pagamento
+class Payment
 {
     protected $conn;
     protected $table_card = "card";
@@ -16,7 +16,7 @@ class Pagamento
         $this->conn = $db;
     }
 
-    function Controllo_disponibilita($importo, $token)
+    function control_disponibility($amount, $token)
     {
         $query = "SELECT current_balance 
         FROM $this->table_card
@@ -26,7 +26,7 @@ class Pagamento
 
         $stmt = $this->conn->query($query);
 
-        if($stmt >= $importo)
+        if($stmt >= $amount)
         {
             return true;
         }
@@ -36,16 +36,16 @@ class Pagamento
         }
     }
 
-    function Preleva_importo($importo, $token)
+    function Withdrawal_amount($amount, $token)
     {
-        $query_saldo = "SELECT current_balance 
+        $query_balance = "SELECT current_balance 
         FROM $this->table_card
         LEFT JOIN $this->table_card_institute  ON $this->table_card_institute.card_id = $this->table_card.pan
         LEFT JOIN $this->table_account ON $this->table_account.account_number = $this->table_card.account_number
         WHERE $this->table_card_institute.communication_token = '$token'";
-        $saldo = $this->conn->query($query_saldo);
+        $balance = $this->conn->query($query_balance);
 
-        if($saldo >= $importo)
+        if($balance >= $amount)
         {
             return true;
         }
@@ -54,15 +54,15 @@ class Pagamento
             return false;
         }
 
-        $nuovo_importo = $saldo - $importo;
+        $new_amount = $balance - $amount;
 
-        $query_modifica_credito = "UPDATE $this->table_card
-        SET $this->table_account.current_balance = $nuovo_importo
+        $query_credit_claims = "UPDATE $this->table_card
+        SET $this->table_account.current_balance = $new_amount
         LEFT JOIN $this->table_card_institute  ON $this->table_card_institute.card_id = $this->table_card.pan
         LEFT JOIN $this->table_account ON $this->table_account.account_number = $this->table_card.account_number
         WHERE $this->table_card_institute.communication_token = '$token'";
-        $risultato = $this->conn->query($query_modifica_credito);
-        if($risultato == true)
+        $result = $this->conn->query($query_credit_claims);
+        if($result == true)
         {
             return true;
         }
@@ -72,7 +72,7 @@ class Pagamento
         }       
     }
 
-    function get_nome_cognome($token)
+    function get_name_surname($token)
     {
         $query = "SELECT $this->table_account.name, $this->table_account.surname
         FROM $this->table_card
@@ -97,22 +97,22 @@ class Pagamento
         return $stmt;
     }
 
-    function registra_transazione($datetime, $tipo_transazione, $importo, $mittente, $destinatario, $account_number)
+    function register_transactions($datetime, $transaction_type, $amount, $sender, $reciver, $account_number)
     {
-        $query_registra_trasazione = "Insert into $this->table_transaction (datetime, transaction_type, amount, sender, reciver)
-        values ('$datetime', '$tipo_transazione', '$importo', '$mittente', '$destinatario')";
-        $stmt = $this->conn->query($query_registra_trasazione);
+        $query_registration_transaction = "Insert into $this->table_transaction (datetime, transaction_type, amount, sender, reciver)
+        values ('$datetime', '$transaction_type', '$amount', '$sender', '$reciver')";
+        $stmt = $this->conn->query($query_registration_transaction);
 
         /*$query_id_transazione = "Select id from $this->table_transaction 
         where datetime = '$datetime' and transaction_type = '$tipo_transazione' and amount = '$importo' and sender = '$mittente' and reciver = '$destinatario'";
         $id_transazione = $this->conn->query($query_id_transazione);*/
 
-        $id_transazione = $stmt->insert_id;
+        $id_transaction = $stmt->insert_id;
 
-        $query_associa_account_transaction = "Insert into $this->table_account_transaction (account_id, transaction_id)
-        values ('$account_number', '$id_transazione')";
-        $risultato = $this->conn->query($query_associa_account_transaction);
-        if($risultato == true)
+        $query_account_transaction = "Insert into $this->table_account_transaction (account_id, transaction_id)
+        values ('$account_number', '$id_transaction')";
+        $result = $this->conn->query($query_account_transaction);
+        if($result == true)
         {
             return true;
         }

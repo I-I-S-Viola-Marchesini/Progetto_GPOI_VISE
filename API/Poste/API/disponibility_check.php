@@ -6,7 +6,7 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include dirname(__FILE__) . '/../Common/connect.php';
-include dirname(__FILE__) . '/../Model/pagamento.php';
+include dirname(__FILE__) . '/../Model/Payment.php';
 
 $database = new Database();
 $db = $database->connect();
@@ -15,19 +15,19 @@ $data = json_decode(file_get_contents("php://input"));
 
 if (empty($data->importo) || empty($data->token)) {
     http_response_code(400);
-    echo json_encode(array("message" => "Impossibile effettuare il pagamento. Dati incompleti."));
+    echo json_encode(array("message" => "Payment could not be made. Incomplete data."));
     die();
 }
 
-$pagamento = new Pagamento($db);
-$importo = $data->importo;
+$Payment = new Payment($db);
+$amount = $data->amount;
 $token = $data->token;
 
-if ($pagamento->Controllo_disponibilita($importo, $token)) {
+if ($Payment->control_disponibility($amount, $token)) {
     http_response_code(200);
-    echo json_encode(array("message" => "Credito sufficiente."));
+    echo json_encode(array("message" => "sufficient credit."));
 } else {
     http_response_code(503);
-    echo json_encode(array("message" => "Credito insufficiente."));
+    echo json_encode(array("message" => "insufficient credit"));
 }
 ?>
