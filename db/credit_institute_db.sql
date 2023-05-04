@@ -118,6 +118,10 @@ ALTER TABLE card
 ADD CONSTRAINT fk_card_type
 FOREIGN KEY (type_id) REFERENCES card_type(id);
 
+ALTER TABLE card
+ADD CONSTRAINT fk_card_account_id
+FOREIGN KEY (account_id) REFERENCES account(account_number);
+
 ALTER TABLE customer_account
 ADD CONSTRAINT fk_customer_account_customer_id
 FOREIGN KEY (customer_id) REFERENCES customer(tax_code);
