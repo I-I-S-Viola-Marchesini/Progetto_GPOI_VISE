@@ -12,7 +12,7 @@
                 <img src="img/vise.svg" style="width: 50px;" alt="" srcset="">
             </div>
             <div class="col-4 text-end">
-                <span class="badge rounded-pill text-bg-primary fs-6">5,55 EUR</span>
+                <span class="badge rounded-pill text-bg-primary fs-6">69,420 EUR</span>
 
             </div>
         </div>
@@ -27,25 +27,11 @@
                             <div id="example-card" class="form-check mb-3" style="display: none;">
                                 <img src="img/credit-card-solid.svg" class="mx-2 " style="width:25px;" alt="" srcset="">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label id="label" class="form-check-label" for="flexRadioDefault1">
+                                <label class="name_label" id="label" class="form-check-label" for="flexRadioDefault1">
                                     Intesa San Paolo Debit
                                 </label>
                             </div>
                         </div>
-                        <!-- <div class="form-check mb-2">
-                            <img src="img/credit-card-solid.svg" class="mx-2 " style="width:25px;" alt="" srcset="">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Intesa San Paolo Debit
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <img src="img/credit-card-solid.svg" class="mx-2" style="width:25px;" alt="" srcset="">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                PostePay Evolution Visa
-                            </label>
-                        </div> -->
 
                         <button class="col-6 col-md-4 col-lg-3 col-xl-3 btn btn-outline-dark mt-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -96,7 +82,7 @@
         function showCard(element){
             var cards = $("#cards");
             var card = $("#example-card").clone();
-            card.children(label).html(element.card_name);
+            card.children('.name_label').html(element.card_name);
             card.val(element.id);
             card.show().appendTo(cards);
         }

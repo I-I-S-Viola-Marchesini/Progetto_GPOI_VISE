@@ -1,5 +1,5 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
 require("../../Common/connect.php");
 require("../../Model/card.php");
 if(!isset($_GET["userid"])){
