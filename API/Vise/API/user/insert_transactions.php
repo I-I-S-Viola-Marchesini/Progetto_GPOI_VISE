@@ -13,9 +13,9 @@ $db = $database->connect();
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (empty($data->datetime) || empty($data->transaction_type) || empty($data->amount) || empty($data->reciver) || empty($data->token)) {
+if (empty($data->datetime) || empty($data->transaction_type) || empty($data->amount) || empty($data->reciver) || empty($data->account_id)) {
     http_response_code(400);
-    echo json_encode(array("message" => "Payment could not be made. Incomplete data."));
+    echo json_encode(array("message" => "Incomplete data."));
     die();
 }
 
@@ -25,22 +25,14 @@ $datetime = $data->datetime;
 $transaction_type = $data->transaction_type;
 $reciver = $data->reciver;
 $amount = $data->amount;
-$token = $data->token;
+$account_id = $data->account_id;
 
-$sender -> get_name_surname($token);
-$account_number -> get_account_number($token);
+$sender -> get_name_surname($account_id);
 
-if ($Payment->Withdrawal_amount($amount, $token)) {
+
+if ($transaction->register_transactions($datetime, $transaction_type, $amount, $sender, $reciver, $account_id)) {
     http_response_code(200);
-    echo json_encode(array("message" => "Paid."));
-    if ($transaction->register_transactions($datetime, $transaction_type, $amount, $sender, $reciver, $account_number)) {
-        http_response_code(200);
-        echo json_encode(array("message" => "Recorded transaction."));
-    } else {
-        http_response_code(503);
-        echo json_encode(array("message" => "Error during the payment."));
-        die();
-    }
+    echo json_encode(array("message" => "Recorded transaction."));
 } else {
     http_response_code(503);
     echo json_encode(array("message" => "Error during the payment."));

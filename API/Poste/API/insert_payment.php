@@ -33,7 +33,7 @@ $account_number -> get_account_number($token);
 if ($Payment->Withdrawal_amount($amount, $token)) {
     http_response_code(200);
     echo json_encode(array("message" => "Paid."));
-    if ($transaction->registra_transazione($datetime, $transaction_type, $amount, $sender, $reciver, $account_number)) {
+    if ($transaction->register_transactions($datetime, $transaction_type, $amount, $sender, $reciver, $account_number)) {
         http_response_code(200);
         echo json_encode(array("message" => "Recorded transaction."));
     } else {
