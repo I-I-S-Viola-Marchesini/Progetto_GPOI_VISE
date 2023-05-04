@@ -115,6 +115,10 @@ ADD CONSTRAINT fk_customer_abode_id
 FOREIGN KEY (abode_id) REFERENCES address(id);
 
 ALTER TABLE card
+ADD CONSTRAINT fk_card_account_id
+FOREIGN KEY (account_id) REFERENCES account(account_number);
+
+ALTER TABLE card
 ADD CONSTRAINT fk_card_type
 FOREIGN KEY (type_id) REFERENCES card_type(id);
 
@@ -157,3 +161,4 @@ FOREIGN KEY (institute_id) REFERENCES external_institute(id);
 ALTER TABLE card_institute
 ADD CONSTRAINT fk_card_institute_card_id
 FOREIGN KEY (card_id) REFERENCES card(pan);
+
