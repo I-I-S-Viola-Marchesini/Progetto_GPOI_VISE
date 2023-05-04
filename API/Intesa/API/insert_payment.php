@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include dirname(__FILE__) . '/../Common/connect.php';
 include dirname(__FILE__) . '/../Model/Payment.php';
 
-$database = new Database();
+$database = new Database_Intesa_Sanpaolo();
 $db = $database->connect();
 
 $data = json_decode(file_get_contents("php://input"));
