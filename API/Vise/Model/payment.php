@@ -18,22 +18,28 @@ class Payment
         WHERE $this->table_user.account_id = '$account_id'";
 
         $stmt = $this->conn->query($query);
+        $name = $stmt->fetch_assoc()["name"];
 
-        return $stmt;
+        $query = "SELECT $this->table_user.name, $this->table_user.surname
+        FROM $this->table_user
+        WHERE $this->table_user.account_id = '$account_id'";
+
+        $stmt = $this->conn->query($query);
+
+        $surname = $stmt->fetch_assoc()["surname"];
+
+        $concatenata = $name . " " . $surname;
+        echo $concatenata;
+        return $concatenata;
     }
 
     function register_transactions($datetime, $transaction_type, $amount, $sender, $reciver, $account_number)
     {
-        $query_registration_transaction = "Insert into $this->table_transaction (datetime, transaction_type, amount, sender, reciver)
+        $query_registration_transaction = "Insert into $this->table_transaction (date_time, transaction_type, amount, sender, receiver)
         values ('$datetime', '$transaction_type', '$amount', '$sender', '$reciver')";
         $stmt = $this->conn->query($query_registration_transaction);
 
-        $id_transaction = $stmt->insert_id;
-
-        $query_account_transaction = "Insert into $this->table_account_transaction (account_id, transaction_id)
-        values ('$account_number', '$id_transaction')";
-        $result = $this->conn->query($query_account_transaction);
-        if($result == true)
+        if($stmt == true)
         {
             return true;
         }
@@ -41,6 +47,12 @@ class Payment
         {
             return false;
         }
+
+        $id_transaction = mysqli_insert_id($this->conn);
+
+        $query_account_transaction = "Insert into $this->table_account_transaction (account_id, transaction_id)
+        values ('$account_number', '$id_transaction')";
+        $result = $this->conn->query($query_account_transaction);        
     }
 }
 ?>

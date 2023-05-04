@@ -6,9 +6,9 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include dirname(__FILE__) . '/../Common/connect.php';
-include dirname(__FILE__) . '/../Model/Payment.php';
+include dirname(__FILE__) . '/../Model/payment.php';
 
-$database = new Database();
+$database = new Database_Vise();
 $db = $database->connect();
 
 $data = json_decode(file_get_contents("php://input"));
@@ -19,7 +19,7 @@ if (empty($data->datetime) || empty($data->transaction_type) || empty($data->amo
     die();
 }
 
-$Payment = new Payment($db);
+$transaction = new Payment($db);
 
 $datetime = $data->datetime;
 $transaction_type = $data->transaction_type;
@@ -27,7 +27,7 @@ $reciver = $data->reciver;
 $amount = $data->amount;
 $account_id = $data->account_id;
 
-$sender -> get_name_surname($account_id);
+$sender = $transaction->get_name_surname($account_id);
 
 
 if ($transaction->register_transactions($datetime, $transaction_type, $amount, $sender, $reciver, $account_id)) {
