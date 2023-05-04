@@ -47,7 +47,7 @@ CREATE TABLE vise_db.billing_address(
 CREATE TABLE vise_db.card(
     id INT AUTO_INCREMENT PRIMARY KEY,
     card_name VARCHAR(15) NOT NULL,
-    institute_communication_token INT NOT NULL,
+    institute_communication_token VARCHAR(30) NOT NULL,
     expiration_date VARCHAR(5) NOT NULL,
     billing_address_id INT
 );
