@@ -66,8 +66,8 @@ CREATE TABLE vise_db.transaction(
     receiver VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE vise_db.customer_card(
-    customer_id VARCHAR(30),
+CREATE TABLE vise_db.user_card(
+    user_id VARCHAR(30),
     card_id INT
 );
 
@@ -81,20 +81,20 @@ CREATE TABLE vise_db.account_transaction(
     transaction_id INT
 );
 
-ALTER TABLE vise_db.customer
-ADD CONSTRAINT fk_customer_account_id
+ALTER TABLE vise_db.user
+ADD CONSTRAINT fk_user_account_id
 FOREIGN KEY (account_id) REFERENCES account(account_number);
 
 ALTER TABLE vise_db.card
 ADD CONSTRAINT fk_card_billing_address_id
 FOREIGN KEY (billing_address_id) REFERENCES billing_address(id);
 
-ALTER TABLE vise_db.customer_card
-ADD CONSTRAINT fk_customer_card_customer_id
-FOREIGN KEY (customer_id) REFERENCES customer(user_name);
+ALTER TABLE vise_db.user_card
+ADD CONSTRAINT fk_user_card_user_id
+FOREIGN KEY (user_id) REFERENCES user(user_name);
 
-ALTER TABLE vise_db.customer_card
-ADD CONSTRAINT fk_customer_card_card_id
+ALTER TABLE vise_db.user_card
+ADD CONSTRAINT fk_user_card_card_id
 FOREIGN KEY (card_id) REFERENCES card(id);
 
 ALTER TABLE vise_db.card_circuit
