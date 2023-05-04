@@ -18,7 +18,7 @@ class User
             $mode = "user_name";
         }
 
-        $query = "SELECT user.account_id FROM `user` WHERE user.$mode = '$username' AND user.password = '$password'";
+        $query = "SELECT user.user_name FROM `user` WHERE user.$mode = '$username' AND user.password = '$password'";
         
         $result = $this->conn->query($query);
 

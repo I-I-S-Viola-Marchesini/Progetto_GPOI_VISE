@@ -26,7 +26,8 @@ if ($result->num_rows > 0)
     }
     http_response_code(200);
     $json = json_encode($card_arr);
-    echo $json;
+    echo($json);
+
 
     //return $json;
 }

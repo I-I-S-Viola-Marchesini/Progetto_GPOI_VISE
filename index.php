@@ -18,6 +18,8 @@
 </style>
 
 <body>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
     <div class="container">
         <div id="main">
@@ -32,6 +34,8 @@
         require_once __DIR__ . '/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js';
         ?>
     </script>
+
+
 </body>
 
 </html>

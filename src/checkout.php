@@ -23,7 +23,16 @@
                 <form action="" class="my-3">
                     <div class="row">
 
-                        <div class="form-check mb-2">
+                        <div id="cards">
+                            <div id="example-card" class="form-check mb-3" style="display: none;">
+                                <img src="img/credit-card-solid.svg" class="mx-2 " style="width:25px;" alt="" srcset="">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label id="label" class="form-check-label" for="flexRadioDefault1">
+                                    Intesa San Paolo Debit
+                                </label>
+                            </div>
+                        </div>
+                        <!-- <div class="form-check mb-2">
                             <img src="img/credit-card-solid.svg" class="mx-2 " style="width:25px;" alt="" srcset="">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
@@ -36,9 +45,9 @@
                             <label class="form-check-label" for="flexRadioDefault2">
                                 PostePay Evolution Visa
                             </label>
-                        </div>
+                        </div> -->
 
-                        <button class="col-6 col-md-4 col-lg-3 col-xl-3 btn btn-outline-dark mt-4">
+                        <button class="col-6 col-md-4 col-lg-3 col-xl-3 btn btn-outline-dark mt-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-plus" viewBox="0 0 16 16">
                                 <path
@@ -62,4 +71,49 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            var id = getCookie("account_id");
+            $.ajax({
+                url: "http://localhost/Progetto_GPOI_VISE/API/Vise/API/card/getArchiveCardsByUserID.php",
+                type: "GET",
+                data: {
+                    userid: id,
+                },
+                success: function (result) {
+                    var json = JSON.parse(result);
+                    json.forEach(element => {
+                        showCard(element);
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(errorThrown);
+                },
+            });
+        });
+
+        function showCard(element){
+            var cards = $("#cards");
+            var card = $("#example-card").clone();
+            card.children(label).html(element.card_name);
+            card.val(element.id);
+            card.show().appendTo(cards);
+        }
+
+    </script>
+    <script>
+        function getCookie(cookieName) {
+            var name = cookieName + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if ((c.indexOf(name)) == 0) {
+                    return c.substr(name.length);
+                }
+            }
+            alert("not found");
+            return null;
+        }
+    </script>
 </main>

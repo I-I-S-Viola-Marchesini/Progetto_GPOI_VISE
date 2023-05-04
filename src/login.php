@@ -38,7 +38,7 @@
 
             document.addEventListener("DOMContentLoaded", () => {
                 if (document.cookie.includes("username") && document.cookie.includes("account_id")) {
-                    location.href = "/?p=1";
+                    location.href = "?p=1";
                 }
             });
 
@@ -63,8 +63,8 @@
                 loginRequest.onreadystatechange = function() {
                     if (loginRequest.readyState == 4 && loginRequest.status == 200) {
                         document.cookie = "username=" + username.value + "; path=/";
-                        document.cookie = "account_id=" + JSON.parse(loginRequest.responseText).account_id + "; path=/";
-                        location.href = "/?p=1";
+                        document.cookie = "account_id=" + JSON.parse(loginRequest.responseText).username + "; path=/";
+                        location.href = "?p=1";
                     } else if (loginRequest.readyState == 4) {
                         alert("Login non riuscito, controlla il nome utente o la password.");
                     }

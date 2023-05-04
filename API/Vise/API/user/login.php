@@ -19,7 +19,7 @@ $user = new User($conn);
 $result = $user->login($data->username, $data->password);
 
 if ($result != false) {
-    $account_id = $result->fetch_assoc()["account_id"];
+    $account_id = $result->fetch_assoc()["user_name"];
     
     if($account_id == null){
         http_response_code(401);
@@ -28,7 +28,7 @@ if ($result != false) {
     }
 
     http_response_code(200);
-    echo json_encode(["response" => true, "account_id" => $account_id]);
+    echo json_encode(["response" => true, "username" => $account_id]);
 } else {
     http_response_code(401);
     echo json_encode(["response" => false]);
