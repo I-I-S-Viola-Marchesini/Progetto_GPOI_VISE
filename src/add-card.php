@@ -50,7 +50,7 @@
                     <div class="col-sm-6">
                         <label for="fiscal-code" class="form-label">Numero della carta</label>
                         <div class="input-group has-validation">
-                            <input type="text" class="form-control" id="fiscal-code" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+                            <input type="number" class="form-control" id="fiscal-code" placeholder="XXXX-XXXX-XXXX-XXXX" maxlength="16" required>
                             <div class="invalid-feedback">
                                 Inserisci il numero della carta.
                             </div>
@@ -75,7 +75,49 @@
                         </div>
                     </div>
 
-                <hr class="my-4">
+                    <hr class="my-5">
+
+                    <div class="col-sm-6">
+                        <label for="fiscal-code" class="form-label">Indirizzo di Fatturazione</label>
+                        <div class="input-group has-validation">
+                            <input type="text" class="form-control" id="fiscal-code" placeholder="Via Roma" required>
+                            <div class="invalid-feedback">
+                                Inserisci una via.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="fiscal-code" class="form-label">Inserisci un CAP</label>
+                        <div class="input-group has-validation">
+                            <input type="number" class="form-control" id="fiscal-code" placeholder="00100" required min="1">
+                            <div class="invalid-feedback">
+                                Inserisci un cap.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="fiscal-code" class="form-label">Città</label>
+                        <div class="input-group has-validation">
+                            <input type="text" class="form-control" id="fiscal-code" placeholder="Roma" required>
+                            <div class="invalid-feedback">
+                                Inserisci una città.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="fiscal-code" class="form-label">Stato</label>
+                        <div class="input-group has-validation">
+                            <input type="text" class="form-control" id="fiscal-code" placeholder="Italia" required>
+                            <div class="invalid-feedback">
+                                Inserisci uno stato.
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-5">
 
                 <div class="col-sm-6">
                     <button class="w-100 btn btn-danger btn-lg" type="submit">Annulla e Torna Indietro</button>  
@@ -87,3 +129,11 @@
         </div>
     </div>
 </main>
+
+<style>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>
