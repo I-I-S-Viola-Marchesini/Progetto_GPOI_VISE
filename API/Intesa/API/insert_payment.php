@@ -6,7 +6,7 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include dirname(__FILE__) . '/../Common/connect.php';
-include dirname(__FILE__) . '/../Model/pagamento.php';
+include dirname(__FILE__) . '/../Model/Payment.php';
 
 $database = new Database();
 $db = $database->connect();
