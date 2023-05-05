@@ -1,0 +1,7 @@
+{
+    "name": "itis/progettovise",
+    "type": "project",
+    "require": {
+        "twbs/bootstrap": "^5.2"
+    }
+}
