@@ -18,12 +18,9 @@
     <body class="body-background">
     
         <?php
-            include_once __DIR__ . '/src/floating_icon.php';
+            include_once __DIR__ . '/src/navbar.php';
         ?>
 
-        <div class="mt-5 justify-content-center d-flex">
-            <img src="img/VISE.svg" class="img-fluid" width="150" height="150" alt="Logo per vise">
-        </div>
         <div class="container">
             <div id="main">
                 <?php
