@@ -17,7 +17,7 @@ switch ($page) {
         include('_dashboard.php');
         break;
     default:
-        include("error-404.php");
+        include("_error_404.php");
         break;
 }
 ?>
