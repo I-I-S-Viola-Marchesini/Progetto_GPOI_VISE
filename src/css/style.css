@@ -1,0 +1,8 @@
+.bg-whitesmoke{
+    background: whitesmoke;
+}
+
+.bi-bell-fill:hover, .bi-person-circle:hover{
+    color: #0d6efd;
+    transition: 0.3s;
+}
