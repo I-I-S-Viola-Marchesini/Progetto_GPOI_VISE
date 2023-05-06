@@ -1,15 +1,12 @@
 <?php
-
-
-
 ?>
 
 <title>
-    Paga Vise | Sistema di Pagamento
+    Vise | Il miglior modo per pagare
 </title>
 
 <main class="d-flex align-items-end mt-5">
-    <div class="container text-center shadow-lg rounded-3 py-5 bg-white" style="min-height: 80vh;">
+    <div class="container text-center shadow-lg rounded-3 py-5 bg-white" style="min-height: 800vh;">
         <div class="row g-2">
 
 
