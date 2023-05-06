@@ -6,8 +6,8 @@
 </title>
 
 <main class="d-flex align-items-end mt-5">
-    <div class="container shadow-lg rounded-3 py-5 bg-white" style="min-height: 800vh;">
-        <div class="row py-3 mt-5 bg-whitesmoke">
+    <div class="container shadow-lg rounded-3 py-5 bg-whitesmoke" style="min-height: 800vh;">
+        <div class="row py-3 mt-5">
             <div class="col-10 mx-auto">
                 <div class="row">
                     <div class="col-6 my-auto">
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="row py-3 mt-5">
+        <div class="row py-3 mt-5 bg-white">
             <div class="col-10 mx-auto">
                 <div class="row">
                     <div class="col-6 text-center">
