@@ -16,6 +16,9 @@ switch ($page) {
     case 'dashboard':
         include('_dashboard.php');
         break;
+    case 'signup':
+        include('_signup.php');
+        break;
     default:
         include("_error_404.php");
         break;
