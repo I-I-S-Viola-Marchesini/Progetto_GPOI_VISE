@@ -6,7 +6,7 @@
             <h3 class="text-body-primary">Crea un nuovo account utente!</h3>
         </div>
 
-        <div class="row justify-content-center">
+        <!-- <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4 mt-4">
                 <div class="mb-4">
                     <label for="name" class="form-label ms-1">Nome</label>
@@ -60,12 +60,12 @@
                     Annulla
                 </button>
             </div>
-            
+
             <div class="col-10 col-md-6 col-lg-4 mt-4">
                 <button id="send-button" class="btn btn-primary col-6 mb-3">
                     Conferma
                 </button>
-            </div>
+            </div> -->
         </div>
     </div>
 </main>
