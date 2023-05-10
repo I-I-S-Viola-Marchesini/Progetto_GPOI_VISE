@@ -13,14 +13,14 @@
 
 <div class="vise-navbar d-flex justify-content-around align-items-center">
     <div class="w-100 p-4">
-        <div class="bg-white shadow-sm rounded-5 d-flex justify-content-center align-items-center">
+        <div class="bg-white rounded-5 d-flex justify-content-center align-items-center">
             <button class="btn btn-link text-dark d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_navigation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
                 </svg>
             </button>
         </div>
-        <div class="bg-white shadow-sm rounded-5">
+        <div class="bg-white rounded-5">
             <div class="d-none d-lg-block">
                 <ul class="nav">
                     <li class="nav-item">
@@ -42,10 +42,10 @@
     <!-- <img src="img/VISE.svg" class="img-fluid" style="height: 65px;" alt="Logo per vise"> -->
     <canvas class="logo-vise"></canvas>
     <div class="w-100 p-4 d-flex">
-        <div class="bg-white shadow-sm rounded-5 w-100 d-none d-lg-inline" style="margin-right: 1rem;">
+        <div class="bg-white rounded-5 w-100 d-none d-lg-inline" style="margin-right: 1rem;">
 
         </div>
-        <div class="w-100 bg-white shadow-sm rounded-5 d-flex justify-content-center align-items-center d-inline d-lg-none">
+        <div class="w-100 bg-white rounded-5 d-flex justify-content-center align-items-center d-inline d-lg-none">
             <button class="btn btn-link text-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_account_mng">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -53,14 +53,14 @@
                 </svg>
             </button>
         </div>
-        <div class="bg-white shadow-sm rounded-5 d-none d-lg-flex">
+        <div class="bg-white rounded-5 d-none d-lg-flex">
             <button class="btn btn-link text-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_account_mng">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                 </svg>
             </button>
-            <button class="btn btn-link text-dark tooltip-trg tooltip-show-start" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_notifications" data-bs-placement="bottom" data-bs-title="5">
+            <button class="btn btn-link text-dark tooltip-trg tooltip-show-start" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_notifications" data-bs-placement="bottom" data-bs-title="">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
                     <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
                 </svg>
@@ -109,11 +109,11 @@
         height: 90px;
         opacity: 0;
         z-index: 1;
-        transition: 350ms;
+        transition: 550ms;
     }
 
     .vise-navbar-stuck.pinned {
-        opacity: 0.9 !important;
+        opacity: 1 !important;
     }
 </style>
 

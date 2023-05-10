@@ -19,6 +19,9 @@ switch ($page) {
     case 'signup':
         include('_signup.php');
         break;
+    case 'checkout':
+        include('_checkout.php');
+        break;
     default:
         include("_error_404.php");
         break;

@@ -50,7 +50,7 @@
     }
 
     .body-background {
-        background-color: #C3D8FF;
+        background-color: #cfe2ff;
     }
 </style>
 
