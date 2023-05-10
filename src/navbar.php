@@ -21,6 +21,7 @@
             </button>
         </div>
         <div class="bg-white rounded-5">
+        <div class="bg-white shadow-sm rounded-5 container-nav-1">
             <div class="d-none d-lg-block">
                 <ul class="nav">
                     <li class="nav-item">
@@ -43,6 +44,7 @@
     <canvas class="logo-vise"></canvas>
     <div class="w-100 p-4 d-flex">
         <div class="bg-white rounded-5 w-100 d-none d-lg-inline" style="margin-right: 1rem;">
+        <div class="bg-white shadow-sm rounded-5 w-100 d-none d-lg-inline container-nav-2" style="margin-right: 1rem;">
 
         </div>
         <div class="w-100 bg-white rounded-5 d-flex justify-content-center align-items-center d-inline d-lg-none">
@@ -54,6 +56,7 @@
             </button>
         </div>
         <div class="bg-white rounded-5 d-none d-lg-flex">
+        <div class="bg-white shadow-sm rounded-5 d-none d-lg-flex container-nav-3">
             <button class="btn btn-link text-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_account_mng">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -113,6 +116,7 @@
     }
 
     .vise-navbar-stuck.pinned {
+        opacity: 1 !important;
         opacity: 1 !important;
     }
 </style>
@@ -346,8 +350,14 @@
     document.addEventListener('scroll', function() {
         if (window.scrollY > 25) {
             document.querySelector('.vise-navbar-stuck').classList.add('pinned');
+            document.querySelector('.container-nav-1').classList.remove('shadow-sm');
+            document.querySelector('.container-nav-2').classList.remove('shadow-sm');
+            document.querySelector('.container-nav-3').classList.remove('shadow-sm');
         } else {
             document.querySelector('.vise-navbar-stuck').classList.remove('pinned');
+            document.querySelector('.container-nav-1').classList.add('shadow-sm');
+            document.querySelector('.container-nav-2').classList.add('shadow-sm');
+            document.querySelector('.container-nav-3').classList.add('shadow-sm');
         }
     });
 
