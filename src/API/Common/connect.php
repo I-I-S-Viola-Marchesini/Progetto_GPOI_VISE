@@ -1,5 +1,5 @@
 <?php
-class Database_Vise
+class Database
 {
     public $conn;
     public $ConnectionData;
