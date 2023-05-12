@@ -13,14 +13,14 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4 mt-4">
 
-                <div class="mb-4" id="username-container">
-                    <label for="username" class="form-label ms-1">Username</label>
+                <div class="mb-4 form-floating" id="username-container">
                     <input type="text" class="form-control" id="username" placeholder="Inserisci il tuo username o email">
+                    <label for="username" class="form-label ms-1">Username</label>
                 </div>
 
-                <div class="mb-4" id="username-container">
-                    <label for="username" class="form-label ms-1">Password</label>
+                <div class="mb-4 form-floating" id="username-container">
                     <input type="password" class="form-control" id="password" placeholder="Inserisci la password">
+                    <label for="username" class="form-label ms-1">Password</label>
                 </div>
 
                 <small class="row mb-2"><a href="">Hai dimenticato la password?</a></small>
@@ -46,7 +46,8 @@
 
             sendButton.addEventListener("click", () => {
                 if (username.value == "" || password.value == "") {
-                    alert("Inserisci le credenziali");
+                    document.querySelector('#username').classList.add('is-invalid');
+                    document.querySelector('#password').classList.add('is-invalid');
                     return;
                 }
 
@@ -64,7 +65,8 @@
                         document.cookie = "account_id=" + JSON.parse(loginRequest.responseText).username + "; path=/";
                         location.href = "?p=1";
                     } else if (loginRequest.readyState == 4) {
-                        alert("Login non riuscito, controlla il nome utente o la password.");
+                        document.querySelector('#username').classList.add('is-invalid');
+                        document.querySelector('#password').classList.add('is-invalid');
                     }
                 };
                 loginRequest.send(JSON.stringify(data));
