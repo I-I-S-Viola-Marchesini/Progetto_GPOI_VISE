@@ -39,8 +39,10 @@
                 <div class="row h-50">
                     <div class="col-1">
                         <form id="cards_radio_input" name="paymentMethodForm">
-                            <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" id="exampleCard">
-                            <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" id="googlePay">
+                            <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="card" id="exampleCard">
+                            <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="card" id="secondExampleCard">
+                            <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="card" id="thirdExampleCard">
+                            <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="googlePay" id="googlePay">
                     </form>
                     </div>
                     <div class="col-11">
@@ -49,7 +51,23 @@
                                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
                             </svg>
                             <label class="name_label mb-2" id="label" class="form-check-label" for="exampleCard">
-                                Postepay Evolution Connect (**** **** **** 1234)
+                                Postepay Evolution Connect <small class="text-muted">(** 4820)</small>
+                            </label>
+                        </span>
+                        <span class="d-flex align-items-center mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2" style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
+                            </svg>
+                            <label class="name_label mb-2" id="label" class="form-check-label" for="secondExampleCard">
+                                Intesa San Paolo Debit <small class="text-muted">(** 1739)</small> 
+                            </label>
+                        </span>
+                        <span class="d-flex align-items-center mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2" style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
+                            </svg>
+                            <label class="name_label mb-2" id="label" class="form-check-label" for="thirdExampleCard">
+                                Unicredit Visa <small class="text-muted">(** 5679)</small> 
                             </label>
                         </span>
                         <span class="d-flex align-items-center mb-2">
@@ -63,7 +81,8 @@
                     </div>
                     <div class="row mt-5">
                         <div class="text-center">
-                            <button id="card_pay_button" class="col-8 col-xl-6 btn btn-primary rounded-pill" type="submit">Conferma acquisto</button>
+                            <button id="none_pay_button" class="col-8 col-xl-6 btn btn-secondary disabled rounded-pill">Seleziona per continuare</button>
+                            <button id="card_pay_button" class="col-8 col-xl-6 btn btn-primary rounded-pill" style="width: 75%;"></button>
                             <div id="google_pay_button"></div>
                         </div>
                         <div class="text-center mt-3 ">
@@ -127,12 +146,14 @@
     //Uncheck all radio inputs
     $('input[type="radio"]').prop('checked', false);
 
-    // Show correct button when radio input is clicked
-    $('form[name="paymentMethodForm"]').on('change', function() {
-        if ($('#exampleCard').is(':checked')) {
+    document.querySelector('form[name="paymentMethodForm"]').addEventListener('change', (event) => {
+        $('#none_pay_button').hide();
+        if (event.target.value === 'card') {
+            let cardLabel = $('#label[for="' + event.originalTarget.id + '"]').html().split('<small class="text-muted">')[0];
+            $('#card_pay_button').html('Paga con ' + cardLabel);
             $('#card_pay_button').show();
             $('#google_pay_button').hide();
-        } else if ($('#googlePay').is(':checked')) {
+        } else if (event.target.value === 'googlePay') {
             $('#card_pay_button').hide();
             $('#google_pay_button').show();
         }
