@@ -35,12 +35,6 @@ CREATE TABLE card(
     id_payment_gateway INT NOT NULL
 );
 
-CREATE TABLE account_card(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    account_id INT NOT NULL,
-    card_id INT NOT NULL
-);
-
 CREATE TABLE payment_gateway(
     id INT AUTO_INCREMENT PRIMARY KEY,
     card_token VARCHAR(200) NOT NULL,
@@ -49,28 +43,24 @@ CREATE TABLE payment_gateway(
 
 CREATE TABLE payment(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    card_id INT NOT NULL,
+    sender_user_id INT NOT NULL,
+    sender_card_id INT NOT NULL,
     payment_date DATE NOT NULL,
     destination VARCHAR(50) NOT NULL,
     amount INT NOT NULL
 );
 
-
 ALTER TABLE account ADD CONSTRAINT fk_account_user_id
 FOREIGN KEY (user_id) REFERENCES user(id);
-
-ALTER TABLE account_card ADD CONSTRAINT fk_account_card_account_id
-FOREIGN KEY (account_id) REFERENCES account(user_id);
-
-ALTER TABLE account_card ADD CONSTRAINT fk_account_card_card_id
-FOREIGN KEY (card_id) REFERENCES `card`(id);
 
 ALTER TABLE `card`  ADD CONSTRAINT fk_payment_gateway_card_id
 FOREIGN KEY (id_payment_gateway) REFERENCES payment_gateway(id);
 
 ALTER TABLE payment ADD CONSTRAINT fk_payment_user_id
-FOREIGN KEY (user_id) REFERENCES user(id);
+FOREIGN KEY (sender_user_id) REFERENCES user(id);
 
 ALTER TABLE payment ADD CONSTRAINT fk_payment_card_id
-FOREIGN KEY (card_id) REFERENCES `card`(id);
+FOREIGN KEY (sender_card_id) REFERENCES `card`(id);
+
+ALTER TABLE `card` ADD CONSTRAINT fk_card_user_id
+FOREIGN KEY (user_id) REFERENCES user(id); 
