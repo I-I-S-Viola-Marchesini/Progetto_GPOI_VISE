@@ -1,4 +1,3 @@
-                                            
 <?php
 
 // Pagamento OneClik - Primo pagamento - Avvio pagamento
@@ -8,11 +7,11 @@ $ALIAS = 'ALIAS_WEB_00069162'; // Sostituire con il valore fornito da Nexi
 $CHIAVESEGRETA = '5EM2C9J6UBZP65YC4SGD3J10AOVT624N'; // Sostituire con il valore fornito da Nexi
 
 $requestUrl = "https://int-ecommerce.nexi.it/ecomm/ecomm/DispatcherServlet";
-$merchantServerUrl = "https://" . $_SERVER['HTTP_HOST'] . "/xpay/php/pagamento_semplice/one_click/";
+$merchantServerUrl = "http://" . $_SERVER['HTTP_HOST'] . "/xpay/php/pagamento_semplice/one_click/";
 
-$codTrans = "TESTPS_" . date('YmdHis');
+$codTrans = "VISE-" . date('YmdHis');
 $divisa = "EUR";
-$importo = 5000;
+$importo = $_GET['importo'];
 
 // Calcolo MAC
 $mac = sha1('codTrans=' . $codTrans . 'divisa=' . $divisa . 'importo=' . $importo . $CHIAVESEGRETA);
@@ -44,7 +43,7 @@ $requestParams = array_merge($obbligatori, $facoltativi);
 
 <html>
     <head></head>
-    <body>
+    <body style="opacity: 0.0;">
         <form method='POST' action='<?php echo $requestUrl ?>'>
             <?php foreach ($requestParams as $name => $value) { ?>
                 <input type='hidden' name='<?php echo $name; ?>' value='<?php echo htmlentities($value); ?>' />
@@ -53,8 +52,7 @@ $requestParams = array_merge($obbligatori, $facoltativi);
             <input type='submit' value='VAI ALLA PAGINA DI CASSA' />
         </form>
         <script>
+            document.forms[0].submit();
         </script>
     </body>
 </html>
-                    
-                
