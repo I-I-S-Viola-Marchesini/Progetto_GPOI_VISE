@@ -3,7 +3,7 @@
 ?>
 <title>Paga Vise | Checkout</title>
 <main class="d-flex align-items-center mt-5">
-    <div class="container text-center shadow-lg bg-white rounded-3 py-5">
+    <div class="container text-center shadow-lg bg-white bg-xs-transparent rounded-3 py-5">
         <div class="row g-2">
             <h1 class="display-3">Semplice... è Vise!</h1>
             <small class="text-body-primary">Bentornato, inserisci le tue credenziali per accedere alla
