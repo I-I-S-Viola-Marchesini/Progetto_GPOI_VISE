@@ -16,7 +16,7 @@
                             Invia i tuoi pagamenti a amici e negozianti ovunque tu sia, senza difficoltà e con la massima sicurezza.
                             Con <strong>Vise</strong>, pagare diventa un'esperienza confortevole e senza stress, in grado di semplificare la gestione dei tuoi fondi.</p>
                     </div>
-                    
+
                     <div class="col-12 col-lg-6 text-center">
                         <img src="img/3d-casual-life-young-smiling-woman-with-laptop-and-credit-card-1.png" alt="Immagine Landing Page" height="240px">
                     </div>
@@ -38,6 +38,4 @@
                 </div>
             </div>
         </div>
-
-    </div>
 </main>
