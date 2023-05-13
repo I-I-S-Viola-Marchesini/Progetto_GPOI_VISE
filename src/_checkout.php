@@ -22,12 +22,12 @@ $numeroContratto = (time() * 1000) . rand(0, 100);
 </title>
 
 <main class="d-flex align-items-end mt-5">
-    <div class="container text-center shadow-lg rounded-3 bg-transparent">
+    <div class="container p-0 text-center shadow-lg rounded-3 bg-white">
         <div class="row" style="min-height: 80vh;">
-            <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center" style="border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; background-color: #ECECEC;">
+            <div class="col-12 col-lg-6 d-none d-lg-flex justify-content-center align-items-center" style="border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; background-color: #EEEEEE;">
                 <div class="card shadow-lg" style="width: 25rem;">
                     <div class="card-body" style="padding-top: 70px;">
-                        <div class="logo_container">
+                        <div class="logo_container d-none d-lg-flex">
                             <span class="logo_img border rounded-1 p-5 bg-light shadow-sm"></span>
                         </div>
                         <h3 class="card-title">
@@ -48,22 +48,61 @@ $numeroContratto = (time() * 1000) . rand(0, 100);
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 bg-white p-4" style="border-top-right-radius: 0.5rem; border-bottom-right-radius: 0.5rem;">
+            <div class="col-12 rounded-3 col-lg-6 bg-white p-4">
                 <div class="row mb-3">
                     <h3 class="text-center">Pagamento tramite Vise</h3>
                     <nav class="d-flex justify-content-center" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active"><span step_id="1">Conferma dati</span></li>
-                            <li class="breadcrumb-item active"><span class="fw-bold" step_id="2">Scelta metodo</span></li>
-                            <li class="breadcrumb-item active"><span step_id="3">Conferma pagamento</span></li>
+                            <li class="breadcrumb-item active"><span class="fw-bold" step_id="1">
+                                    Dati personali
+                                </span></li>
+                            <li class="breadcrumb-item active"><span step_id="2">
+                                    Metodo di pagamento
+                                </span></li>
+                            <li class="breadcrumb-item active"><span step_id="3">
+                                    Conferma
+                                </span></li>
                         </ol>
                     </nav>
                 </div>
                 <span id="nexi_xpay">
-                    <iframe id="xpay_iframe" class="m-0 p-0 rounded-3" style="width: 100%; height: 85%"></iframe>
+                    <iframe id="xpay_iframe" class="m-0 p-0 rounded-3" style="width: 100%; height: 85%;"></iframe>
                 </span> <!-- http://127.0.0.1:99/nexi_checkout/1click_primo_pagamento.php?importo=6999 -->
                 <span id="google_pay_waiting">
                     <p>Completa il pagamento su Google Pay</p>
+                    <p>Oppure <a href="#" id="google_pay_go_back">cambia metodo di pagamento</a></p>
+                </span>
+                <span id="verify_data">
+                    <div class="row">
+                        <h5 class="mb-3">Questo pagamento sarà effettuato a nome di:</h5>
+                    </div>
+                    <div class="row d-flex justify-content-center align-items-center w-100 p/4">
+                        <img src="img/propic-placeholder.jpg" class="rounded-circle" style="width: 80px;" alt="" srcset="">
+                    </div>
+                    <div class="row w-100">
+                        <h4 class="text-center">
+                            Mario Rossi
+                        </h4>
+                    </div>
+                    <div class="row w-100">
+                        <p class="text-center">
+                            mario.rossi.92@gmail.com
+                            <br>
+                            14/02/1992
+                            <br>
+                            via Roma 1, 00100 Roma (RM)
+                        </p>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="text-center">
+                            <button id="confirm_data_button" class="col-8 col-xl-6 btn btn-primary rounded-pill">
+                                Conferma dati e prosegui
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3 ">
+                        Non vuoi pagare con questo account? <a class="text-decoration-none" href="#">Cambia account</a>
+                    </div>
                 </span>
                 <span id="choose_method">
                     <div class="row">
@@ -110,6 +149,13 @@ $numeroContratto = (time() * 1000) . rand(0, 100);
                             </span>
                         </div>
                         <div class="row mt-5">
+                            <div class="form-check d-flex justify-content-center mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="use_vise_credit" checked>
+                                <span class="m-1"></span>
+                                <label class="form-check-label" for="use_vise_credit">
+                                Usa <span class="fw-bold" id="vise_credit_value">25,40€</span> dal tuo conto Vise
+                                </label>
+                            </div>
                             <div class="text-center">
                                 <button id="none_pay_button" class="col-8 col-xl-6 btn btn-secondary disabled rounded-pill">Seleziona per continuare</button>
                                 <button id="card_pay_button" class="col-8 col-xl-6 btn btn-primary rounded-pill" style="width: 75%;"></button>
@@ -156,7 +202,9 @@ $numeroContratto = (time() * 1000) . rand(0, 100);
 <style>
     #card_pay_button,
     #google_pay_button,
-    #nexi_xpay {
+    #nexi_xpay,
+    #choose_method,
+    #google_pay_waiting {
         display: none;
     }
 
@@ -229,13 +277,52 @@ $numeroContratto = (time() * 1000) . rand(0, 100);
         XPay.initLightbox(config);
     });
 
+    $('#google_pay_go_back').click(function() {
+        $('#google_pay_waiting').hide();
+        $('#choose_method').show();
+    });
+
+    $('#confirm_data_button').click(function() {
+        $('#confirm_data_button').html($('#card_pay_button_spinner').html());
+        $('#confirm_data_button').attr('disabled', true);
+        setTimeout(function() {
+            $('#confirm_data_button').html($('#card_pay_button_checkmark').html());
+            $('span[step_id="1"]').removeClass('fw-bold');
+            $('span[step_id="2"]').addClass('fw-bold');
+            $('#verify_data').hide();
+            $('#choose_method').show();
+        }, 200);
+    });
+
     document.getElementById('card_pay_button').addEventListener('click', function(e) {
         // Avvio del pagamento
         $('#card_pay_button').html($('#card_pay_button_spinner').html());
         $('#card_pay_button').attr('disabled', true);
-        $('#xpay_iframe').attr('src', 'http://127.0.0.1:99/nexi_checkout/1click_primo_pagamento.php?importo=6999');
+        $('#xpay_iframe').attr('src', '<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/nexi_checkout/ricorrente/"; ?>pay.php/?importo=6900');
         let loaded = 0;
         $('#xpay_iframe').on('load', function() {
+            let iframe_href = undefined;
+            try{
+                iframe_href = document.getElementById("xpay_iframe").contentWindow.location.href;
+                //alert(document.getElementById("xpay_iframe").contentWindow.type);
+            }catch(e){
+                iframe_href = undefined
+            }
+
+            if(iframe_href == undefined || iframe_href == null){
+                // nothing
+            }else if(iframe_href.includes('esito=ANNULLO')){
+                $('span[step_id="3"]').removeClass('fw-bold');
+                $('span[step_id="2"]').addClass('fw-bold');
+                $('#choose_method').show();
+                $('#nexi_xpay').hide();
+                loaded = 0;
+
+                $('#card_pay_button').html('Paga con Postepay Evolution Connect');
+                $('#card_pay_button').attr('disabled', false);
+                return;
+            }
+
             loaded++;
             if (loaded >= 2) {
                 $('span[step_id="2"]').removeClass('fw-bold');
@@ -459,7 +546,7 @@ $numeroContratto = (time() * 1000) . rand(0, 100);
      * Show Google Pay payment sheet when Google Pay payment button is clicked
      */
     function onGooglePaymentButtonClicked() {
-        
+
         $('span[step_id="2"]').removeClass('fw-bold');
         $('span[step_id="3"]').addClass('fw-bold');
         $('#choose_method').hide();

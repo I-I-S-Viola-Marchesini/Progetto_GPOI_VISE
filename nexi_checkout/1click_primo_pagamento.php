@@ -7,7 +7,7 @@ $ALIAS = 'ALIAS_WEB_00069162'; // Sostituire con il valore fornito da Nexi
 $CHIAVESEGRETA = '5EM2C9J6UBZP65YC4SGD3J10AOVT624N'; // Sostituire con il valore fornito da Nexi
 
 $requestUrl = "https://int-ecommerce.nexi.it/ecomm/ecomm/DispatcherServlet";
-$merchantServerUrl = "http://" . $_SERVER['HTTP_HOST'] . "/xpay/php/pagamento_semplice/one_click/";
+$merchantServerUrl = "http://" . $_SERVER['HTTP_HOST'] . "/nexi_checkout/";
 
 $codTrans = "VISE-" . date('YmdHis');
 $divisa = "EUR";
@@ -25,8 +25,8 @@ $obbligatori = array(
     'importo' => $importo,
     'divisa' => $divisa,
     'codTrans' => $codTrans,
-    'url' => $merchantServerUrl . "esito.php",
-    'url_back' => $merchantServerUrl . "annullo.php",
+    'url' => $merchantServerUrl . "response.php",
+    'url_back' => $merchantServerUrl . "back.php",
     'mac' => $mac,
     'num_contratto' => $numContratto,
     'tipo_servizio' => 'paga_oc3d',
