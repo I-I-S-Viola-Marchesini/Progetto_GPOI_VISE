@@ -1,9 +1,8 @@
-/**
-* Gruppo Di Lena, Ferrari, Lavezzi, Marchetto G., Pavan
-* Classe 5F A.S. 2022-2023
-* Script del database per VISE
-* N.B. : lo script è valido SOLO per MySQL
-**/
+-- Gruppo Di Lena, Ferrari, Lavezzi, Marchetto G., Pavan
+-- Classe 5F A.S. 2022-2023
+-- Script del database per VISE
+-- N.B. : lo script è valido SOLO per MySQL
+
 
 CREATE DATABASE vise_db;
 USE vise_db;
