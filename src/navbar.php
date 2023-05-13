@@ -106,7 +106,7 @@
         position: sticky;
         top: 25px;
         max-height: 46px;
-        z-index: 2;
+        z-index: 55;
     }
 
     .vise-navbar-stuck {
@@ -114,8 +114,8 @@
         top: 0;
         height: 90px;
         opacity: 0;
-        z-index: 1;
-        transition: 350ms;
+        z-index: 50;
+        transition: 250ms;
     }
 
     .vise-navbar-stuck.pinned {
