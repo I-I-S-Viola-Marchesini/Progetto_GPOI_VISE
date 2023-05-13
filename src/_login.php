@@ -23,8 +23,8 @@
                     <label for="username" class="form-label ms-1">Password</label>
                 </div>
 
-                <small class="row mb-2"><a href="">Hai dimenticato la password?</a></small>
-                <small class="row mb-4"><a href="">Non hai un account?</a></small>
+                <!-- <small class="row mb-2"><a href="">Hai dimenticato la password?</a></small> -->
+                <small class="row mb-4"><a href="?page=signup">Non hai un account?</a></small>
 
                 <button id="send-button" class="btn btn-primary col-6 mb-3">
                     Accedi

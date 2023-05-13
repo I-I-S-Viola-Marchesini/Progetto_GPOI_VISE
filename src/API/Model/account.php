@@ -4,6 +4,7 @@ class Account
 {
     protected $conn;
     protected $table_account = 'account';
+    protected $table_user = 'user';
 
     public function __construct($db)
     {
@@ -16,6 +17,25 @@ class Account
         WHERE user_id = '$user_id'";
 
         $stmt = $this->conn->query($query);
+
+        return $stmt;
+    }
+
+    public function create_account($name, $last_name, $username, $email, $password, $tax_code, $mobile_number, $birth_date, $registration_date)
+    {
+        $status = 1;
+
+        $query = "INSERT INTO $this->table_user (name, last_name, username, email, password, tax_code, mobile_number, birth_date, registration_date, status) 
+        VALUES ('$name', '$last_name', '$username', '$email', '$password', '$tax_code', '$mobile_number', '$birth_date', '$registration_date', '$status')";
+
+        $stmt = $this->conn->query($query);
+
+        $user_id = mysqli_insert_id($this->conn);
+
+        $query = "INSERT INTO $this->table_account (user_id, balance)
+        VALUES ('$user_id', '0')";
+        
+        $stmt = $this->conn->query($query);       
 
         return $stmt;
     }

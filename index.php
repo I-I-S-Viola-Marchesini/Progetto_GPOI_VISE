@@ -1,9 +1,8 @@
 <?php
-//PHP
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
