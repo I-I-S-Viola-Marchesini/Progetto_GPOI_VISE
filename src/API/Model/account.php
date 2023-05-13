@@ -34,8 +34,30 @@ class Account
 
         $query = "INSERT INTO $this->table_account (user_id, balance)
         VALUES ('$user_id', '0')";
-        
+
         $stmt = $this->conn->query($query);       
+
+        return $stmt;
+    }
+
+    public function loginEmail($email, $password)
+    {
+        $query = "SELECT id
+        FROM $this->table_user
+        WHERE email = '$email' AND password = '$password' AND status = 1";
+
+        $stmt = $this->conn->query($query);
+
+        return $stmt;
+    }
+
+    public function loginUsername($username, $password)
+    {
+        $query = "SELECT id
+        FROM $this->table_user
+        WHERE username = '$username' AND password = '$password' AND status = 1";
+
+        $stmt = $this->conn->query($query);
 
         return $stmt;
     }
