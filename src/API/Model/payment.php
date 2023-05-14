@@ -45,10 +45,6 @@ class Payment
         return $stmt;
     }
 
-    
-
-
 }
-
 
 ?>

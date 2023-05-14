@@ -15,7 +15,7 @@ if (empty($data->username_email)|| empty($data->password)) {
 
 $db = new Database();
 $conn = $db->connect();
-$login = new Account($conn);
+$login = new UserAccount($conn);
 
 if (strpos($data->username_email, "@") !== false) {
     $stmt = $login->loginEmail($data->username_email, $data->password);
