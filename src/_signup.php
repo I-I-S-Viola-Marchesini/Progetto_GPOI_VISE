@@ -48,7 +48,7 @@
             <div class="row justify-content-center">
                 <div class="col-10 col-md-6 col-lg-4">
                     <div class="form-floating" id="cell-number-container">
-                        <input type="tel" class="form-control" id="cell-number" placeholder=" " required>
+                        <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" id="cell-number" placeholder=" " required>
                         <label for="cell-number" class="form-label ms-1">Numero di Cellulare</label>
                         <div class="invalid-feedback">
                             Inserisci il tuo numero di cellulare
