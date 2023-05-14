@@ -1,6 +1,6 @@
 <?php
-require("../../common/connect.php");
-require("../../model/account.php");
+require("../../Common/connect.php");
+require("../../Model/account.php");
 
 header("Content-type: application/json; charset=UTF-8");
 header('Access-Control-Allow-Origin: *');
@@ -15,9 +15,9 @@ if (empty($data->name) || empty($data->last_name) || empty($data->username) || e
 
 $db = new Database();
 $conn = $db->connect();
-$registration = new Account($conn);
+$registration = new UserAccount($conn);
 
-$registrationValue = $registration->create_account($data->name, $data->last_name, $data->username, $data->email, $data->password, $data->tax_code, $data->mobile_number, $data->birth_date, $data->registration_date);
+$registrationValue = $registration->addUserAccount($data->username, $data->name, $data->last_name, $data->email, $data->password, $data->tax_code, $data->mobile_number, $data->birth_date, $data->registration_date);
 
 if($registrationValue == false){
     http_response_code(404);

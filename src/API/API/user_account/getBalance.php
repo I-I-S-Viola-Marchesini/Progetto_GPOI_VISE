@@ -1,6 +1,6 @@
 <?php
 require("../Common/connect.php");
-require("../Model/account.php");
+require("../Model/user_account.php");
 
 header("Content-type: application/json; charset=UTF-8");
 header('Access-Control-Allow-Origin: *');
@@ -15,9 +15,9 @@ if (empty($data->userID)) {
 
 $db = new Database();
 $conn = $db->connect();
-$balance = new Account($conn);
+$balance = new UserAccount($conn);
 
-$result_balance = $balance->get_balance($data->userID);
+$result_balance = $balance->getUserAccountBalance($data->userID);
 
 $result_balance = $result_balance->fetch_assoc();
 
