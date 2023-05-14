@@ -10,7 +10,7 @@ class Account
     {
         $this->conn = $db;
     }
-    public function get_balance($user_id)
+    public function getBalance($user_id)
     {
         $query = "SELECT balance 
         FROM $this->table_account 
@@ -21,7 +21,7 @@ class Account
         return $stmt;
     }
 
-    public function create_account($name, $last_name, $username, $email, $password, $tax_code, $mobile_number, $birth_date, $registration_date)
+    public function createAccount($name, $last_name, $username, $email, $password, $tax_code, $mobile_number, $birth_date, $registration_date)
     {
         $status = 1;
 
