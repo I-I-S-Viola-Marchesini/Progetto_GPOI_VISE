@@ -17,3 +17,4 @@ VALUES ('mariorossi04', 'Mario', 'Rossi', 'mario.rossi76@gmail.com', 'RSSMAR76A1
 
 INSERT INTO account(user_id, balance)
 VALUES ('francescodl04', '0' );
+

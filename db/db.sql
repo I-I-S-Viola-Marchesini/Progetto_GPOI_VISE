@@ -62,4 +62,4 @@ ALTER TABLE payment ADD CONSTRAINT fk_payment_sender_card_id
 FOREIGN KEY (sender_card_id) REFERENCES `card`(id);
 
 ALTER TABLE `card` ADD CONSTRAINT fk_card_user_id
-FOREIGN KEY (user_id) REFERENCES user(username); 
+FOREIGN KEY (user_id) REFERENCES user_account(username); 
