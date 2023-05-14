@@ -9,8 +9,11 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4">
                 <div class="form-floating" id="name-container">
-                    <input type="text" class="form-control" id="name" placeholder=" ">
+                    <input type="text" class="form-control" id="name" placeholder=" " required>
                     <label for="name" class="form-label ms-1">Nome</label>
+                    <div class="invalid-feedback">
+                        Inserisci il tuo nome
+                    </div>
                 </div>
             </div>
         </div>
@@ -18,8 +21,11 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4 mt-4">
                 <div class="form-floating" id="last-name-container">
-                    <input type="text" class="form-control" id="last-name" placeholder=" ">
+                    <input type="text" class="form-control" id="last-name" placeholder=" " required>
                     <label for="last-name" class="form-label ms-1">Cognome</label>
+                    <div class="invalid-feedback">
+                        Inserisci il tuo cognome
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,8 +33,11 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4 mt-4">
                 <div class="form-floating" id="username-container">
-                    <input type="text" class="form-control" id="username" placeholder=" ">
+                    <input type="text" class="form-control" id="username" placeholder=" " required>
                     <label for="username" class="form-label ms-1">Username</label>
+                    <div class="invalid-feedback">
+                        Inserisci il tuo username
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,8 +47,11 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4">
                 <div class="form-floating" id="cell-number-container">
-                    <input type="tel" class="form-control" id="cell-number" placeholder=" ">
+                    <input type="tel" class="form-control" id="cell-number" placeholder=" " required>
                     <label for="cell-number" class="form-label ms-1">Numero di Cellulare</label>
+                    <div class="invalid-feedback">
+                        Inserisci il tuo numero di cellulare
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,8 +59,11 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4 mt-4">
                 <div class="form-floating" id="tax-code-container">
-                    <input type="text" class="form-control" id="tax-code" placeholder=" ">
+                    <input type="text" class="form-control" id="tax-code" placeholder=" " required>
                     <label for="tax-code" class="form-label ms-1">Codice Fiscale</label>
+                    <div class="invalid-feedback">
+                        Inserisci il tuo codice fiscale
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,8 +71,11 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4 mt-4">
                 <div class="form-floating" id="birth-date-container">
-                    <input type="date" class="form-control" id="birth-date" placeholder=" ">
+                    <input type="date" class="form-control" id="birth-date" placeholder=" " required>
                     <label for="birth-date" class="form-label ms-1">Data di Nascita</label>
+                    <div class="invalid-feedback">
+                        Inserisci la tua data di nascita
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,8 +85,11 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4">
                 <div class="form-floating" id="email-container">
-                    <input type="email" class="form-control" id="email" placeholder=" ">
+                    <input type="email" class="form-control" id="email" placeholder=" " required>
                     <label for="email" class="form-label ms-1">Indirizzo Email</label>
+                    <div class="invalid-feedback">
+                        Inserisci il tuo indirizzo email
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,8 +97,11 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4 mt-4">
                 <div class="form-floating" id="password-container">
-                    <input type="password" class="form-control" id="password" placeholder=" ">
+                    <input type="password" class="form-control" id="password" placeholder=" " required>
                     <label for="password" class="form-label ms-1">Password</label>
+                    <div class="invalid-feedback">
+                        Inserisci la tua password
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,8 +109,11 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4 mt-4">
                 <div class="form-floating" id="password-confirmation-container">
-                    <input type="password" class="form-control" id="password-confirmation" placeholder=" ">
+                    <input type="password" class="form-control" id="password-confirmation" placeholder=" " required>
                     <label for="password-confirmation" class="form-label ms-1">Conferma Password</label>
+                    <div class="invalid-feedback">
+                        Inserisci nuovamente la tua password
+                    </div>
                 </div>
             </div>
         </div>
