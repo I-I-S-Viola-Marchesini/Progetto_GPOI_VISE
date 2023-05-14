@@ -61,7 +61,7 @@ class UserAccount
 
     public function loginEmail($email, $password)
     {
-        $query = "SELECT id
+        $query = "SELECT username
         FROM $this->table_name
         WHERE email = '$email' AND password = '$password' AND status = 1";
 
@@ -72,7 +72,7 @@ class UserAccount
 
     public function loginUsername($username, $password)
     {
-        $query = "SELECT id
+        $query = "SELECT username
         FROM $this->table_name
         WHERE username = '$username' AND password = '$password' AND status = 1";
 
