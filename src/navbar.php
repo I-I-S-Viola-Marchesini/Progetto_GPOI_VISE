@@ -24,9 +24,9 @@
             <div class="d-none d-lg-block">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Chi siamo</a>
+                        <a class="nav-link" href="?page=chisiamo">Chi siamo</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Servizi</a>
                     </li>
                     <li class="nav-item">
@@ -34,13 +34,13 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Blog</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contatti</a>
+                        <a class="nav-link" href="?page=contatti">Contatti</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Assistenza</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

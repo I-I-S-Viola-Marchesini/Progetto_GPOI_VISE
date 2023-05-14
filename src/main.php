@@ -22,6 +22,12 @@ switch ($page) {
     case 'checkout':
         include('_checkout.php');
         break;
+    case 'chisiamo':
+        include('_chisiamo.php');
+        break;
+    case 'contatti':
+        include('_contatti.php');
+        break;
     default:
         include("_error_404.php");
         break;

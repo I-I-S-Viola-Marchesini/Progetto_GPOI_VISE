@@ -38,4 +38,21 @@
                 </div>
             </div>
         </div>
+
+        <div class="row py-3 mt-5">
+            <div class="col-10 mx-auto">
+                <div class="row">
+                    <div class="col-12 col-lg-6 my-auto">
+                        <h2 class="text-center mb-4">Gestisci le tue finanze in modo intelligente con <strong>Vise</strong>.</h2>
+                        <p> Grazie alla tecnologia avanzata di <strong>Vise</strong>, puoi tenere traccia delle tue spese, ricevere notifiche in tempo reale sulle transazioni effettuate e avere accesso a strumenti per il budgeting e il risparmio. In questo modo, puoi gestire le tue finanze in modo più consapevole e intelligente, evitando sprechi e migliorando la tua situazione economica complessiva.</p>
+                    </div>
+
+                    <div class="col-12 col-lg-6 text-center">
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
