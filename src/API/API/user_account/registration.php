@@ -1,6 +1,7 @@
 <?php
-require("../../Common/connect.php");
-require("../../Model/account.php");
+
+require(__DIR__ . "/../../Common/connect.php");
+require(__DIR__ . "/../../Model/account.php");
 
 header("Content-type: application/json; charset=UTF-8");
 header('Access-Control-Allow-Origin: *');
@@ -19,12 +20,11 @@ $registration = new UserAccount($conn);
 
 $registrationValue = $registration->addUserAccount($data->username, $data->name, $data->last_name, $data->email, $data->password, $data->tax_code, $data->mobile_number, $data->birth_date, $data->registration_date);
 
-if($registrationValue == false){
+if ($registrationValue == false) {
     http_response_code(404);
     echo json_encode(["response" => "Registration failed"]);
     die();
-}
-else{
+} else {
     http_response_code(200);
     echo json_encode(["response" => "Registration successful"]);
     die();

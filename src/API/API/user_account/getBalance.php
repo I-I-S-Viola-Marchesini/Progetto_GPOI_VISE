@@ -1,6 +1,7 @@
 <?php
-require("../Common/connect.php");
-require("../Model/user_account.php");
+
+require(__DIR__ . "/../../Common/connect.php");
+require(__DIR__ . "/../../Model/user_account.php");
 
 header("Content-type: application/json; charset=UTF-8");
 header('Access-Control-Allow-Origin: *');
@@ -31,4 +32,5 @@ else{
     echo json_encode($result_balance);
     die();
 }
+
 ?>

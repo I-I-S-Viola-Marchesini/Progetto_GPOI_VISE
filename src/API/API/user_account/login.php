@@ -1,13 +1,14 @@
 <?php
-require("../Common/connect.php");
-require("../Model/account.php");
+
+require(__DIR__ . "/../../Common/connect.php");
+require(__DIR__ . "/../../Model/account.php");
 
 header("Content-type: application/json; charset=UTF-8");
 header('Access-Control-Allow-Origin: *');
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (empty($data->username_email)|| empty($data->password)) {
+if (empty($data->username_email) || empty($data->password)) {
     http_response_code(400);
     echo json_encode(["message" => "Fill every field"]);
     die();

@@ -1,6 +1,6 @@
 <?php
-require("../Common/connect.php");
-require("../Model/card.php");
+require(__DIR__ . "/../Common/connect.php");
+require(__DIR__ . "/../Model/card.php");
 
 header("Content-type: application/json; charset=UTF-8");
 header('Access-Control-Allow-Origin: *');
@@ -21,12 +21,11 @@ $transactionValue = $transaction->getTransaction($data->userID);
 
 $transactionValue = $transactionValue->fetch_assoc();
 
-if($transactionValue == false){
+if ($transactionValue == false) {
     http_response_code(404);
     echo json_encode(["response" => "No transactions found"]);
     die();
-}
-else{
+} else {
     http_response_code(200);
     echo json_encode([$transactionValue]);
     die();

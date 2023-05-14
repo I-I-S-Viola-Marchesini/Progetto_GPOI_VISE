@@ -1,6 +1,7 @@
 <?php
-require("../Common/connect.php");
-require("../Model/card.php");
+
+require(__DIR__ . "/../../Common/connect.php");
+require(__DIR__ . "/../../Model/card.php");
 
 header("Content-type: application/json; charset=UTF-8");
 header('Access-Control-Allow-Origin: *');
@@ -23,10 +24,10 @@ if ($result_card == false) {
     http_response_code(401);
     echo json_encode(["response" => "Card not created"]);
     die();
-}
-else {
+} else {
     http_response_code(201);
     echo json_encode(["response" => "Card created"]);
     die();
 }
+
 ?>
