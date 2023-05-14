@@ -13,65 +13,74 @@
         <div class="row justify-content-center">
             <div class="col-10 col-md-6 col-lg-4 mt-4">
 
-                <div class="mb-4 form-floating" id="username-container">
-                    <input type="text" class="form-control" id="username" placeholder="Inserisci il tuo username o email">
-                    <label for="username" class="form-label ms-1">Username</label>
-                </div>
+                <form method="POST" class="needs-validation" novalidate>
 
-                <div class="mb-4 form-floating" id="username-container">
-                    <input type="password" class="form-control" id="password" placeholder="Inserisci la password">
-                    <label for="username" class="form-label ms-1">Password</label>
-                </div>
+                    <div class="mb-4 form-floating" id="username-container">
+                        <input type="text" class="form-control" id="username" name="username"
+                            placeholder="Inserisci il tuo username o email" required>
+                        <label for="username" class="form-label ms-1">Username o Email</label>
+                        <div class="invalid-feedback">
+                            Inserisci il tuo username o la tua email
+                        </div>
+                    </div>
 
-                <!-- <small class="row mb-2"><a href="">Hai dimenticato la password?</a></small> -->
-                <small class="row mb-4"><a href="?page=signup">Non hai un account?</a></small>
+                    <div class="mb-4 form-floating" id="username-container">
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Inserisci la password" required>
+                        <label for="username" class="form-label ms-1">Password</label>
+                        <div class="invalid-feedback">
+                            Inserisci la tua password
+                        </div>
+                    </div>
 
-                <button id="send-button" class="btn btn-primary col-6 mb-3">
-                    Accedi
-                </button>
+
+
+                    <!-- <small class="row mb-2"><a href="">Hai dimenticato la password?</a></small> -->
+                    <small class="row mb-4"><a href="?page=signup">Non hai un account?</a></small>
+
+                    <button id="send-button" type="submit" class="btn btn-primary col-6 mb-3">
+                        Accedi
+                    </button>
+                </form>
             </div>
         </div>
+        <?php
+        require 'vendor/autoload.php';
 
+        if (!isset($_POST['username']) || !isset($_POST['password'])) {
+            echo "No token";
+            return;
+        }
+
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'text/plain'
+        ];
+        $body = '{
+            "username_email":"admin@gmail.com",
+            "password":"admin"
+        }';
+        $request = new Request('GET', 'localhost/Progetto_GPOI_VISE/src/API/API/login.php', $headers, $body);
+        $res = $client->sendAsync($request)->wait();
+        echo $res->getBody();
+        ?>
         <script>
+            (() => {
+                'use strict'
 
-            document.addEventListener("DOMContentLoaded", () => {
-                if (document.cookie.includes("username") && document.cookie.includes("account_id")) {
-                    location.href = "?p=1";
-                }
-            });
+                const forms = document.querySelectorAll('.needs-validation')
 
-            const sendButton = document.getElementById("send-button");
-            const username = document.getElementById("username");
-            const password = document.getElementById("password");
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
 
-            sendButton.addEventListener("click", () => {
-                if (username.value == "" || password.value == "") {
-                    document.querySelector('#username').classList.add('is-invalid');
-                    document.querySelector('#password').classList.add('is-invalid');
-                    return;
-                }
-
-                const data = {
-                    username: username.value,
-                    password: password.value
-                }
-
-                let loginRequest = new XMLHttpRequest();
-                loginRequest.open("POST", 'API/Vise/API/user/login.php', true);
-                loginRequest.setRequestHeader('Content-type', 'application/json');
-                loginRequest.onreadystatechange = function() {
-                    if (loginRequest.readyState == 4 && loginRequest.status == 200) {
-                        document.cookie = "username=" + username.value + "; path=/";
-                        document.cookie = "account_id=" + JSON.parse(loginRequest.responseText).username + "; path=/";
-                        location.href = "?p=1";
-                    } else if (loginRequest.readyState == 4) {
-                        document.querySelector('#username').classList.add('is-invalid');
-                        document.querySelector('#password').classList.add('is-invalid');
-                    }
-                };
-                loginRequest.send(JSON.stringify(data));
-
-            });
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })()
         </script>
     </div>
 </main>
