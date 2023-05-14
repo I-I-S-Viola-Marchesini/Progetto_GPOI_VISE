@@ -1,4 +1,4 @@
 <?php
     session_unset();
-    header('Location: ?page=login');
+    echo '<script>window.location.href = \'?page=login\';</script>';
 ?>

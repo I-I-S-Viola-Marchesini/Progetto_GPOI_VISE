@@ -13,6 +13,9 @@ switch ($page) {
     case 'login':
         include('_login.php');
         break;
+    case 'logout':
+        include('_logout.php');
+        break;
     case 'dashboard':
         include('_dashboard.php');
         break;
