@@ -1,7 +1,7 @@
 <?php
 
 require(__DIR__ . "/../../Common/connect.php");
-require(__DIR__ . "/../../Model/account.php");
+require(__DIR__ . "/../../Model/user_account.php");
 
 header("Content-type: application/json; charset=UTF-8");
 header('Access-Control-Allow-Origin: *');
@@ -20,33 +20,19 @@ $login = new UserAccount($conn);
 
 if (strpos($data->username_email, "@") !== false) {
     $stmt = $login->loginEmail($data->username_email, $data->password);
-
-    if ($stmt->num_rows > 0) {
-        $row = $stmt->fetch_assoc();
-        $user_arr = array(
-            "id" => $row['id']
-        );
-        http_response_code(200);
-        echo json_encode($user_arr);
-    } else {
-        http_response_code(401);
-        echo json_encode(["message" => "Wrong email or password"]);
-    }
 } else if (strpos($data->username_email, "@") !== true) {
     $stmt = $login->loginUsername($data->username_email, $data->password);
-
-    if ($stmt->num_rows > 0) {
-        $row = $stmt->fetch_assoc();
-        $user_arr = array(
-            "id" => $row['id']
-        );
-        http_response_code(200);
-        echo json_encode($user_arr);
-    } else {
-        http_response_code(401);
-        echo json_encode(["message" => "Wrong username or password"]);
-    }
 }
 
-
+if ($stmt->num_rows > 0) {
+    $row = $stmt->fetch_assoc();
+    $user_arr = array(
+        "username" => $row['username']
+    );
+    http_response_code(200);
+    echo json_encode($user_arr);
+} else {
+    http_response_code(401);
+    echo json_encode(["message" => "Wrong email or password"]);
+}
 ?>
