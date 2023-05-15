@@ -22,7 +22,7 @@ class UserAccount
     {
         $query = "SELECT username, name, last_name, email, password, tax_code, mobile_number, birth_date 
         FROM $this->table_name 
-        WHERE username = $username";
+        WHERE username = '$username'";
         $stmt = $this->conn->query($query);
         return $stmt;
     }

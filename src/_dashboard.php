@@ -40,10 +40,10 @@
                                     if(isset($json->balance)){
                                         echo $json->balance;
                                     }else{
-                                        echo '0,00';
+                                        echo 'Err: no bal';
                                     }
                                 }else{
-                                    echo '0,00';
+                                    echo 'Err: no user';
                                 }
 
                                 ?>

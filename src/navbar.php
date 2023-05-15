@@ -168,7 +168,29 @@
             <div class="col-12 d-flex justify-content-center">
                 <?php
                 if (isset($_user)) {
-                    echo '<h2>Mario Rossi</h2>';
+                    $curl = curl_init();
+
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => 'localhost/Progetto_GPOI_VISE/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user,
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => '',
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 0,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => 'GET',
+                    )
+                    );
+
+                    $response = curl_exec($curl);
+
+                    curl_close($curl);
+                    $json = json_decode($response);
+                    if(isset($json->name, $json->last_name)){
+                        echo '<h2>'. $json->name . ' ' . $json->last_name . '</h2>';
+                    }else{
+                        echo '<h2>Mario Rossi</h2>';
+                    }
                 } else {
                     echo '<h3>Non hai effettuato l\'accesso</h3>';
                 }
