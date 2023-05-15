@@ -15,7 +15,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
     curl_setopt_array(
         $curl,
         array(
-            CURLOPT_URL => 'localhost/Progetto_GPOI_VISE/src/API/API/user_account/login.php',
+            CURLOPT_URL => $_apiURI . 'src/API/API/user_account/login.php',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -28,7 +28,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
                     "password":"' . $password . '"
                 }',
             CURLOPT_HTTPHEADER => array(
-                'Content-Type: text/plain'
+                'Content-Type: application/json'
             ),
         )
     );
