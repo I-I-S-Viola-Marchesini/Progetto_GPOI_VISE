@@ -1,6 +1,8 @@
 <?php
 session_start();
-
+if (isset($_SESSION['username'])) {
+    $_user = $_SESSION['username'];
+}
 $_apiURI = $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER["PHP_SELF"];
 $_apiURI = str_replace('index.php', '', $_apiURI);
 

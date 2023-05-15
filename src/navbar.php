@@ -1,7 +1,5 @@
 <?php
-if (isset($_SESSION['username'])) {
-    $user = $_SESSION['username'];
-}
+
 ?>
 
 <!-- <div class="vise-navbar-background">
@@ -71,7 +69,7 @@ if (isset($_SESSION['username'])) {
         </div>
         <div class="bg-white shadow-sm rounded-5 d-none d-lg-flex container-nav-3">
             <?php
-            if (isset($user)) {
+            if (isset($_user)) {
                 echo '<button class="btn btn-link text-dark tooltip-trg tooltip-show-start" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_notifications" data-bs-placement="bottom" data-bs-title="5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
                         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
@@ -144,7 +142,7 @@ if (isset($_SESSION['username'])) {
     id="offcanvas_account_mng">
     <div class="offcanvas-header bg-white rounded-5">
         <?php
-        if (isset($user)) {
+        if (isset($_user)) {
             echo '<h5 class="offcanvas-title">Gestione account</h5>';
         } else {
             echo '<h5 class="offcanvas-title">Accedi a Vise</h5>';
@@ -157,7 +155,7 @@ if (isset($_SESSION['username'])) {
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <?php
-                if (isset($user)) {
+                if (isset($_user)) {
                     echo '<img src="img/propic-placeholder.jpg" class="rounded-circle" style="width: 120px;" alt="" srcset="">';
                 } else {
                     echo '<canvas class="logo-vise"></canvas>';
@@ -169,7 +167,7 @@ if (isset($_SESSION['username'])) {
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <?php
-                if (isset($user)) {
+                if (isset($_user)) {
                     echo '<h2>Mario Rossi</h2>';
                 } else {
                     echo '<h3>Non hai effettuato l\'accesso</h3>';
@@ -184,7 +182,7 @@ if (isset($_SESSION['username'])) {
             <div class="col-12">
                 <div class="list-group list-group-flush">
                     <?php
-                    if (isset($user)) {
+                    if (isset($_user)) {
                         echo '<a href="#" class="list-group-item list-group-item-action rounded-3 d-flex align-items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
                             <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
