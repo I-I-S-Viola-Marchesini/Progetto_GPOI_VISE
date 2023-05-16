@@ -1,4 +1,5 @@
 <?php
+require 'src/sendHttpRequest.php';
 session_start();
 if (isset($_SESSION['username'])) {
     $_user = $_SESSION['username'];
