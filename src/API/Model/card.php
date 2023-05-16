@@ -5,7 +5,7 @@ class Card
     protected $conn;
     protected $table_card = 'card';
     protected $table_payment = 'payment';
-    protected $table_user = 'user_account';
+    protected $table_user = 'user';
 
 
     public function __construct($db)
