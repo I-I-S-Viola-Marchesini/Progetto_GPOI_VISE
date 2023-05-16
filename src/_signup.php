@@ -12,37 +12,21 @@ if (!isset($_POST['name'], $_POST['surname'], $_POST['username'], $_POST['phone_
     $password = $_POST['password'];
     $birth_date = $_POST['birth_date'];
     $registration_date = date("d-m-Y");
-    $curl = curl_init();
 
-    curl_setopt_array(
-        $curl,
-        array(
-            CURLOPT_URL => $_apiURI . '/src/API/API/user_account/registration.php',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => '{
-                "name": "' . $name . '",
-                "last_name": "' . $surname . '",
-                "username": "' . $username . '",
-                "email": "' . $email . '",
-                "password": "' . $password . '",
-                "tax_code": "' . $tax_code . '",
-                "phone_number": "' . $phone_number . '",
-                "birth_date": "' . $birth_date . '",
-                "registration_date": "' . $registration_date . '"
-            }',
-            CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/json'
-            ),
-        )
-    );
+    $url = $_apiURI . '/src/API/API/user_account/registration.php';
+    $body = '{
+        "name": "' . $name . '",
+        "last_name": "' . $surname . '",
+        "username": "' . $username . '",
+        "email": "' . $email . '",
+        "password": "' . $password . '",
+        "tax_code": "' . $tax_code . '",
+        "phone_number": "' . $phone_number . '",
+        "birth_date": "' . $birth_date . '",
+        "registration_date": "' . $registration_date . '"
+    }';
 
-    $response = curl_exec($curl);
+    $response = sendHttpRequest($url, 'POST', $body);
     $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
     if($httpcode == 200){
