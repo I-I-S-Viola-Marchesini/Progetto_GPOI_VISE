@@ -13,7 +13,7 @@ CREATE TABLE user_account(
     `name` VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     email VARCHAR(60) NOT NULL,
-    `password` VARCHAR(30) NOT NULL,
+    `password` VARCHAR(64) NOT NULL,
     tax_code VARCHAR(16) NOT NULL,
     mobile_number VARCHAR(20) NOT NULL,
     birth_date DATE NOT NULL,

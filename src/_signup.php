@@ -9,7 +9,7 @@ if (!isset($_POST['name'], $_POST['surname'], $_POST['username'], $_POST['phone_
     $phone_number = $_POST['phone_number'];
     $tax_code = $_POST['tax_code'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = hash('sha256', $_POST['password'], true);
     $birth_date = $_POST['birth_date'];
     $registration_date = date("d-m-Y");
 

@@ -8,7 +8,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
     echo "No token";
 } else {
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = hash('sha256', $_POST['password'], true);
     $url = $_apiURI . 'src/API/API/user_account/login.php';
     $body = '{
         "username_email":"' . $username . '",
