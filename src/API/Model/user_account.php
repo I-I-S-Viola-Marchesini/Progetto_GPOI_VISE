@@ -38,14 +38,15 @@ class UserAccount
         return $stmt;
     }
 
-    public function updateUserAccount($username, $name, $last_name, $email, $password, $tax_code, $mobile_number, $birth_date)
+    public function updateUserAccount($username, $name, $last_name, $email, $tax_code, $mobile_number, $birth_date)
     {
         $query = "UPDATE $this->table_name 
-        SET name='$name', last_name='$last_name', email='$email', password='$password', tax_code='$tax_code', mobile_number='$mobile_number', birth_date='$birth_date' 
-        WHERE username=$username";
+        SET name='$name', last_name='$last_name', email='$email', tax_code='$tax_code', mobile_number='$mobile_number', birth_date='$birth_date'
+        WHERE username='$username'";
         $stmt = $this->conn->query($query);
         return $stmt;
     }
+
 
     public function addUserAccount($username, $name, $last_name, $email, $password, $tax_code, $mobile_number, $birth_date, $registration_date)
     {
@@ -83,4 +84,3 @@ class UserAccount
         return $stmt;
     }
 }
-?>
