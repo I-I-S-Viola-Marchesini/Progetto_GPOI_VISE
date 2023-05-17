@@ -33,9 +33,11 @@ class Payment
 
     public function getPaymentOnSenderCardID($sender_card_id)
     {
-        $query = "SELECT * FROM $this->table_name WHERE sender_card_id= $sender_card_id";
+        $query = "SELECT $this->table_name.(sender_user_id, receiver_user_id, payment_date_time, amount)
+        FROM payment;
+        WHERE sender_card_id = $sender_card_id";
         $stmt = $this->conn->query($query);
-        return $stmt;
+        return $stmt;        
     }
 
     public function addNewPayment($sender_user_id, $sender_card_id, $payment_date, $destination, $amount)
@@ -44,6 +46,7 @@ class Payment
         $stmt = $this->conn->query($query);
         return $stmt;
     }
+
 
 }
 

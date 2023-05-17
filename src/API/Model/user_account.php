@@ -51,10 +51,12 @@ class UserAccount
     {
         $status = 1;
 
-        $query = "INSERT INTO $this->table_name (name, last_name, username, email, password, tax_code, mobile_number, birth_date, registration_date, status) 
-        VALUES ('$name', '$last_name', '$username', '$email', '$password', '$tax_code', '$mobile_number', '$birth_date', '$registration_date', '$status')";
+        $query = "INSERT INTO $this->table_name (name, last_name, username, email, password, tax_code, mobile_number, birth_date, registration_date, status, balance) 
+        VALUES ('$name', '$last_name', '$username', '$email', '$password', '$tax_code', '$mobile_number', '$birth_date', '$registration_date', '$status', 0)";
 
         $stmt = $this->conn->query($query);
+
+        echo $query;
 
         return $stmt;
     }

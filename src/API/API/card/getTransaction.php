@@ -1,6 +1,6 @@
 <?php
 require(__DIR__ . "/../../Common/connect.php");
-require(__DIR__ . "/../../Model/card.php");
+require(__DIR__ . "/../../Model/payment.php");
 
 header("Content-type: application/json; charset=UTF-8");
 header('Access-Control-Allow-Origin: *');
@@ -14,11 +14,9 @@ $username = $_GET['username'];
 
 $db = new Database();
 $conn = $db->connect();
-$transaction = new Card($conn);
+$transaction = new Payment($conn);
 
-$transactionValue = $transaction->getTransaction($username);
-
-$transactionValue = $transactionValue->fetch_assoc();
+$transactionValue = $transaction->getPaymentOnSenderCardID($username);
 
 if (!$transactionValue) {
     http_response_code(404);
