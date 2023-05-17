@@ -5,6 +5,7 @@ class Card
     protected $conn;
     protected $table_card = 'card';
     protected $table_payment = 'payment';
+    protected $table_payment_gateway = 'payment_gateway';
     protected $table_user = 'user';
 
 
@@ -13,10 +14,17 @@ class Card
         $this->conn = $db;
     }
 
-    public function insertCard($user_id, $expiration_date, $billing_address, $id_payment_gateway)
+    public function insertCard($user_id, $pan, $expiration_date, $billing_address, $card_token, $credit_circuit)
     {
-        $query = "INSERT INTO $this->table_card (user_id, expiration_date, billing_address, id_payment_gateway) 
-        VALUES ('$user_id', '$expiration_date', '$billing_address', '$id_payment_gateway')";
+        $query = "INSERT INTO $this->table_payment_gateway (card_token, credit_circuit)
+        VALUES ('$card_token', '$credit_circuit')";
+
+        $stmt = $this->conn->query($query);
+
+        $id_payment_gateway = mysqli_insert_id($this->conn);
+
+        $query = "INSERT INTO $this->table_card (user_id, pan, expiration_date, billing_address, payment_gateway_id) 
+        VALUES ('$user_id', '$pan', '$expiration_date', '$billing_address', '$id_payment_gateway')";
 
         $stmt = $this->conn->query($query);
 
