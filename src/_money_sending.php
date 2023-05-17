@@ -1,0 +1,74 @@
+<title>Vise | Invia denaro</title>
+
+<main class="d-flex align-items-center mt-5">
+    <div class="container shadow-lg bg-white rounded-3 py-5">
+        <div class="row g-2">
+            <!-- colonna mittente -->
+            <div class="col-md-6">
+                <div class="row text-center">
+                    <img src="img/propic-placeholder.jpg" alt="" style="width:auto; height:150px;" class="rounded-circle mx-auto">
+                    <h4 class="mt-4">Ciao, <span class="fw-bold">Mario Rossi</span>!</h4>
+                    <h6>mariorossi@gmail.com</h6>
+                </div>
+            </div>
+            <!-- /colonna mittente -->
+
+            <!-- colonna destinatario -->
+            <div class="col-md-6 text-center">
+                <form action="POST needs-validation">
+                    <!-- riga email -->
+                    <div class="row text-center">
+                        <h4 class="fw-bold">A chi vuoi inviare denaro?</h4>
+                        <h6 class="mt-4">Inserisci l'indirizzo email o l'username del destinatario</h6>
+
+                        <div class="row justify-content-center">
+                            <div class="col-md-9 mt-4">
+                                <div class="form-floating" id="email-container">
+                                    <input type="text" name="email" class="form-control" id="email" maxlength="30" required placeholder=" ">
+                                    <label for="email" class="form-label ms-1">Indirizzo email o username</label>
+                                    <div class="invalid-feedback">
+                                        Inserisci un indirizzo email valido
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /riga email -->
+
+                    <hr class="my-5 mx-5">
+
+                    <!-- riga soldi -->
+                    <div class="row text-center">
+                        <h4 class="fw-bold">Inserisci la somma da inviare</h4>
+                        <h6 class="mt-4">Inserisci la cifra esatta</h6>
+
+                        <div class="row justify-content-center">
+                            <div class="col-md-5 mt-4">
+                                <div class="input-group" id="email-container">
+                                    <span class="input-group-text">€</span>
+                                    <input type="text" name="email" class="form-control" id="email" maxlength="10" required placeholder="10000,00" inputmode="numeric" pattern="[0-9]*">
+                                    <!-- <label for="email" class="form-label ms-1"></label> -->
+                                    <div class="invalid-feedback">
+                                        Inserisci un numero valido
+                                    </div>
+                                </div>
+                            </div>
+
+                            <small class="mt-3">Puoi inviare un massimo di €9999,99</small>
+                        </div>
+                    </div>
+                    <!-- /riga soldi -->
+
+                    <hr class="my-5 mx-5">
+
+                    <h6>Compila i campi e clicca su conferma, verrai reindirizzato ad una pagina di conferma.</h6>
+
+                    <button id="send-button" type="submit" class="btn btn-primary col-2 mt-3">
+                        Conferma
+                    </button>
+                </form>
+            </div>
+            <!-- /colonna destinatario -->
+        </div>
+    </div>
+</main>
