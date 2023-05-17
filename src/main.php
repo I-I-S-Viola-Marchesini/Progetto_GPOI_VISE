@@ -44,7 +44,7 @@ switch ($page) {
         include_once(onlyIfLoggedIn('_profilePage.php'));;
         break;
     case 'moneySending':
-        onlyIfLoggedIn('_moneySending.php');
+        include_once(onlyIfLoggedIn('_moneySending.php'));
         break;
     default:
         include_once("_error404.php");
