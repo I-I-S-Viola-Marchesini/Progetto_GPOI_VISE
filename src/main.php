@@ -31,6 +31,9 @@ switch ($page) {
     case 'contatti':
         include('_contatti.php');
         break;
+    case 'profilepage':
+        include('_profilepage.php');
+        break;
     default:
         include("_error_404.php");
         break;
