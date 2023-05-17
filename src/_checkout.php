@@ -1,18 +1,4 @@
 <?php
-
-// Lightbox - Pagamento
-
-$APIKEY = "ALIAS_WEB_00069162"; // Sostituire con il valore fornito da Nexi
-$CHIAVESEGRETA = "5EM2C9J6UBZP65YC4SGD3J10AOVT624N"; // Sostituire con il valore fornito da Nexi
-
-$importo = 1000; // Importo della transazione da esprimere in centesimi
-$codiceTransazione = "codice_" . time(); // Codice univoco della transazione
-$divisa = 'EUR';
-$timestamp = time() * 1000;
-$mac = sha1("codTrans=" . $codiceTransazione . "divisa=" . $divisa . "importo=" . $importo . $CHIAVESEGRETA);
-$urlPost = "https://www.merchant-server.it/build/urlPost.php";
-$numeroContratto = (time() * 1000) . rand(0, 100);
-
 ?>
 
 <script src="https://int-ecommerce.nexi.it/ecomm/XPayBuild/js?alias=<?php echo $APIKEY; ?>"></script>
@@ -77,11 +63,12 @@ $numeroContratto = (time() * 1000) . rand(0, 100);
                         <h5 class="mb-3">Questo pagamento sarà effettuato a nome di:</h5>
                     </div>
                     <div class="row d-flex justify-content-center align-items-center w-100 p/4">
-                        <img src="img/propic-placeholder.jpg" class="rounded-circle" style="width: 80px;" alt="" srcset="">
+                        <img src="<?php echo $_SESSION['ProfilePicture'] ?>" class="rounded-circle" style="width: 80px;" alt="" srcset="">
                     </div>
                     <div class="row w-100">
                         <h4 class="text-center">
-                            Mario Rossi
+                            <br>
+                            <?php echo $_SESSION['firstName'] . ' ' . $_SESSION['lastName'] ?>
                         </h4>
                     </div>
                     <div class="row w-100">

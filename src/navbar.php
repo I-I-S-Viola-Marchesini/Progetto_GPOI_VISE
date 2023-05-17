@@ -1,37 +1,5 @@
 <?php
-if (isset($_user)) {
-    $getUserUrl = $_apiURI . '/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user;
-    // $curl = curl_init();
-
-    // curl_setopt_array($curl, array(
-    //     CURLOPT_URL => 'localhost/Progetto_GPOI_VISE/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user,
-    //     CURLOPT_RETURNTRANSFER => true,
-    //     CURLOPT_ENCODING => '',
-    //     CURLOPT_MAXREDIRS => 10,
-    //     CURLOPT_TIMEOUT => 0,
-    //     CURLOPT_FOLLOWLOCATION => true,
-    //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    //     CURLOPT_CUSTOMREQUEST => 'GET',
-    // )
-    // );
-
-    // $response = curl_exec($curl);
-
-    // curl_close($curl);
-    $getUserResponse = sendHttpRequest($getUserUrl, 'GET')['response'];
-    $userJson = json_decode($getUserResponse);
-
-    if (isset($userJson->name, $userJson->last_name)) {
-        $getProfilePictureUrl = 'https://ui-avatars.com/api/?name=' . $userJson->name . '+' . $userJson->last_name;
-    }
-
-}
 ?>
-<!-- <div class="vise-navbar-background">
-    <span class="vise-navbar-decoration">
-
-    </span>
-</div> -->
 
 <div class="vise-navbar-stuck w-100 bg-white shadow-lg rounded-bottom-5">
 
@@ -181,8 +149,8 @@ if (isset($_user)) {
             <div class="col-12 d-flex justify-content-center">
                 <?php
                 if (isset($_user)) {
-                    if (isset($getProfilePictureUrl)) {
-                        echo '<img src="' . $getProfilePictureUrl . '" class="rounded-circle" style="width: 120px;" alt="" srcset="">';
+                    if (isset($_SESSION['ProfilePicture'])) {
+                        echo '<img src="' . $_SESSION['ProfilePicture'] . '" class="rounded-circle" style="width: 120px;" alt="" srcset="">';
                     } else {
                         echo '<img src="img/propic-placeholder.jpg" class="rounded-circle" style="width: 120px;" alt="" srcset="">';
                     }
@@ -196,32 +164,8 @@ if (isset($_user)) {
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <?php
-                if (isset($_user)) {
-                    $url = $_apiURI . 'src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user;
-                    // $curl = curl_init();
-                
-                    // curl_setopt_array($curl, array(
-                    //     CURLOPT_URL => 'localhost/Progetto_GPOI_VISE/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user,
-                    //     CURLOPT_RETURNTRANSFER => true,
-                    //     CURLOPT_ENCODING => '',
-                    //     CURLOPT_MAXREDIRS => 10,
-                    //     CURLOPT_TIMEOUT => 0,
-                    //     CURLOPT_FOLLOWLOCATION => true,
-                    //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    //     CURLOPT_CUSTOMREQUEST => 'GET',
-                    // )
-                    // );
-                
-                    // $response = curl_exec($curl);
-                
-                    // curl_close($curl);
-                    $response = sendHttpRequest($url, 'GET')['response'];
-                    $json = json_decode($response);
-                    if (isset($userJson->name, $userJson->last_name)) {
-                        echo '<h2>' . $json->name . ' ' . $json->last_name . '</h2>';
-                    } else {
-                        echo '<h2>Mario Rossi</h2>';
-                    }
+                if (isset($_SESSION['firstName']) && isset($_SESSION['lastName'])) {
+                    echo '<h3>' . $_SESSION['firstName'] . ' ' . $_SESSION['lastName'] . '</h3>';
                 } else {
                     echo '<h3>Non hai effettuato l\'accesso</h3>';
                 }
@@ -235,6 +179,15 @@ if (isset($_user)) {
             <div class="col-12">
                 <div class="list-group list-group-flush">
                     <?php if (isset($_user)): ?>
+                        <a href="?page=dashboard"
+                            class="list-group-item list-group-item-action rounded-3 d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data-fill" viewBox="0 0 16 16">
+                                <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+                                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1ZM10 8a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V8Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z"/>
+                            </svg>
+                            <span class="ms-2">
+                                Dashboard
+                        </a>
                         <a href="?page=profilepage"
                             class="list-group-item list-group-item-action rounded-3 d-flex align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
