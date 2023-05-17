@@ -2,7 +2,7 @@
 
 if (!isset($_GET['page']) || $_GET['page'] == '' || $_GET['page'] == null) {
     $page = 'landing';
-}else{
+} else {
     $page = $_GET['page'];
 }
 
@@ -17,34 +17,50 @@ function onlyIfLoggedIn($page)
 
 switch ($page) {
     case 'landing':
-        include('_landing.php');
+        include_once('_landing.php');
         break;
     case 'login':
-        include('_login.php');
+        include_once('_login.php');
         break;
     case 'logout':
-        include('_logout.php');
+        include_once('_logout.php');
         break;
     case 'dashboard':
+<<<<<<< Updated upstream
         onlyIfLoggedIn('_dashboard.php');
+=======
+        include_once('_dashboard.php');
+>>>>>>> Stashed changes
         break;
     case 'signup':
-        include('_signup.php');
+        include_once('_signup.php');
         break;
     case 'checkout':
+<<<<<<< Updated upstream
         onlyIfLoggedIn('_checkout.php');
+=======
+        include_once('_checkout.php');
+>>>>>>> Stashed changes
         break;
     case 'chisiamo':
-        include('_chisiamo.php');
+        include_once('_chisiamo.php');
         break;
     case 'contatti':
-        include('_contatti.php');
+        include_once('_contatti.php');
         break;
     case 'profilepage':
+<<<<<<< Updated upstream
         onlyIfLoggedIn('_profilepage.php');
+=======
+        include_once('_profilepage.php');
+        break;
+    case 'moneysending':
+        include_once('_money_sending.php');
+>>>>>>> Stashed changes
         break;
     default:
-        include("_error_404.php");
+        include_once("_error_404.php");
         break;
 }
+
 ?>
