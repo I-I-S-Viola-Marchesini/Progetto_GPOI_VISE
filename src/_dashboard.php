@@ -8,7 +8,7 @@
 <main class="d-flex align-items-end mt-5">
     <div class="container mt-5">
         <div class="row g-2">
-            <div class="col-4 ">
+            <div class="col-lg-4 ">
                 <div class="container ">
                     <!-- Row saldo vise -->
                     <div class="row shadow-lg rounded-3 bg-white mb-4 pt-2">
@@ -17,11 +17,11 @@
                         <div class="fw-bold my-3 mx-2">
                             <span class="fs-1">€
                                 <?php
-                                if(isset($_user)){
+                                if (isset($_user)) {
                                     $url = $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_user;
 
                                     // $curl = curl_init();
-    
+                                
                                     // curl_setopt_array($curl, array(
                                     //     CURLOPT_URL => $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_user,
                                     //     CURLOPT_RETURNTRANSFER => true,
@@ -33,19 +33,19 @@
                                     //     CURLOPT_CUSTOMREQUEST => 'GET',
                                     // )
                                     // );
-    
+                                
                                     // $response = curl_exec($curl);
                                     // curl_close($curl);
-                                    
+                                
                                     $response = sendHttpRequest($url, 'GET')['response'];
                                     $json = json_decode($response);
 
-                                    if(isset($json->balance)){
+                                    if (isset($json->balance)) {
                                         echo $json->balance;
-                                    }else{
+                                    } else {
                                         echo 'Err: no bal';
                                     }
-                                }else{
+                                } else {
                                     echo 'Err: no user';
                                 }
 
@@ -126,7 +126,7 @@
 
                 </div>
             </div>
-            <div class="col-8 ">
+            <div class="col-lg-8 ">
                 <div class="container" style="min-height: 81vh;">
                     <div class="row shadow-lg rounded-3 bg-white">
                         <span class="text-start text-primary fw-bold pt-2">Attività recenti</span>
@@ -620,7 +620,10 @@
     <script>
         $(document).ready(function () {
             $('#recent-activities-table').DataTable({
-                rowReorder: true
+                rowReorder: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/it-IT.json',
+                }
             });
         });
     </script>
