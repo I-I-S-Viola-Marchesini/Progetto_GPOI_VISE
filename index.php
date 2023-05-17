@@ -16,37 +16,19 @@ if (isset($_user)) {
     $getUserResponse = sendHttpRequest($getUserUrl, 'GET')['response'];
     $userJson = json_decode($getUserResponse);
     
-    if(isset($userJson->name, $userJson->last_name)){
+    if(isset($userJson-> username, $userJson->name, $userJson->last_name, $userJson->email, $userJson->tax_code, $userJson->mobile_number, $userJson->birth_date)){
         $_SESSION['ProfilePicture'] = 'https://ui-avatars.com/api/?name=' . $userJson->name . '+' . $userJson->last_name;
-    }
-
-}
-
-if (isset($_user)) {
-    $url = $_apiURI . 'src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user;
-    // $curl = curl_init();
-
-    // curl_setopt_array($curl, array(
-    //     CURLOPT_URL => 'localhost/Progetto_GPOI_VISE/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user,
-    //     CURLOPT_RETURNTRANSFER => true,
-    //     CURLOPT_ENCODING => '',
-    //     CURLOPT_MAXREDIRS => 10,
-    //     CURLOPT_TIMEOUT => 0,
-    //     CURLOPT_FOLLOWLOCATION => true,
-    //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    //     CURLOPT_CUSTOMREQUEST => 'GET',
-    // )
-    // );
-
-    // $response = curl_exec($curl);
-
-    // curl_close($curl);
-    $response = sendHttpRequest($url, 'GET')['response'];
-    $json = json_decode($response);
-    if (isset($userJson->name, $userJson->last_name)) {
+        $_SESSION['username'] = $userJson->username;
         $_SESSION['firstName'] = $userJson->name;
         $_SESSION['lastName'] = $userJson->last_name;
+        $_SESSION['email'] = $userJson->email;
+        $_SESSION['taxCode'] = $userJson->tax_code;
+        $_SESSION['mobileNumber'] = $userJson->mobile_number;
+        //create date object from birth date
+        $birthDate = new DateTime($userJson->birth_date);
+        $_SESSION['birthDate'] = $birthDate;
     }
+
 }
 
 ?>
