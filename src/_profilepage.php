@@ -11,11 +11,21 @@
         <div class="row">
             <div class="col-md-6 text-center">
                 <div class="row">
-                    <img src="img/propic-placeholder.jpg" alt="" style="width: auto; height: 150px;" class="mx-auto rounded-circle">
+                    <img src="<?php
+                        if (isset($getProfilePictureUrl)) {
+                            echo $getProfilePictureUrl;
+                        }
+                    ?>" alt="" style="width: auto; height: 150px;" class="mx-auto rounded-circle">
                 </div>
                 <div class="row mt-4">
-                    <h4 class="fw-bold">Mario Rossi</h4>
-                    <h6>mariorossi@gmail.com</h6>
+                    <?php
+                    if (isset($userJson->name, $userJson->last_name, $userJson->email)) {
+                        echo '  
+                        <h4 class="fw-bold">' . $userJson->name . ' ' . $userJson->last_name . '</h4>
+                        <h6>' . $userJson->email . '</h6>
+                        ';
+                    }
+                    ?>
                 </div>
             </div>
 
@@ -24,17 +34,17 @@
 
                     <div class="row justify-content-center text-end">
                         <div class="col-lg-9 mt-4">
-                        <button id="send-button" type="submit" class="btn btn-primary col-4">
-                            Modifica ????
-                        </button>
+                            <button id="send-button" type="submit" class="btn btn-primary col-4">
+                                Modifica ????
+                            </button>
                         </div>
                     </div>
 
                     <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="name-container">
-                                <input type="text" name="name" class="form-control" id="name" value="Mario" maxlength="30"
-                                    required disabled>
+                                <input type="text" name="name" class="form-control" id="name" value="Mario"
+                                    maxlength="30" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci il tuo nome
                                 </div>
@@ -45,8 +55,8 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="last-name-container">
-                                <input type="text" name="surname" class="form-control" id="last-name" value="Rossi" placeholder=" "
-                                    maxlength="30" required disabled>
+                                <input type="text" name="surname" class="form-control" id="last-name" value="Rossi"
+                                    placeholder=" " maxlength="30" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci il tuo cognome
                                 </div>
@@ -57,8 +67,8 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="username-container">
-                                <input type="text" name="username" class="form-control" id="username" value="mariorossi" placeholder=" "
-                                    maxlength="30" required disabled>
+                                <input type="text" name="username" class="form-control" id="username" value="mariorossi"
+                                    placeholder=" " maxlength="30" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci il tuo username
                                 </div>
@@ -71,8 +81,9 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9">
                             <div class="form" id="cell-number-container">
-                                <input type="text" name="phone_number" inputmode="numeric" pattern="[0-9]*" value="323 424 5724" class="form-control"
-                                    id="cell-number" maxlength="20" placeholder=" " required disabled>
+                                <input type="text" name="phone_number" inputmode="numeric" pattern="[0-9]*"
+                                    value="323 424 5724" class="form-control" id="cell-number" maxlength="20"
+                                    placeholder=" " required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci il tuo numero di cellulare
                                 </div>
@@ -95,8 +106,8 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="birth-date-container">
-                                <input type="date" name="birth_date" class="form-control" id="birth-date" placeholder=" "
-                                value="2004-04-04" required disabled>
+                                <input type="date" name="birth_date" class="form-control" id="birth-date"
+                                    placeholder=" " value="2004-04-04" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci la tua data di nascita
                                 </div>
@@ -109,8 +120,8 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9">
                             <div class="form" id="email-container">
-                                <input type="email" name="email" class="form-control" id="email" placeholder=" " maxlength="60"
-                                    value="mariorossi@gmail.com" required disabled>
+                                <input type="email" name="email" class="form-control" id="email" placeholder=" "
+                                    maxlength="60" value="mariorossi@gmail.com" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci il tuo indirizzo email
                                 </div>
@@ -121,8 +132,8 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="password-container">
-                                <input type="password" name="password" class="form-control" id="password" placeholder=" "
-                                    maxlength="30" minlength="8" value="amongu" required disabled>
+                                <input type="password" name="password" class="form-control" id="password"
+                                    placeholder=" " maxlength="30" minlength="8" value="amongu" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci la tua password
                                 </div>
