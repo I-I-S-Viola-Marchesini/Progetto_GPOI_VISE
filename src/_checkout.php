@@ -73,11 +73,9 @@
                     </div>
                     <div class="row w-100">
                         <p class="text-center">
-                            mario.rossi.92@gmail.com
+                        <?php echo $_SESSION['email'] ?>
                             <br>
-                            14/02/1992
-                            <br>
-                            via Roma 1, 00100 Roma (RM)
+                            <?php echo $_SESSION['birthDate']->format('d/m/Y') ?>
                         </p>
                     </div>
                     <div class="row mt-5">
