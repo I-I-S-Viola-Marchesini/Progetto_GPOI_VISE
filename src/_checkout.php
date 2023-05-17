@@ -76,7 +76,7 @@
                         <p class="text-center">
                         <?php echo $_SESSION['email'] ?>
                             <br>
-                            <?php echo $_SESSION['birthDate']->format('d/m/Y') ?>
+                            <?php echo $_SESSION['birthDate'] ?>
                         </p>
                     </div>
                     <div class="row mt-5">
