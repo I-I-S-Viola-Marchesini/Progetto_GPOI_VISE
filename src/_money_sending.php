@@ -27,7 +27,7 @@
                                     <input type="text" name="email" class="form-control" id="email" maxlength="30" required placeholder=" ">
                                     <label for="email" class="form-label ms-1">Indirizzo email o username</label>
                                     <div class="invalid-feedback">
-                                        Inserisci un indirizzo email valido
+                                        Inserisci un utente Vise esistente
                                     </div>
                                 </div>
                             </div>
