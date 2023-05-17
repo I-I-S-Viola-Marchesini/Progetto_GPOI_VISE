@@ -17,7 +17,7 @@ if (isset($_user)) {
     $userJson = json_decode($getUserResponse);
     
     if(isset($userJson-> username, $userJson->name, $userJson->last_name, $userJson->email, $userJson->tax_code, $userJson->mobile_number, $userJson->birth_date)){
-        $_SESSION['ProfilePicture'] = 'https://ui-avatars.com/api/?name=' . $userJson->name . '+' . $userJson->last_name;
+        $_SESSION['ProfilePicture'] = 'https://ui-avatars.com/api/?format=svg&background=ccdffc&name=' . $userJson->name . '+' . $userJson->last_name;
         $_SESSION['username'] = $userJson->username;
         $_SESSION['firstName'] = $userJson->name;
         $_SESSION['lastName'] = $userJson->last_name;

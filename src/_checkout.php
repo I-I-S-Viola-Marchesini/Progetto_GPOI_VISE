@@ -62,10 +62,10 @@
                     <div class="row">
                         <h5 class="mb-3">Questo pagamento sarà effettuato a nome di:</h5>
                     </div>
-                    <div class="row d-flex justify-content-center align-items-center w-100 p/4">
-                        <img src="<?php echo $_SESSION['ProfilePicture'] ?>" class="rounded-circle" style="width: 80px;" alt="" srcset="">
+                    <div class="row d-flex justify-content-center align-items-center w-100 p-4 pb-0">
+                        <img src="<?php echo $_SESSION['ProfilePicture'] ?>" class="rounded-circle" style="width: 120px;" alt="" srcset="">
                     </div>
-                    <div class="row w-100">
+                    <div class="row w-100 mt-0">
                         <h4 class="text-center">
                             <br>
                             <?php echo $_SESSION['firstName'] . ' ' . $_SESSION['lastName'] ?>
