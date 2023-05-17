@@ -137,7 +137,7 @@
                             <div class="form" id="password-container">
                                 <label class="fw-bold mb-2">Password:</label>
                                 <input type="password" name="password" class="form-control" id="password"
-                                    placeholder=" " maxlength="30" minlength="8" value="<?php echo $_SESSION['password']; ?>" required disabled>
+                                    placeholder=" " maxlength="30" minlength="8" value="<?php //echo $_SESSION['password']; ?>" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci la tua password
                                 </div>

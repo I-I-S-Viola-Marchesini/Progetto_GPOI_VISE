@@ -59,7 +59,7 @@
                     <!-- Row bottoni denaro -->
                     <div class="row my-2 text-center">
                         <div class="col-6 px-4">
-                            <a class="btn btn btn-outline-primary rounded-3 w-100" href="?page=moneysending">
+                            <a class="btn btn btn-outline-primary rounded-3 w-100" href="?page=moneySending">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                     class="bi bi-currency-euro mb-1" viewBox="0 0 16 16">
                                     <path

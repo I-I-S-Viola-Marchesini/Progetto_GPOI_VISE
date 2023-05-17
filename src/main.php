@@ -43,7 +43,7 @@ switch ($page) {
     case 'profilePage':
         include_once(onlyIfLoggedIn('_profilePage.php'));;
         break;
-    case 'moneysending':
+    case 'moneySending':
         onlyIfLoggedIn('_moneySending.php');
         break;
     default:
