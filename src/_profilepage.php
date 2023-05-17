@@ -1,4 +1,4 @@
-<title>Paga Vise | Anagrafica</title>
+<title>Vise | Anagrafica</title>
 <main class="d-flex align-items-center mt-5">
     <div class="container shadow-lg bg-white rounded-3 py-5">
         <div class="row g-2 text-center">
@@ -43,6 +43,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="name-container">
+                                <label class="fw-bold mb-2">Nome:</label>
                                 <input type="text" name="name" class="form-control" id="name" value="Mario"
                                     maxlength="30" required disabled>
                                 <div class="invalid-feedback">
@@ -55,6 +56,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="last-name-container">
+                                <label class="fw-bold mb-2">Cognome:</label>
                                 <input type="text" name="surname" class="form-control" id="last-name" value="Rossi"
                                     placeholder=" " maxlength="30" required disabled>
                                 <div class="invalid-feedback">
@@ -67,6 +69,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="username-container">
+                                <label class="fw-bold mb-2">Username:</label>
                                 <input type="text" name="username" class="form-control" id="username" value="mariorossi"
                                     placeholder=" " maxlength="30" required disabled>
                                 <div class="invalid-feedback">
@@ -81,6 +84,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9">
                             <div class="form" id="cell-number-container">
+                                <label class="fw-bold mb-2">Numero di cellulare:</label>
                                 <input type="text" name="phone_number" inputmode="numeric" pattern="[0-9]*"
                                     value="323 424 5724" class="form-control" id="cell-number" maxlength="20"
                                     placeholder=" " required disabled>
@@ -94,6 +98,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="tax-code-container">
+                                <label class="fw-bold mb-2">Codice fiscale:</label>
                                 <input type="text" name="tax_code" class="form-control" id="tax-code" placeholder=" "
                                     maxlength="16" value="MRNDL894JR" required disabled>
                                 <div class="invalid-feedback">
@@ -106,6 +111,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="birth-date-container">
+                                <label class="fw-bold mb-2">Data di nascita:</label>
                                 <input type="date" name="birth_date" class="form-control" id="birth-date"
                                     placeholder=" " value="2004-04-04" required disabled>
                                 <div class="invalid-feedback">
@@ -120,6 +126,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9">
                             <div class="form" id="email-container">
+                                <label class="fw-bold mb-2">Indirizzo email:</label>
                                 <input type="email" name="email" class="form-control" id="email" placeholder=" "
                                     maxlength="60" value="mariorossi@gmail.com" required disabled>
                                 <div class="invalid-feedback">
@@ -132,6 +139,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="password-container">
+                                <label class="fw-bold mb-2">Password:</label>
                                 <input type="password" name="password" class="form-control" id="password"
                                     placeholder=" " maxlength="30" minlength="8" value="amongu" required disabled>
                                 <div class="invalid-feedback">
