@@ -26,14 +26,14 @@ try{
     die();
 }
 
-if ($registrationValue == false) {
-    http_response_code(404);
-    echo json_encode(["response" => "Registration failed"]);
-    die();
-} else {
-    http_response_code(200);
-    echo json_encode(["response" => "Registration successful"]);
-    die();
-}
+// if ($registrationValue == false) {
+//     http_response_code(404);
+//     echo json_encode(["response" => "Registration failed"]);
+//     die();
+// } else {
+//     http_response_code(200);
+//     echo json_encode(["response" => "Registration successful"]);
+//     die();
+// }
 
 ?>
