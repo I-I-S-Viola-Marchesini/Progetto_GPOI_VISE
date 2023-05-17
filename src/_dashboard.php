@@ -1,4 +1,5 @@
 <?php
+
 ?>
 
 <title>
@@ -17,8 +18,8 @@
                         <div class="fw-bold my-3 mx-2">
                             <span class="fs-1">€
                                 <?php
-                                if (isset($_user)) {
-                                    $url = $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_user;
+                                if (isset($_SESSION['username'])) {
+                                    $url = $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_SESSION['username'];
 
                                     // $curl = curl_init();
                                 

@@ -1,4 +1,5 @@
 <?php
+
 ?>
 
 <script src="https://int-ecommerce.nexi.it/ecomm/XPayBuild/js?alias=<?php echo $APIKEY; ?>"></script>

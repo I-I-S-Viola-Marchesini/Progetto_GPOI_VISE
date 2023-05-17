@@ -1,23 +1,21 @@
 <?php
 require 'src/sendHttpRequest.php';
 session_start();
-if (isset($_SESSION['username'])) {
-    $_user = $_SESSION['username'];
-}
+
 $_apiURI = $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER["PHP_SELF"];
 $_apiURI = str_replace('index.php', '', $_apiURI);
 
-//echo '<script>alert("' . $_apiURI . '");</script>';
+// echo '<script>alert("' . $_apiURI . '");</script>';
 
-if (isset($_user)) {
+if (isset($_SESSION['username'])) {
 
-    $getUserUrl = $_apiURI . '/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user;
+    $getUserUrl = $_apiURI . '/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_SESSION['username'];
 
     $getUserResponse = sendHttpRequest($getUserUrl, 'GET')['response'];
     $userJson = json_decode($getUserResponse);
 
     if (isset($userJson->username, $userJson->name, $userJson->last_name, $userJson->email, $userJson->tax_code, $userJson->mobile_number, $userJson->birth_date)) {
-        $_SESSION['ProfilePicture'] = 'https://ui-avatars.com/api/?format=svg&background=ccdffc&name=' . $userJson->name . '+' . $userJson->last_name;
+        $_SESSION['profilePicture'] = 'https://ui-avatars.com/api/?format=svg&background=ccdffc&name=' . $userJson->name . '+' . $userJson->last_name;
         $_SESSION['username'] = $userJson->username;
         $_SESSION['firstName'] = $userJson->name;
         $_SESSION['lastName'] = $userJson->last_name;
@@ -61,7 +59,8 @@ if (isset($_user)) {
     <div class="container">
         <div id="main">
             <?php
-            require_once __DIR__ . '/src/main.php';
+            include_once __DIR__ . '/src/main.php';
+
             ?>
         </div>
     </div>

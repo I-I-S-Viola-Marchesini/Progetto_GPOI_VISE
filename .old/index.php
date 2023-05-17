@@ -13,7 +13,7 @@
 </head>
 <style>
     <?php
-    require_once __DIR__ . '/vendor/twbs/bootstrap/dist/css/bootstrap.min.css';
+    include_once __DIR__ . '/vendor/twbs/bootstrap/dist/css/bootstrap.min.css';
     ?>
 </style>
 
@@ -24,14 +24,14 @@
     <div class="container">
         <div id="main">
             <?php
-            require_once __DIR__ . '/src/main.php';
+            include_once __DIR__ . '/src/main.php';
             ?>
         </div>
     </div>
 
     <script>
         <?php
-        require_once __DIR__ . '/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js';
+        include_once __DIR__ . '/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js';
         ?>
     </script>
 

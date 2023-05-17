@@ -9,9 +9,9 @@ if (!isset($_GET['page']) || $_GET['page'] == '' || $_GET['page'] == null) {
 function onlyIfLoggedIn($page)
 {
     if (!isset($_SESSION['username'])) {
-        include_once('_notloggedin.php');
+        return '_notLoggedIn.php';
     } else {
-        include_once($page);
+        return $page;
     }
 }
 
@@ -26,28 +26,28 @@ switch ($page) {
         include_once('_logout.php');
         break;
     case 'dashboard':
-        onlyIfLoggedIn('_dashboard.php');
+        include_once(onlyIfLoggedIn('_dashboard.php'));
         break;
     case 'signup':
         include_once('_signup.php');
         break;
     case 'checkout':
-        onlyIfLoggedIn('_checkout.php');
+        include_once(onlyIfLoggedIn('_checkout.php'));
         break;
-    case 'chisiamo':
-        include_once('_chisiamo.php');
+    case 'about':
+        include_once('_about.php');
         break;
-    case 'contatti':
-        include_once('_contatti.php');
+    case 'contactUs':
+        include_once('_contactUs.php');
         break;
-    case 'profilepage':
-        onlyIfLoggedIn('_profilepage.php');
+    case 'profilePage':
+        include_once(onlyIfLoggedIn('_profilePage.php'));;
         break;
     case 'moneysending':
-        onlyIfLoggedIn('_money_sending.php');
+        onlyIfLoggedIn('_moneySending.php');
         break;
     default:
-        include_once("_error_404.php");
+        include_once("_error404.php");
         break;
 }
 
