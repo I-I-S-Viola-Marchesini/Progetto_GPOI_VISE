@@ -197,7 +197,7 @@ if (isset($_user)) {
             <div class="col-12 d-flex justify-content-center">
                 <?php
                 if (isset($_user)) {
-                    $url = 'localhost/Progetto_GPOI_VISE/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user;
+                    $url = $_apiURI . 'src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user;
                     // $curl = curl_init();
                 
                     // curl_setopt_array($curl, array(
