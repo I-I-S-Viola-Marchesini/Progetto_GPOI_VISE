@@ -9,7 +9,7 @@ if (!isset($_POST['name'], $_POST['surname'], $_POST['username'], $_POST['phone_
     $phone_number = $_POST['phone_number'];
     $tax_code = $_POST['tax_code'];
     $email = $_POST['email'];
-    $password = hash('sha256', $_POST['password'], true);
+    $password = hash('sha256', $_POST['password'], false);
     $birth_date = $_POST['birth_date'];
     $registration_date = date("d-m-Y");
 
@@ -25,14 +25,17 @@ if (!isset($_POST['name'], $_POST['surname'], $_POST['username'], $_POST['phone_
         "birth_date": "' . $birth_date . '",
         "registration_date": "' . $registration_date . '"
     }';
-
+    echo $body;
     $request = sendHttpRequest($url, 'POST', $body);
     $response = $request['response'];
     $httpcode = $request['code'];
-
+    echo $response;
+    echo $httpcode;
     if($httpcode == 200){
         $_SESSION['username'] = $username;
         echo '<script>window.location.href = \'?page=dashboard\';</script>';
+    }else{
+
     }
 }
 
