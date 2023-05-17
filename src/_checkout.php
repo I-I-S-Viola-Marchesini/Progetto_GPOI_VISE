@@ -236,7 +236,7 @@ $numeroContratto = (time() * 1000) . rand(0, 100);
     //Uncheck all radio inputs
     $('input[type="radio"]').prop('checked', false);
 
-    document.querySelector('form[name="paymentMethodForm"]').addEventListener('change', (event) => {
+    document.querySelector('#cards_radio_input').addEventListener('change', (event) => {
         $('#none_pay_button').hide();
         if (event.target.value === 'card') {
             let cardLabel = $('#label[for="' + event.originalTarget.id + '"]').html().split('<small class="text-muted">')[0];
