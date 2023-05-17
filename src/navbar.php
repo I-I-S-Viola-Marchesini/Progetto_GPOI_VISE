@@ -1,37 +1,5 @@
 <?php
-if (isset($_user)) {
-    $getUserUrl = $_apiURI . '/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user;
-    // $curl = curl_init();
-
-    // curl_setopt_array($curl, array(
-    //     CURLOPT_URL => 'localhost/Progetto_GPOI_VISE/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user,
-    //     CURLOPT_RETURNTRANSFER => true,
-    //     CURLOPT_ENCODING => '',
-    //     CURLOPT_MAXREDIRS => 10,
-    //     CURLOPT_TIMEOUT => 0,
-    //     CURLOPT_FOLLOWLOCATION => true,
-    //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    //     CURLOPT_CUSTOMREQUEST => 'GET',
-    // )
-    // );
-
-    // $response = curl_exec($curl);
-
-    // curl_close($curl);
-    $getUserResponse = sendHttpRequest($getUserUrl, 'GET')['response'];
-    $userJson = json_decode($getUserResponse);
-
-    if (isset($userJson->name, $userJson->last_name)) {
-        $getProfilePictureUrl = 'https://ui-avatars.com/api/?name=' . $userJson->name . '+' . $userJson->last_name;
-    }
-
-}
 ?>
-<!-- <div class="vise-navbar-background">
-    <span class="vise-navbar-decoration">
-
-    </span>
-</div> -->
 
 <div class="vise-navbar-stuck w-100 bg-white shadow-lg rounded-bottom-5">
 
@@ -181,8 +149,8 @@ if (isset($_user)) {
             <div class="col-12 d-flex justify-content-center">
                 <?php
                 if (isset($_user)) {
-                    if (isset($getProfilePictureUrl)) {
-                        echo '<img src="' . $getProfilePictureUrl . '" class="rounded-circle" style="width: 120px;" alt="" srcset="">';
+                    if (isset($_SESSION['ProfilePicture'])) {
+                        echo '<img src="' . $_SESSION['ProfilePicture'] . '" class="rounded-circle" style="width: 120px;" alt="" srcset="">';
                     } else {
                         echo '<img src="img/propic-placeholder.jpg" class="rounded-circle" style="width: 120px;" alt="" srcset="">';
                     }
@@ -196,32 +164,8 @@ if (isset($_user)) {
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <?php
-                if (isset($_user)) {
-                    $url = $_apiURI . 'src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user;
-                    // $curl = curl_init();
-                
-                    // curl_setopt_array($curl, array(
-                    //     CURLOPT_URL => 'localhost/Progetto_GPOI_VISE/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user,
-                    //     CURLOPT_RETURNTRANSFER => true,
-                    //     CURLOPT_ENCODING => '',
-                    //     CURLOPT_MAXREDIRS => 10,
-                    //     CURLOPT_TIMEOUT => 0,
-                    //     CURLOPT_FOLLOWLOCATION => true,
-                    //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    //     CURLOPT_CUSTOMREQUEST => 'GET',
-                    // )
-                    // );
-                
-                    // $response = curl_exec($curl);
-                
-                    // curl_close($curl);
-                    $response = sendHttpRequest($url, 'GET')['response'];
-                    $json = json_decode($response);
-                    if (isset($userJson->name, $userJson->last_name)) {
-                        echo '<h2>' . $json->name . ' ' . $json->last_name . '</h2>';
-                    } else {
-                        echo '<h2>Mario Rossi</h2>';
-                    }
+                if (isset($_SESSION['firstName']) && isset($_SESSION['lastName'])) {
+                    echo '<h3>' . $_SESSION['firstName'] . ' ' . $_SESSION['lastName'] . '</h3>';
                 } else {
                     echo '<h3>Non hai effettuato l\'accesso</h3>';
                 }
