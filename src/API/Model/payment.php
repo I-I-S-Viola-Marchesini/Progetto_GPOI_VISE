@@ -120,4 +120,15 @@ class Payment
             return $stmt;
         }
     }
+
+    public function getArchivePaymentByUsername($username){
+        $query = "SELECT `sender_user_id`, `receiver_user_id`, `payment_date_time`, `amount`
+            FROM $this->table_name
+            WHERE `sender_user_id` LIKE '$username' 
+            OR `receiver_user_id` LIKE '$username' ORDER BY `payment_date_time` DESC";
+
+        $stmt = $this->conn->query($query);
+
+        return $stmt;
+    }
 }
