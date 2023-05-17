@@ -1,7 +1,16 @@
 <?php
+
+function getReturnPage(){
+    if(isset($_GET['returnTo'])){
+        return $_GET['returnTo'];
+    }else{
+        return 'dashboard';
+    }
+}
+
 $error = false;
 if (isset($_SESSION['username'])) {
-    echo '<script>window.location.href = \'?page=dashboard\';</script>';
+    echo '<script>window.location.href = \'?page='.getReturnPage().'\';</script>';
 }
 
 if (!isset($_POST['username']) || !isset($_POST['password'])) {
@@ -21,7 +30,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
     if (isset($arr->username)) {
         echo $arr->username;
         $_SESSION['username'] = $arr->username;
-        echo '<script>window.location.href = \'?page=dashboard\';</script>';
+        echo '<script>window.location.href = \'?page='.getReturnPage().'\';</script>';
     } else {
         $error = true;
     }
