@@ -24,6 +24,7 @@ if (isset($_SESSION['username'])) {
         $_SESSION['mobileNumber'] = $userJson->mobile_number;
         //create date object from birth date
         $birthDate = new DateTime($userJson->birth_date);
+        $birthDate = $birthDate->format('Y-m-d');
         $_SESSION['birthDate'] = $birthDate;
     }
 }
