@@ -15,7 +15,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
         "password":"' . $password . '"
     }';
 
-    $response = sendHttpRequest($url, 'POST', $body);
+    $response = sendHttpRequest($url, 'POST', $body)['response'];
 
     $arr = json_decode($response);
     if (isset($arr->username)) {

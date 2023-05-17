@@ -18,7 +18,7 @@ if (isset($_user)) {
     // $response = curl_exec($curl);
 
     // curl_close($curl);
-    $getUserResponse = sendHttpRequest($getUserUrl, 'GET');
+    $getUserResponse = sendHttpRequest($getUserUrl, 'GET')['response'];
     $userJson = json_decode($getUserResponse);
     
     if(isset($userJson->name, $userJson->last_name)){
@@ -215,7 +215,7 @@ if (isset($_user)) {
                     // $response = curl_exec($curl);
                 
                     // curl_close($curl);
-                    $response = sendHttpRequest($url, 'GET');
+                    $response = sendHttpRequest($url, 'GET')['response'];
                     $json = json_decode($response);
                     if (isset($userJson->name, $userJson->last_name)) {
                         echo '<h2>' . $json->name . ' ' . $json->last_name . '</h2>';
