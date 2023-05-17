@@ -15,8 +15,8 @@ if (isset($_user)) {
 
     $getUserResponse = sendHttpRequest($getUserUrl, 'GET')['response'];
     $userJson = json_decode($getUserResponse);
-    
-    if(isset($userJson-> username, $userJson->name, $userJson->last_name, $userJson->email, $userJson->tax_code, $userJson->mobile_number, $userJson->birth_date)){
+
+    if (isset($userJson->username, $userJson->name, $userJson->last_name, $userJson->email, $userJson->tax_code, $userJson->mobile_number, $userJson->birth_date)) {
         $_SESSION['ProfilePicture'] = 'https://ui-avatars.com/api/?format=svg&background=ccdffc&name=' . $userJson->name . '+' . $userJson->last_name;
         $_SESSION['username'] = $userJson->username;
         $_SESSION['firstName'] = $userJson->name;
@@ -28,7 +28,6 @@ if (isset($_user)) {
         $birthDate = new DateTime($userJson->birth_date);
         $_SESSION['birthDate'] = $birthDate;
     }
-
 }
 
 ?>
@@ -68,11 +67,14 @@ if (isset($_user)) {
     </div>
 
     <script>
-        const tooltipTriggerList = document.querySelectorAll('.tooltip-trg')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-        document.querySelectorAll('.tooltip-show-start').forEach((el) => {
-            bootstrap.Tooltip.getOrCreateInstance(el).show();
-        });
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+        // const tooltipTriggerList = document.querySelectorAll('.tooltip-trg')
+        // const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        // document.querySelectorAll('.tooltip-show-start').forEach((el) => {
+        //     bootstrap.Tooltip.getOrCreateInstance(el).show();
+        // });
     </script>
 
 </body>
