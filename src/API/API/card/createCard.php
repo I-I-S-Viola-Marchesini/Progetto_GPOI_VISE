@@ -8,7 +8,7 @@ header('Access-Control-Allow-Origin: *');
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (empty($data->userID) || empty($data->expiration_date) || empty($data->billing_address) || empty($data->id_payment_gateway)) {
+if (empty($data->user_id) || empty($data->pan) || empty($data->expiration_date) || empty($data->billing_address) || empty($data->card_token) || empty($data->credit_circuit)) {
     http_response_code(400);
     echo json_encode(["message" => "Fill every field"]);
     die();
@@ -18,7 +18,7 @@ $db = new Database();
 $conn = $db->connect();
 $card = new Card($conn);
 
-$result_card = $card->insertCard($data->userID, $data->expiration_date, $data->billing_address, $data->id_payment_gateway);
+$result_card = $card->insertCard($data->user_id, $data->pan, $data->expiration_date, $data->billing_address, $data->card_token, $data->credit_circuit);
 
 if ($result_card == false) {
     http_response_code(401);
