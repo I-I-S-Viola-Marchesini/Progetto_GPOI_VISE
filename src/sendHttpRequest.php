@@ -1,19 +1,20 @@
 <?php
 
-function sendHttpRequest($url, $method, $body = null) {
+function sendHttpRequest($url, $method, $body = null)
+{
     $curl = curl_init();
-    
+
     // Set the URL
     curl_setopt($curl, CURLOPT_URL, $url);
-    
+
     // Set the request method
     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, strtoupper($method));
-    
+
     // Set the request body if provided
     if ($body !== null) {
         curl_setopt($curl, CURLOPT_POSTFIELDS, $body);
     }
-    
+
     // Set additional options if needed
     // ...
 
@@ -24,17 +25,17 @@ function sendHttpRequest($url, $method, $body = null) {
     $response = curl_exec($curl);
 
     // Check for cURL errors
-    if(curl_errno($curl)) {
+    if (curl_errno($curl)) {
         $error_message = curl_error($curl);
         // Handle the error appropriately (e.g., log, throw exception)
         // ...
     }
-
+    $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     // Close the cURL session
     curl_close($curl);
 
     // Return the response
-    return $response;
+    return ["response" => $response, "code" => $httpcode];
 }
 
 ?>

@@ -26,9 +26,10 @@ if (!isset($_POST['name'], $_POST['surname'], $_POST['username'], $_POST['phone_
         "registration_date": "' . $registration_date . '"
     }';
 
-    $response = sendHttpRequest($url, 'POST', $body);
-    $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    curl_close($curl);
+    $request = sendHttpRequest($url, 'POST', $body);
+    $response = $request['response'];
+    $httpcode = $request['code'];
+
     if($httpcode == 200){
         $_SESSION['username'] = $username;
         echo '<script>window.location.href = \'?page=dashboard\';</script>';

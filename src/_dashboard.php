@@ -18,25 +18,28 @@
                             <span class="fs-1">€
                                 <?php
                                 if(isset($_user)){
+                                    $url = $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_user;
 
-                                    $curl = curl_init();
+                                    // $curl = curl_init();
     
-                                    curl_setopt_array($curl, array(
-                                        CURLOPT_URL => $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_user,
-                                        CURLOPT_RETURNTRANSFER => true,
-                                        CURLOPT_ENCODING => '',
-                                        CURLOPT_MAXREDIRS => 10,
-                                        CURLOPT_TIMEOUT => 0,
-                                        CURLOPT_FOLLOWLOCATION => true,
-                                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                                        CURLOPT_CUSTOMREQUEST => 'GET',
-                                    )
-                                    );
+                                    // curl_setopt_array($curl, array(
+                                    //     CURLOPT_URL => $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_user,
+                                    //     CURLOPT_RETURNTRANSFER => true,
+                                    //     CURLOPT_ENCODING => '',
+                                    //     CURLOPT_MAXREDIRS => 10,
+                                    //     CURLOPT_TIMEOUT => 0,
+                                    //     CURLOPT_FOLLOWLOCATION => true,
+                                    //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                    //     CURLOPT_CUSTOMREQUEST => 'GET',
+                                    // )
+                                    // );
     
-                                    $response = curl_exec($curl);
-                                    curl_close($curl);
-
+                                    // $response = curl_exec($curl);
+                                    // curl_close($curl);
+                                    
+                                    $response = sendHttpRequest($url, 'GET')['response'];
                                     $json = json_decode($response);
+
                                     if(isset($json->balance)){
                                         echo $json->balance;
                                     }else{

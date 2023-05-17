@@ -18,7 +18,7 @@ if (isset($_user)) {
     // $response = curl_exec($curl);
 
     // curl_close($curl);
-    $getUserResponse = sendHttpRequest($getUserUrl, 'GET');
+    $getUserResponse = sendHttpRequest($getUserUrl, 'GET')['response'];
     $userJson = json_decode($getUserResponse);
     
     if(isset($userJson->name, $userJson->last_name)){
@@ -197,7 +197,7 @@ if (isset($_user)) {
             <div class="col-12 d-flex justify-content-center">
                 <?php
                 if (isset($_user)) {
-                    $url = 'localhost/Progetto_GPOI_VISE/src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user;
+                    $url = $_apiURI . 'src/API/API/user_account/getUserAccountOnUsername.php?username=' . $_user;
                     // $curl = curl_init();
                 
                     // curl_setopt_array($curl, array(
@@ -215,7 +215,7 @@ if (isset($_user)) {
                     // $response = curl_exec($curl);
                 
                     // curl_close($curl);
-                    $response = sendHttpRequest($url, 'GET');
+                    $response = sendHttpRequest($url, 'GET')['response'];
                     $json = json_decode($response);
                     if (isset($userJson->name, $userJson->last_name)) {
                         echo '<h2>' . $json->name . ' ' . $json->last_name . '</h2>';
