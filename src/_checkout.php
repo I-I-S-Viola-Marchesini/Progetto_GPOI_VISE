@@ -2,7 +2,7 @@
 
 ?>
 
-<script src="https://int-ecommerce.nexi.it/ecomm/XPayBuild/js?alias=<?php echo $APIKEY; ?>"></script>
+<!-- <script src="https://int-ecommerce.nexi.it/ecomm/XPayBuild/js?alias=<?php echo $APIKEY; ?>"></script> -->
 
 <title>
     Paga Vise | Checkout
@@ -236,32 +236,32 @@
     });
 
 
-    window.addEventListener('load', function() {
-        // Inizializzazione SDK
-        XPay.init();
+    // window.addEventListener('load', function() {
+    //     // Inizializzazione SDK
+    //     XPay.init();
 
-        // Oggetto contenente la configurazione del pagamento
-        var config = {
-            baseConfig: {
-                apiKey: '<?php echo $APIKEY; ?>',
-                enviroment: XPay.Environments.INTEG
-            },
-            paymentParams: {
-                amount: '<?php echo $importo; ?>',
-                transactionId: '<?php echo $codiceTransazione; ?>',
-                currency: '<?php echo $divisa; ?>',
-                timeStamp: '<?php echo $timestamp; ?>',
-                mac: '<?php echo $mac; ?>'
-            },
-            customParams: {
-                num_contratto: '<?php echo $numeroContratto; ?>'
-            },
-            language: XPay.LANGUAGE.ITA
-        };
+    //     // Oggetto contenente la configurazione del pagamento
+    //     var config = {
+    //         baseConfig: {
+    //             apiKey: '<?php //echo $APIKEY; ?>',
+    //             enviroment: XPay.Environments.INTEG
+    //         },
+    //         paymentParams: {
+    //             amount: '<?php //echo $importo; ?>',
+    //             transactionId: '<?php //echo $codiceTransazione; ?>',
+    //             currency: '<?php //echo $divisa; ?>',
+    //             timeStamp: '<?php //echo $timestamp; ?>',
+    //             mac: '<?php //echo $mac; ?>'
+    //         },
+    //         customParams: {
+                // num_contratto: '<?php //echo $numeroContratto; ?>'
+    //         },
+    //         language: XPay.LANGUAGE.ITA
+    //     };
 
-        // Configurazione lightbox
-        XPay.initLightbox(config);
-    });
+    //     // Configurazione lightbox
+    //     XPay.initLightbox(config);
+    // });
 
     $('#google_pay_go_back').click(function() {
         $('#google_pay_waiting').hide();
