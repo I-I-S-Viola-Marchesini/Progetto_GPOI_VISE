@@ -6,6 +6,9 @@
     <div class="container shadow-lg rounded-3 py-5 bg-whitesmoke">
         <div class="row">
             <div class="col-10 col-lg-8 mx-auto">
+                <img src="img/golfisti.png" alt="I Golfisti" class="img-fluid mx-auto d-block rounded-3 shadow-lg m-3" style="max-width: 90%;">
+                <p class="text-muted text-center">I Golfisti</p>
+                <br><br>
                 <p class="h5 mb-5">Fondata nel 2020 da un gruppo di golfisti anonimi, <strong>Vise</strong> è un'azienda italiana che si impegna a fornire un'esperienza di pagamento semplice, sicura e affidabile. La nostra attenzione al dettaglio e all'ambiente ci ha spinto a sviluppare una piattaforma di pagamento eco-friendly che tenga in considerazione gli impatti ambientali e sociali delle nostre attività.</p>
 
                 <p class="h5 mb-5">Il nostro obiettivo è quello di semplificare la vita dei nostri clienti, fornendo loro un sistema di pagamento veloce ed efficiente. Grazie alla nostra tecnologia all'avanguardia, offriamo un'esperienza di pagamento che si distingue per la sua affidabilità e sicurezza.</p>
