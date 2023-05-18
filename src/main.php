@@ -49,6 +49,9 @@ switch ($page) {
     case 'changePassword':
         include_once(onlyIfLoggedIn('_changePassword.php'));
         break;
+    case 'ourStory':
+        include_once('_ourStory.php');
+        break;
     default:
         include_once("_error404.php");
         break;

@@ -84,22 +84,26 @@ if (!isset($_POST['oldPassword'], $_POST['newPassword'])) {
                                 <?php
                                 if (isset($httpcode)) {
                                     switch ($httpcode) {
-                                        case 200:
-                                            echo '<div class="alert alert-success">
-                                            Password cambiata con <strong>successo</strong>.
-                                            </div>';
+                                        case 200: ?>
+                                            <div class="alert alert-success">
+                                                Password cambiata con <strong>successo</strong>.
+                                            </div>
+                                            <?php
                                             break;
-                                        case 404:
-                                            echo '<div class="alert alert-danger">La vecchia password inserita è
-                                            <strong>errata</strong>.
+                                        case 404: ?>
+                                            <div class="alert alert-danger">La vecchia password inserita è
+                                                <strong>errata</strong>.
                                             </div>';
+                                            <?php
                                             break;
-                                        case 500:
-                                            echo '<div class="alert alert-warning">
+                                        case 500: ?>
+                                            <div class="alert alert-warning">
                                                 <strong>Errore</strong> interno al server.
-                                                </div>';
+                                            </div>
+                                            <?php
                                             break;
-                                        default:
+                                        default: ?>
+                                            <?php
                                             break;
                                     }
                                 }

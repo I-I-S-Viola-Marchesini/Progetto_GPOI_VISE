@@ -40,4 +40,3 @@ if ($updateValue < 1) {
      die();
  }
 ?>
-

@@ -23,9 +23,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="?page=about">Chi siamo</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">Servizi</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=ourStory">La nostra storia</a>
                     </li>
+                    <!--
                     <li class="nav-item">
                         <a class="nav-link" href="#">FAQ</a>
                     </li>
