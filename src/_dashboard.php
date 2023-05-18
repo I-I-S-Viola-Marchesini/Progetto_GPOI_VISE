@@ -74,21 +74,24 @@ $cardArr = json_decode($response);
                         <span class="text-start text-primary fw-bold">Le mie carte</span>
                         <hr class="m-0">
                         <?php
-                        foreach ($cardArr as &$card) {
-                            ?>
-                            <span class="d-flex align-items-center my-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2 opacity-50"
-                                    style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
-                                </svg>
-                                <label style="font-size: 12px" class="name_label mb-2" id="label" class="form-check-label"
-                                    for="exampleCard">
-                                    <?php echo $card->card_name . ' (**** **** **** ' . substr($card->pan, -4) . ')' ?>
-                                </label>
-                            </span>
-                            <?php
+                        if(isset($cardArr)){
+
+                            foreach ($cardArr as &$card) {
+                                ?>
+                                <span class="d-flex align-items-center my-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2 opacity-50"
+                                        style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
+                                    </svg>
+                                    <label style="font-size: 12px" class="name_label mb-2" id="label" class="form-check-label"
+                                        for="exampleCard">
+                                        <?php echo $card->card_name . ' (**** **** **** ' . substr($card->pan, -4) . ')' ?>
+                                    </label>
+                                </span>
+                                <?php
+                            }
                         }
                         ?>
                         <div class="row my-2">

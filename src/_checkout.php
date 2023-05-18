@@ -101,35 +101,48 @@ $cardArr = json_decode($response);
                         <div class="col-1">
                             <form id="cards_radio_input" name="paymentMethodForm">
                                 <?php
-                                foreach ($cardArr as &$card) {
-                                    ?>
-                                    <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="<?php echo $card->id ?>" id="exampleCard">
-                                    <?php
+                                if (isset($cardArr)) {
+                                    foreach ($cardArr as &$card) {
+                                        ?>
+                                                <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="" id="<?php echo $card->id ?>">
+                                                <?php
+                                    }
                                 }
                                 ?>
+                                    <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="googlePay" id="googlePay">
                             </form>
                         </div>
                         <div class="col-11">
                             <?php
-                            foreach ($cardArr as &$card) {
-                                ?>
-                                <span class="d-flex align-items-center mb-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2"
-                                        style="width: 25px; height: 25px;" fill="currentColor"
-                                        class="bi bi-credit-card-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
-                                    </svg>
-                                    <label class="name_label mb-2" id="label_exampleCard" class="form-check-label">
-                                    <?php echo $card->card_name . ' (**** **** **** ' . substr($card->pan, -4) . ')' ?>
-                                        </small>
-                                    </label>
-                                </span>
-                                <?php
+                            if (isset($cardArr)) {
+
+                                foreach ($cardArr as &$card) {
+                                    ?>
+                                    <span class="d-flex align-items-center mb-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2"
+                                            style="width: 25px; height: 25px;" fill="currentColor"
+                                            class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
+                                        </svg>
+                                        <label class="name_label mb-2" id="label_<?php echo $card->id ?>" class="form-check-label">
+                                        <?php echo $card->card_name . ' (**** **** **** ' . substr($card->pan, -4) . ')' ?>
+                                            </small>
+                                        </label>
+                                    </span>
+                                    <?php
+                                }
                             }
                             ?>
 
-
+                            <span class="d-flex align-items-center mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2" style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                                    <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
+                                </svg>
+                                <label class="name_label mb-2" id="label" class="form-check-label" for="googlePay">
+                                    Google Pay
+                                </label>
+                            </span>
                         </div>
                         <div class="row mt-5">
                             <div class="form-check d-flex justify-content-center mb-3">
