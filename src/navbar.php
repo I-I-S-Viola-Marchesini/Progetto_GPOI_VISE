@@ -198,7 +198,7 @@
                             <span class="ms-2">
                                 Anagrafica
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action rounded-3 d-flex align-items-center">
+                        <a href="?page=changePassword" class="list-group-item list-group-item-action rounded-3 d-flex align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-lock-fill" viewBox="0 0 16 16">
                                 <path
