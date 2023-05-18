@@ -47,7 +47,6 @@
                                 <div class="input-group" id="email-container">
                                     <span class="input-group-text">€</span>
                                     <input type="text" name="" class="form-control" id="email" maxlength="7" required placeholder="10000.00" inputmode="numeric" pattern="^\d*(\.\d{0,2})?$">
-                                    <!-- <label for="email" class="form-label ms-1"></label> -->
                                     <div class="invalid-feedback">
                                         Inserisci un numero valido
                                     </div>
