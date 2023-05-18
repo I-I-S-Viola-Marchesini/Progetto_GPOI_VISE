@@ -46,6 +46,9 @@ switch ($page) {
     case 'moneySending':
         include_once(onlyIfLoggedIn('_moneySending.php'));
         break;
+    case 'changePassword':
+        include_once(onlyIfLoggedIn('_changePassword.php'));
+        break;
     default:
         include_once("_error404.php");
         break;

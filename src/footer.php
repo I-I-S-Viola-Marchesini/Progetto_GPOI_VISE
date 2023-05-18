@@ -6,13 +6,13 @@
             </div>
             <div class="row text-center mt-4">
                 <div class="col-4">
-                    <a href="?page=contactUs">Contatti</a>
+                    <a href="?page=contactUs" class="text-black text-decoration-none">Contatti</a>
                 </div>
                 <div class="col-4">
-                    <a href="?page=profilePage">Profilo</a>
+                    <a href="?page=profilePage" class="text-black text-decoration-none">Profilo</a>
                 </div>
                 <div class="col-4">
-                    <a href="?page=dashboard">Dashboard</a>
+                    <a href="?page=dashboard" class="text-black text-decoration-none">Dashboard</a>
                 </div>
             </div>
         </div>
