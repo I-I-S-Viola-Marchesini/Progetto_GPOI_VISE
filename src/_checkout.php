@@ -324,7 +324,7 @@ $cardArr = json_decode($response);
             }
 
             loaded++;
-            if (loaded >= 2) {
+            if (loaded >= -90) {
                 $('span[step_id="2"]').removeClass('fw-bold');
                 $('span[step_id="3"]').addClass('fw-bold');
                 $('#choose_method').hide();

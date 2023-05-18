@@ -171,7 +171,6 @@ class Payment
 
         if($current_balance < $amount)
         {
-            echo "Balance not enough";
             return false;
         }
 
