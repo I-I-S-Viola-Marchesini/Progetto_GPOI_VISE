@@ -1,5 +1,6 @@
 <?php
 
+// La classe Card è stata creata per gestire le operazioni sulle carte di credito.
 class Card
 {
     protected $conn;
@@ -14,6 +15,7 @@ class Card
         $this->conn = $db;
     }
 
+    // La funzione insertCard() inserisce una nuova carta di credito nel database.
     public function insertCard($user_id, $pan, $expiration_date, $billing_address, $card_token, $credit_circuit)
     {
         $query = "INSERT INTO $this->table_payment_gateway (card_token, credit_circuit)
@@ -31,6 +33,7 @@ class Card
         return $stmt;
     }
 
+    // La funzione addNickname() aggiunge un nickname alla carta di credito.
     public function addNickname($id, $card_name)
     {
         $query = "UPDATE $this->table_card
@@ -42,6 +45,7 @@ class Card
         return $stmt;
     }
 
+    // La funzione getCardByUserID() restituisce tutte le carte di credito associate ad un determinato utente.
     public function getCardByUserID($user_id)
     {
         $query = "SELECT id, pan, card_name
@@ -53,6 +57,7 @@ class Card
         return $stmt;
     }
 
+    // La funzione getTransaction() restituisce tutte le transazioni effettuate da un determinato utente.
     public function getTransaction($user_id)
     {
         $query = "SELECT $this->table_user.username ,$this->table_payment.payment_date, $this->table_payment.destination, $this->table_payment.amount

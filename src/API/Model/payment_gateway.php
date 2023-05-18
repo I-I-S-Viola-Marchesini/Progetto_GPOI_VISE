@@ -1,5 +1,6 @@
 <?php
 
+// La classe PaymentGateway è stata creata per gestire le operazioni sui circiuti di pagamento.
 class PaymentGateway
 {
     protected $conn;
@@ -10,6 +11,7 @@ class PaymentGateway
         $this->conn = $db;
     }
 
+    // La funzione getArchivePaymentGateway() restituisce tutti i circuiti di pagamento presenti nel database.
     public function getArchivePaymentGateway()
     {
         $query = "SELECT id, card_token, credit_circuit
@@ -20,6 +22,7 @@ class PaymentGateway
         return $stmt;
     }
 
+    // La funzione getPaymentGatewayOnID() restituisce un circuito di pagamento in base al suo id.
     public function getPaymentGatewayOnID($id)
     {
         $query = "SELECT id, card_token, credit_circuit
@@ -31,6 +34,7 @@ class PaymentGateway
         return $stmt;
     }
 
+    // La funzione getPaymentGatewayOnCreditCircuit() restituisce un circuito di pagamento in base al suo circuito di credito.
     public function getPaymentGatewayOnCreditCircuit($credit_circuit)
     {
         $query = "SELECT id, card_token, credit_circuit
@@ -42,6 +46,7 @@ class PaymentGateway
         return $stmt;
     }
 
+    // La funzione getPaymentGatewayOnCardToken() restituisce un circuito di pagamento in base al suo token.
     public function getPaymentGatewayOnCardToken($card_token)
     {
         $query = "SELECT id, card_token, credit_circuit
@@ -53,6 +58,7 @@ class PaymentGateway
         return $stmt;
     }
 
+    // La funzione addPaymentGateway() aggiunge un nuovo circuito di pagamento al database.
     public function addPaymentGateway($credit_circuit, $card_token)
     {
         $query = "INSERT INTO $this->table_name (card_token, credit_circuit)

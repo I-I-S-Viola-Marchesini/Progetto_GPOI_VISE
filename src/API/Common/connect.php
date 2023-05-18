@@ -1,10 +1,12 @@
 <?php
 
+// La classe Database è stata creata per gestire la connessione al database.
 class Database
 {
     public $conn;
     public $ConnectionData;
 
+    // La funzione connect() si connette al database, utlizzando i dati presenti in connectionData.json.
     public function connect()
     {
         try {

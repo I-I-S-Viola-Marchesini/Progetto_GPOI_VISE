@@ -1,5 +1,6 @@
 <?php
 
+// La classe Payment è stata creata per gestire le operazioni sui pagamenti.
 class Payment
 {
     protected $conn;
@@ -11,6 +12,7 @@ class Payment
         $this->conn = $db;
     }
 
+    // La funzione getArchivePayment() restituisce tutti i pagamenti presenti nel database.
     public function getArchivePayment()
     {
         $query = "SELECT * FROM $this->table_name";
@@ -18,6 +20,7 @@ class Payment
         return $stmt;
     }
 
+    // La funzione getPaymentOnID() restituisce un pagamento in base al suo id.
     public function getPaymentOnID($id)
     {
         $query = "SELECT * FROM $this->table_name WHERE id=$id";
@@ -25,6 +28,7 @@ class Payment
         return $stmt;
     }
 
+    // La funzione getPaymentOnSenderUserID() restituisce un pagamento in base all'id dell'utente che ha effettuato il pagamento.
     public function getPaymentOnSenderUserID($sender_user_id)
     {
         $query = "SELECT * FROM $this->table_name WHERE sender_user_id= $sender_user_id";
@@ -32,6 +36,7 @@ class Payment
         return $stmt;
     }
 
+    // La funzione getPaymentOnSenderCardID() restituisce un pagamento in base all'id della carta dell'utente che ha effettuato il pagamento.
     public function getPaymentOnSenderCardID($sender_card_id)
     {
         $query = "SELECT $this->table_name.(sender_user_id, receiver_user_id, payment_date_time, amount)
@@ -41,6 +46,8 @@ class Payment
         return $stmt;
     }
 
+    // La funzione addNewPayment() aggiunge un nuovo pagamento al database, si devono passare lo user id del mittente, del destinatario, la data e ora di pagamento
+    //la destinazione e l'importo .
     public function addNewPayment($sender_user_id, $sender_card_id, $payment_date, $destination, $amount)
     {
         $query = "INSERT INTO $this->table_name VALUES ('$sender_user_id', '$sender_card_id', '$payment_date', '$destination', '$amount')";
@@ -48,6 +55,8 @@ class Payment
         return $stmt;
     }
 
+    // La funzione addNewTransaction() aggiunge una nuova transazione al database, si devono passare lo user id del mittente, del destinatario, la data e ora di pagamento
+    //la destinazione e l'importo .
     public function addNewTransaction($sender_user_id, $sender_card_id, $receiver_user_id, $payment_date, $destination, $amount)
     {
         $query = "SELECT balance 
@@ -121,6 +130,7 @@ class Payment
         }
     }
 
+    // La funzione getArchivePaymentByUsername() restituisce tutti i pagamenti effettuati da un utente in base al suo username.
     public function getArchivePaymentByUsername($username){
         $query = "SELECT `sender_user_id`, `receiver_user_id`, `payment_date_time`, `amount`
             FROM $this->table_name
