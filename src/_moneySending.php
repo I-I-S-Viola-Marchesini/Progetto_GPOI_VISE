@@ -55,6 +55,7 @@
                             </div>
 
                             <small class="mt-3">Puoi inviare un massimo di €9999.99</small>
+                            <small>Utilizza il punto come separatore dei decimali.</small>
                         </div>
                     </div>
                     <!-- /riga soldi -->
