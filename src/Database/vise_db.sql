@@ -25,6 +25,7 @@ CREATE TABLE user_account(
 CREATE TABLE card(
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id VARCHAR(30) NOT NULL,
+    card_name VARCHAR(20), -- nome che l'utente assegna alla carta (facoltativo)
     pan VARCHAR(16) NOT NULL, -- il pan non deve essere salvato interamente per sicurezza, ma solo alcune cifre ( prime e/o ultime quattro cifre)
     expiration_date DATE NOT NULL,
     billing_address VARCHAR(100) NOT NULL,

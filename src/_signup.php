@@ -25,16 +25,13 @@ if (!isset($_POST['name'], $_POST['surname'], $_POST['username'], $_POST['phone_
         "birth_date": "' . $birth_date . '",
         "registration_date": "' . $registration_date . '"
     }';
-    echo $body;
     $request = sendHttpRequest($url, 'POST', $body);
     $response = $request['response'];
     $httpcode = $request['code'];
-    echo $response;
-    echo $httpcode;
-    if($httpcode == 200){
+    if ($httpcode == 200) {
         $_SESSION['username'] = $username;
         echo '<script>window.location.href = \'?page=dashboard\';</script>';
-    }else{
+    } else {
 
     }
 }
@@ -181,7 +178,14 @@ if (!isset($_POST['name'], $_POST['surname'], $_POST['username'], $_POST['phone_
 
         </form>
 
+        <script>
+            $(document).ready(function () {
+                $('#password').on('change', function () {
+                    $('#password-confirmation').attr("pattern", $("#password").val());
+                });
+            });
 
+        </script>
         <script>
             (() => {
                 'use strict'
@@ -190,6 +194,7 @@ if (!isset($_POST['name'], $_POST['surname'], $_POST['username'], $_POST['phone_
 
                 Array.from(forms).forEach(form => {
                     form.addEventListener('submit', event => {
+
                         if (!form.checkValidity()) {
                             event.preventDefault()
                             event.stopPropagation()
