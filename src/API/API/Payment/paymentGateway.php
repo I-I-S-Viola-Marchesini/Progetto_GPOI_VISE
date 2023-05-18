@@ -151,10 +151,6 @@ class NexiGateway{
 
 }
 
-class GPayGateway{
-
-}
-
 class Gateway extends ViseGateway{
 
     public $NexiGateway;
