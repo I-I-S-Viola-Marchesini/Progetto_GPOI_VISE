@@ -179,7 +179,6 @@
                 url: "<?php echo 'http://' . $_apiURI . '/src/API/API/Payment/getArchivePaymentByUsername.php?username=' . $_SESSION['username']?>",
                 type: "GET",
                 success: function (result) {
-                    console.log(result);
                     _callback(result);
                 },
                 error: function (xhr, textError, errorStatus) {
