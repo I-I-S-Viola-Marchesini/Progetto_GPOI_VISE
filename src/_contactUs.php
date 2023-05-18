@@ -2,7 +2,7 @@
     Vise | contactUs
 </title>
 
-<main class="d-flex align-items-end mt-5">
+<main class="d-flex align-items-end mt-5 mb-5">
     <div class="container shadow-lg rounded-3 py-5 bg-whitesmoke">
         <div class="row">
             <div class="col-10 col-lg-8 mx-auto text-center">
