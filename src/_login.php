@@ -1,16 +1,17 @@
 <?php
 
-function getReturnPage(){
-    if(isset($_GET['returnTo'])){
+function getReturnPage()
+{
+    if (isset($_GET['returnTo'])) {
         return $_GET['returnTo'];
-    }else{
+    } else {
         return 'dashboard';
     }
 }
 
 $error = false;
 if (isset($_SESSION['username'])) {
-    echo '<script>window.location.href = \'?page='.getReturnPage().'\';</script>';
+    echo '<script>window.location.href = \'?page=' . getReturnPage() . '\';</script>';
 }
 
 if (!isset($_POST['username']) || !isset($_POST['password'])) {
@@ -30,7 +31,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
     if (isset($arr->username)) {
         echo $arr->username;
         $_SESSION['username'] = $arr->username;
-        echo '<script>window.location.href = \'?page='.getReturnPage().'\';</script>';
+        echo '<script>window.location.href = \'?page=' . getReturnPage() . '\';</script>';
     } else {
         $error = true;
     }
@@ -41,6 +42,14 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
     <div class="container text-center shadow-lg bg-white bg-xs-transparent rounded-3 py-5">
         <div class="row g-2">
             <h1 class="display-3">Semplice... è Vise!</h1>
+            <?php if (isset($_GET['loggedOut'])): ?>
+            <div class="d-flex justify-content-center">
+                <div class="alert alert-primary" style="width: 40%;" role="alert">
+                    Logout effettuato con successo.<br>
+                    Grazie per aver utilizzato <b>Vise</b>, Speriamo di rivederti presto!
+                </div>
+            </div>
+            <?php endif; ?>
             <small class="text-body-primary">Bentornato, inserisci le tue credenziali per accedere alla
                 piattaforma</small>
         </div>
@@ -51,8 +60,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
                 <form method="POST" class="needs-validation" novalidate>
 
                     <div class="mb-4 form-floating" id="username-container">
-                        <input type="text" class="form-control" id="username" name="username"
-                            placeholder="Inserisci il tuo username o email" required>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Inserisci il tuo username o email" required>
                         <label for="username" class="form-label ms-1">Username o Email</label>
                         <div class="invalid-feedback">
                             Inserisci il tuo username o la tua email
@@ -60,8 +68,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
                     </div>
 
                     <div class="mb-4 form-floating" id="username-container">
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="Inserisci la password" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Inserisci la password" required>
                         <label for="username" class="form-label ms-1">Password</label>
                         <div class="invalid-feedback">
                             Inserisci la tua password

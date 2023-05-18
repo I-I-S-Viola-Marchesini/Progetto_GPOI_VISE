@@ -15,7 +15,7 @@
 
             <!-- colonna destinatario -->
             <div class="col-md-6 text-center">
-                <form action="POST needs-validation">
+                <form method="POST" class="needs-validation">
                     <!-- riga email -->
                     <div class="row text-center">
                         <h4 class="fw-bold">A chi vuoi inviare denaro?</h4>
@@ -46,15 +46,15 @@
                             <div class="col-md-5 mt-4">
                                 <div class="input-group" id="email-container">
                                     <span class="input-group-text">€</span>
-                                    <input type="text" name="email" class="form-control" id="email" maxlength="7" required placeholder="10000,00" inputmode="numeric" pattern="[0-9]*">
-                                    <!-- <label for="email" class="form-label ms-1"></label> -->
+                                    <input type="text" name="" class="form-control" id="email" maxlength="7" required placeholder="10000.00" inputmode="numeric" pattern="^\d*(\.\d{0,2})?$">
                                     <div class="invalid-feedback">
                                         Inserisci un numero valido
                                     </div>
                                 </div>
                             </div>
 
-                            <small class="mt-3">Puoi inviare un massimo di €9999,99</small>
+                            <small class="mt-3">Puoi inviare un massimo di €9999.99</small>
+                            <small>Utilizza il punto come separatore dei decimali.</small>
                         </div>
                     </div>
                     <!-- /riga soldi -->

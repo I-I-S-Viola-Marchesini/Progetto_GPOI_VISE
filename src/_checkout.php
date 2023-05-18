@@ -2,7 +2,7 @@
 
 ?>
 
-<script src="https://int-ecommerce.nexi.it/ecomm/XPayBuild/js?alias=<?php echo $APIKEY; ?>"></script>
+<!-- <script src="https://int-ecommerce.nexi.it/ecomm/XPayBuild/js?alias=<?php echo $APIKEY; ?>"></script> -->
 
 <title>
     Paga Vise | Checkout
@@ -105,7 +105,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2" style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
                                     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
                                 </svg>
-                                <label class="name_label mb-2" id="label" class="form-check-label" for="exampleCard">
+                                <label class="name_label mb-2" id="label_exampleCard" class="form-check-label">
                                     Postepay Evolution Connect <small class="text-muted">(** 4820)</small>
                                 </label>
                             </span>
@@ -113,7 +113,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2" style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
                                     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
                                 </svg>
-                                <label class="name_label mb-2" id="label" class="form-check-label" for="secondExampleCard">
+                                <label class="name_label mb-2" id="label_secondExampleCard" class="form-check-label">
                                     Intesa San Paolo Debit <small class="text-muted">(** 1739)</small>
                                 </label>
                             </span>
@@ -121,7 +121,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2" style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
                                     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
                                 </svg>
-                                <label class="name_label mb-2" id="label" class="form-check-label" for="thirdExampleCard">
+                                <label class="name_label mb-2" id="label_thirdExampleCard" class="form-check-label">
                                     Unicredit Visa <small class="text-muted">(** 5679)</small>
                                 </label>
                             </span>
@@ -225,7 +225,8 @@
     document.querySelector('#cards_radio_input').addEventListener('change', (event) => {
         $('#none_pay_button').hide();
         if (event.target.value === 'card') {
-            let cardLabel = $('#label[for="' + event.originalTarget.id + '"]').html().split('<small class="text-muted">')[0];
+            let cardLabel = document.getElementById('label_' + event.target.id).innerHTML.split('<small class="text-muted">')[0];
+            //let cardLabel = $('#label_' + event.originalTarget.id + '"]').html().split('<small class="text-muted">')[0];
             $('#card_pay_button').html('Paga con ' + cardLabel);
             $('#card_pay_button').show();
             $('#google_pay_button').hide();
@@ -236,32 +237,32 @@
     });
 
 
-    window.addEventListener('load', function() {
-        // Inizializzazione SDK
-        XPay.init();
+    // window.addEventListener('load', function() {
+    //     // Inizializzazione SDK
+    //     XPay.init();
 
-        // Oggetto contenente la configurazione del pagamento
-        var config = {
-            baseConfig: {
-                apiKey: '<?php echo $APIKEY; ?>',
-                enviroment: XPay.Environments.INTEG
-            },
-            paymentParams: {
-                amount: '<?php echo $importo; ?>',
-                transactionId: '<?php echo $codiceTransazione; ?>',
-                currency: '<?php echo $divisa; ?>',
-                timeStamp: '<?php echo $timestamp; ?>',
-                mac: '<?php echo $mac; ?>'
-            },
-            customParams: {
-                num_contratto: '<?php echo $numeroContratto; ?>'
-            },
-            language: XPay.LANGUAGE.ITA
-        };
+    //     // Oggetto contenente la configurazione del pagamento
+    //     var config = {
+    //         baseConfig: {
+    //             apiKey: '<?php //echo $APIKEY; ?>',
+    //             enviroment: XPay.Environments.INTEG
+    //         },
+    //         paymentParams: {
+    //             amount: '<?php //echo $importo; ?>',
+    //             transactionId: '<?php //echo $codiceTransazione; ?>',
+    //             currency: '<?php //echo $divisa; ?>',
+    //             timeStamp: '<?php //echo $timestamp; ?>',
+    //             mac: '<?php //echo $mac; ?>'
+    //         },
+    //         customParams: {
+                // num_contratto: '<?php //echo $numeroContratto; ?>'
+    //         },
+    //         language: XPay.LANGUAGE.ITA
+    //     };
 
-        // Configurazione lightbox
-        XPay.initLightbox(config);
-    });
+    //     // Configurazione lightbox
+    //     XPay.initLightbox(config);
+    // });
 
     $('#google_pay_go_back').click(function() {
         $('#google_pay_waiting').hide();
