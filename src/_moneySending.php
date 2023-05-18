@@ -15,7 +15,7 @@
 
             <!-- colonna destinatario -->
             <div class="col-md-6 text-center">
-                <form action="POST needs-validation">
+                <form method="POST" class="needs-validation">
                     <!-- riga email -->
                     <div class="row text-center">
                         <h4 class="fw-bold">A chi vuoi inviare denaro?</h4>
