@@ -57,7 +57,7 @@ class Payment
 
     // La funzione addNewTransaction() aggiunge una nuova transazione al database, si devono passare lo user id del mittente, del destinatario, la data e ora di pagamento
     //la destinazione e l'importo .
-    public function addNewTransaction($sender_user_id, $sender_card_id, $receiver_user_id, $payment_date, $destination, $amount)
+    public function addNewTransaction($sender_user_id, $sender_card_id, $receiver_user_id, $payment_date, $amount)
     {
         $query = "SELECT balance 
         FROM $this->table_user 
@@ -131,11 +131,52 @@ class Payment
     }
 
     // La funzione getArchivePaymentByUsername() restituisce tutti i pagamenti effettuati da un utente in base al suo username.
-    public function getArchivePaymentByUsername($username){
+    public function getArchivePaymentByUsername($username)
+    {
         $query = "SELECT `sender_user_id`, `receiver_user_id`, `payment_date_time`, `amount`
             FROM $this->table_name
             WHERE `sender_user_id` LIKE '$username' 
             OR `receiver_user_id` LIKE '$username' ORDER BY `payment_date_time` DESC";
+
+        $stmt = $this->conn->query($query);
+
+        return $stmt;
+    }
+
+    // La funzione insertTransaction() inserisce una nuova transazione nel database, si devono passare lo user id del mittente, del destinatario, la data e ora di pagamento
+    //la destinazione e l'importo .
+    public function insertTransaction($sender_user_id, $sender_card_id, $receiver_user_id, $payment_date, $amount)
+    {
+        $query = "INSERT INTO $this->table_name (sender_user_id, receiver_user_id, payment_date_time, amount, account_payment, card_payment, sender_card_id)
+        VALUES ('$sender_user_id', '$receiver_user_id', '$payment_date', '$amount', 1, 0, '$sender_card_id')";
+
+        $stmt = $this->conn->query($query);
+
+        return $stmt;
+    }
+
+    // La funzione modifyBalance() modifica il saldo di un utente, si devono passare lo user id del mittente e l'importo .
+    public function modifyBalance($sender_user_id, $amount)
+    {
+        $query = "SELECT balance 
+        FROM $this->table_user 
+        WHERE username = '$sender_user_id'";
+
+        $result_balance = $this->conn->query($query);
+        $row = mysqli_fetch_assoc($result_balance);
+
+        $current_balance = $row['balance'];
+
+        $new_balance = $current_balance - $amount;
+
+        if($current_balance < $amount)
+        {
+            echo "Balance not enough";
+            return false;
+        }
+
+        $query = "UPDATE $this->table_user SET balance = '$new_balance' 
+        WHERE username = '$sender_user_id'";
 
         $stmt = $this->conn->query($query);
 
