@@ -99,6 +99,8 @@ if (!isset($_POST['oldPassword'], $_POST['newPassword'])) {
                                                 <strong>Errore</strong> interno al server.
                                                 </div>';
                                             break;
+                                        default:
+                                            break;
                                     }
                                 }
                                 ?>

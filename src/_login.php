@@ -9,7 +9,6 @@ function getReturnPage()
     }
 }
 
-$error = false;
 if (isset($_SESSION['username'])) {
     echo '<script>window.location.href = \'?page=' . getReturnPage() . '\';</script>';
 }
@@ -25,15 +24,15 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
         "password":"' . $password . '"
     }';
 
-    $response = sendHttpRequest($url, 'POST', $body)['response'];
+    $request = sendHttpRequest($url, 'POST', $body);
+    $response = $request['response'];
+    $httpcode = $request['code'];
 
     $arr = json_decode($response);
     if (isset($arr->username)) {
         echo $arr->username;
         $_SESSION['username'] = $arr->username;
         echo '<script>window.location.href = \'?page=' . getReturnPage() . '\';</script>';
-    } else {
-        $error = true;
     }
 }
 ?>
@@ -42,13 +41,43 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
     <div class="container text-center shadow-lg bg-white bg-xs-transparent rounded-3 py-5">
         <div class="row g-2">
             <h1 class="display-3">Semplice... è Vise!</h1>
-            <?php if (isset($_GET['loggedOut'])): ?>
-            <div class="d-flex justify-content-center">
-                <div class="alert alert-primary" style="width: 40%;" role="alert">
-                    Logout effettuato con successo.<br>
-                    Grazie per aver utilizzato <b>Vise</b>, Speriamo di rivederti presto!
-                </div>
-            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <?php if (isset($httpcode)) {
+                        switch ($httpcode) {
+                            case 200: ?>
+                                <div class="alert alert-success">
+                                    Login effettuato con <strong>successo</strong>.
+                                </div>
+                                <?php
+
+                                break;
+                            case 401: ?>
+                                <div class="alert alert-danger">Email o password
+                                    <strong>errati</strong>.
+                                </div>
+                                <?php
+
+                                break;
+                            case 500: ?>
+                                <div class="alert alert-warning">
+                                    <strong>Errore</strong> interno al server.
+                                </div>
+                                <?php
+                                break;
+                            default:
+                                break;
+                        }
+                    } else if (isset($_GET['loggedOut'])): ?>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <div class="alert alert-primary" style="width: 40%;" role="alert">
+                            Logout effettuato con successo.<br>
+                            Grazie per aver utilizzato <b>Vise</b>, Speriamo di rivederti presto!
+                        </div>
+                    </div>
             <?php endif; ?>
             <small class="text-body-primary">Bentornato, inserisci le tue credenziali per accedere alla
                 piattaforma</small>
@@ -60,7 +89,8 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
                 <form method="POST" class="needs-validation" novalidate>
 
                     <div class="mb-4 form-floating" id="username-container">
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Inserisci il tuo username o email" required>
+                        <input type="text" class="form-control" id="username" name="username"
+                            placeholder="Inserisci il tuo username o email" required>
                         <label for="username" class="form-label ms-1">Username o Email</label>
                         <div class="invalid-feedback">
                             Inserisci il tuo username o la tua email
@@ -68,7 +98,8 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
                     </div>
 
                     <div class="mb-4 form-floating" id="username-container">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Inserisci la password" required>
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Inserisci la password" required>
                         <label for="username" class="form-label ms-1">Password</label>
                         <div class="invalid-feedback">
                             Inserisci la tua password
@@ -86,11 +117,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
                 </form>
             </div>
         </div>
-        <?php
-        if ($error === true) {
-            echo 'Errore durante il login';
-        }
-        ?>
+
         <script>
             (() => {
                 'use strict'
