@@ -66,6 +66,10 @@ if (isset($_SESSION['username'])) {
         </div>
     </div>
 
+    <?php
+    include_once __DIR__ . '/src/footer.php';
+    ?>
+
     <script>
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
