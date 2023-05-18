@@ -1,5 +1,8 @@
 <?php
-
+$url = $_apiURI . '\src\API\API\card\GetBasicCardInformation.php?username=' . $_SESSION['username'];
+$request = sendHttpRequest($url, 'GET');
+$response = $request['response'];
+$cardArr = json_decode($response);
 ?>
 
 <title>
@@ -20,7 +23,7 @@
                                 <?php
                                 if (isset($_SESSION['username'])) {
                                     $url = $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_SESSION['username'];
-                                
+
                                     $response = sendHttpRequest($url, 'GET')['response'];
                                     $json = json_decode($response);
 
@@ -70,29 +73,24 @@
                     <div class="row text-center shadow-lg rounded-3 bg-white mt-4 pt-2">
                         <span class="text-start text-primary fw-bold">Le mie carte</span>
                         <hr class="m-0">
-                        <span class="d-flex align-items-center my-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2 opacity-50"
-                                style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
-                            </svg>
-                            <label style="font-size: 12px" class="name_label mb-2" id="label" class="form-check-label"
-                                for="exampleCard">
-                                Postepay Evolution Connect (**** **** **** 1234)
-                            </label>
-                        </span>
-                        <span class="d-flex align-items-center my-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2 opacity-50"" style=" width: 25px;
-                                height: 25px;" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
-                                <path
-                                    d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
-                            </svg>
-                            <label style="font-size: 12px" class="name_label mb-2" id="label" class="form-check-label"
-                                for="googlePay">
-                                Google Pay
-                            </label>
-                        </span>
+                        <?php
+                        foreach ($cardArr as &$card) {
+                            ?>
+                            <span class="d-flex align-items-center my-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2 opacity-50"
+                                    style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
+                                </svg>
+                                <label style="font-size: 12px" class="name_label mb-2" id="label" class="form-check-label"
+                                    for="exampleCard">
+                                    <?php echo $card->card_name . ' (**** **** **** ' . substr($card->pan, -4) . ')' ?>
+                                </label>
+                            </span>
+                            <?php
+                        }
+                        ?>
                         <div class="row my-2">
                             <div class="col-6">
                                 <button class="btn btn-outline-secondary btn-sm rounded-pill">
@@ -159,7 +157,7 @@
 
         function getActivities(_callback) {
             $.ajax({
-                url: "<?php echo 'http://' . $_apiURI . '/src/API/API/Payment/getArchivePaymentByUsername.php?username=' . $_SESSION['username']?>",
+                url: "<?php echo 'http://' . $_apiURI . '/src/API/API/Payment/getArchivePaymentByUsername.php?username=' . $_SESSION['username'] ?>",
                 type: "GET",
                 success: function (result) {
                     _callback(result);
