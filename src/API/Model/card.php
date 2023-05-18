@@ -31,6 +31,28 @@ class Card
         return $stmt;
     }
 
+    public function addNickname($id, $card_name)
+    {
+        $query = "UPDATE $this->table_card
+        SET card_name = '$card_name'
+        WHERE id = '$id'";
+
+        $stmt = $this->conn->query($query);
+
+        return $stmt;
+    }
+
+    public function getCardByUserID($user_id)
+    {
+        $query = "SELECT id, pan, card_name
+        FROM $this->table_card 
+        WHERE user_id = '$user_id'";
+
+        $stmt = $this->conn->query($query);
+
+        return $stmt;
+    }
+
     public function getTransaction($user_id)
     {
         $query = "SELECT $this->table_user.username ,$this->table_payment.payment_date, $this->table_payment.destination, $this->table_payment.amount
