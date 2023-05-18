@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="col-12 col-lg-6 text-center">
-                        
+                        <img src="img/spesa-intelligente.png" alt="Immagine Landing Page" height="330px">
                     </div>
 
                 </div>
