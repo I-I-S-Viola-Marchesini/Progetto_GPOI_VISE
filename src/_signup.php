@@ -144,8 +144,7 @@ if (!isset($_POST['name'], $_POST['surname'], $_POST['username'], $_POST['phone_
             <div class="row justify-content-center">
                 <div class="col-10 col-md-6 col-lg-4 mt-4">
                     <div class="form-floating" id="password-container">
-                        <input type="password" name="password" class="form-control" id="password" placeholder=" "
-                            maxlength="30" minlength="8" required>
+                        <input type="password" name="password" class="form-control" id="password" placeholder=" " minlength="8" required>
                         <label for="password" class="form-label ms-1">Password</label>
                         <div class="invalid-feedback">
                             Inserisci la tua password

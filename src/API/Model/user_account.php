@@ -61,7 +61,7 @@ class UserAccount
         SET password='$password_new'
         WHERE username='$username' AND password='$password_old'";
         $stmt = $this->conn->query($query);
-        return $stmt;
+        return $this->conn->affected_rows;
     }
 
     // La funzione addUserAccount() aggiunge un nuovo account utente(username, name, last_name, email, password, tax_code, mobile_number, birth_date, registration_date)

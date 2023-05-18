@@ -26,13 +26,17 @@ try{
     die();
 }
 
-if ($updateValue == false) {
+if ($updateValue < 1) {
      http_response_code(404);
      echo json_encode(["response" => "Update failed"]);
      die();
- } else {
+ } else if ($updateValue == 1){
      http_response_code(200);
      echo json_encode(["response" => "Update successful"]);
+     die();
+ }else{
+    http_response_code(500);
+     echo json_encode(["response" => "Too many rows updated(?)"]);
      die();
  }
 ?>

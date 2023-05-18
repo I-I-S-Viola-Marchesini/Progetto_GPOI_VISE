@@ -23,7 +23,8 @@ if (!isset($_POST['name'], $_POST['surname'], $_SESSION['username'], $_POST['pho
     }';
 
     $request = sendHttpRequest($url, 'POST', $body);
-    // $response = $request['response'];
+    $response = $request['response'];
+    echo '<script>window.location.href = \'?page=profilePage\';</script>';
 }
 
 ?>
@@ -179,5 +180,33 @@ if (!isset($_POST['name'], $_POST['surname'], $_SESSION['username'], $_POST['pho
             });
 
         });
+
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#password').on('change', function () {
+                $('#password-confirmation').attr("pattern", $("#password").val());
+            });
+        });
+    </script>
+    <script>
+        (() => {
+            'use strict'
+
+            const forms = document.querySelectorAll('.needs-validation')
+
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
     </script>
 </main>

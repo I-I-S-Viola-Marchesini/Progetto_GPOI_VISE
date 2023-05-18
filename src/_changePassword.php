@@ -1,3 +1,20 @@
+<?php
+if (!isset($_POST['oldPassword'], $_POST['newPassword'])) {
+    echo 'failed';
+} else {
+    $url = $_apiURI . '\src\API\API\user_account\modify_password.php';
+    $body = '{
+        "username": "' . $_SESSION['username'] . '",
+        "password_old": "' . hash('sha256', $_POST['oldPassword'], false) . '",
+        "password_new": "' . hash('sha256', $_POST['newPassword'], false) . '"
+    }';
+
+    $request = sendHttpRequest($url, 'POST', $body);
+    $httpcode = $request['code'];
+}
+
+
+?>
 <title>Vise | Cambio password</title>
 <main class="d-flex align-items-center mt-5">
     <div class="container shadow-lg bg-white rounded-3 mx-5 py-5">
@@ -21,7 +38,7 @@
                     ';
                     ?>
                 </div>
-            </div   >
+            </div>
 
             <div class="row">
                 <div class="col-md-12">
@@ -31,9 +48,10 @@
                             <div class="col-4">
                                 <div class="form" id="password-container">
                                     <label class="fw-bold mb-2">Password attuale:</label>
-                                    <input type="password" name="oldPassword" class="form-control" id="oldPassword" required min="8">
+                                    <input type="password" name="oldPassword" class="form-control" id="old-password"
+                                        required>
                                     <div class="invalid-feedback">
-                                        Inserisci la tua vecchia password:
+                                        Inserisci la tua vecchia password
                                     </div>
                                 </div>
                             </div>
@@ -41,9 +59,10 @@
                             <div class="col-4">
                                 <div class="form" id="newPassword-container">
                                     <label class="fw-bold mb-2">Password nuova:</label>
-                                    <input type="password" name="newPassword" class="form-control" id="newPassword" required min="8">
+                                    <input type="password" name="newPassword" class="form-control" id="new-password"
+                                        required minlength="8">
                                     <div class="invalid-feedback">
-                                        Inserisci la tua nuova password:
+                                        Inserisci la tua nuova password
                                     </div>
                                 </div>
                             </div>
@@ -51,18 +70,45 @@
                             <div class="col-4">
                                 <div class="form" id="confirmNewPassword-container">
                                     <label class="fw-bold mb-2">Conferma password nuova:</label>
-                                    <input type="password" name="confirmNewPassword" class="form-control" id="confirmNewPassword" required min="8">
+                                    <input type="password" id="password-confirmation" name="confirmNewPassword"
+                                        class="form-control" id="confirmNewPassword" required minlength="8">
                                     <div class="invalid-feedback">
-                                        Conferma la tua vecchia password:
+                                        Conferma la tua nuova password
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center mt-5">
+                            <div class="col-6 text-center">
+                                <?php
+                                if (isset($httpcode)) {
+                                    switch ($httpcode) {
+                                        case 200:
+                                            echo '<div class="alert alert-success">
+                                            Password cambiata con <strong>successo</strong>.
+                                            </div>';
+                                            break;
+                                        case 404:
+                                            echo '<div class="alert alert-danger">La vecchia password inserita è
+                                            <strong>errata</strong>.
+                                            </div>';
+                                            break;
+                                        case 500:
+                                            echo '<div class="alert alert-warning">
+                                                <strong>Errore</strong> interno al server.
+                                                </div>';
+                                            break;
+                                    }
+                                }
+                                ?>
                             </div>
                         </div>
 
                         <div class="row mt-5 text-center">
                             <div class="col-6 mx-auto">
                                 <button id="confirm-button" type="submit" class="btn btn-primary px-5">
-                                    Conferma
+                                    Conferma modifiche
                                 </button>
                             </div>
                         </div>
@@ -73,5 +119,30 @@
         </div>
 
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#new-password').on('change', function () {
+                $('#password-confirmation').attr("pattern", $("#new-password").val());
+            });
+        });
+    </script>
+    <script>
+        (() => {
+            'use strict'
 
+            const forms = document.querySelectorAll('.needs-validation')
+
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
 </main>
