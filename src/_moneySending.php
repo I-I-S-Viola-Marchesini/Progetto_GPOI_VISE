@@ -46,7 +46,7 @@
                             <div class="col-md-5 mt-4">
                                 <div class="input-group" id="email-container">
                                     <span class="input-group-text">€</span>
-                                    <input type="text" name="email" class="form-control" id="email" maxlength="7" required placeholder="10000,00" inputmode="numeric" pattern="[0-9]*">
+                                    <input type="text" name="email" class="form-control" id="email" maxlength="7" required placeholder="10000,00" inputmode="numeric" pattern="[0-9]+,[0-9]">
                                     <!-- <label for="email" class="form-label ms-1"></label> -->
                                     <div class="invalid-feedback">
                                         Inserisci un numero valido
