@@ -380,8 +380,8 @@ $cardArr = json_decode($response);
     const tokenizationSpecification = {
         type: 'PAYMENT_GATEWAY',
         parameters: {
-            'gateway': 'example',
-            'gatewayMerchantId': 'exampleGatewayMerchantId'
+            'gateway': 'nexi',
+            'gatewayMerchantId': '00069162'
         }
     };
 
@@ -575,8 +575,9 @@ $cardArr = json_decode($response);
      */
     function processPayment(paymentData) {
         // show returned data in developer console for debugging
-        console.log(paymentData);
         // @todo pass payment token to your gateway to process payment
         paymentToken = paymentData.paymentMethodData.tokenizationData.token;
+
+        alert(JSON.stringify(paymentToken));
     }
 </script>
