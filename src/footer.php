@@ -1,4 +1,4 @@
-<div class="container-fluid bg-white py-4" style="margin-top:35vh">
+<div class="container-fluid bg-white shadow-lg py-4 rounded-top-5" style="margin-top: 35vh;">
     <div class="row">
         <div class="col-10 mx-auto">
             <div class="row text-center">
