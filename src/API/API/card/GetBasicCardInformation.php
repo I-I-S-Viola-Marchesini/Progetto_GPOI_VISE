@@ -1,0 +1,31 @@
+<?php
+require(__DIR__ . "/../../Common/connect.php");
+require(__DIR__ . "/../../Model/Card.php");
+
+header("Content-type: application/json; charset=UTF-8");
+header('Access-Control-Allow-Origin: *');
+
+if(!isset($_GET['username'])){
+    http_response_code(400);
+    echo json_encode(["message" => "Fill every field"]);
+    die();
+}
+$username = $_GET['username'];
+
+$db = new Database();
+$conn = $db->connect();
+$card = new Card($conn);
+
+$cardValue = $card->getCardByUserID($username);
+
+if (!$cardValue) {
+    http_response_code(404);
+    echo json_encode(["response" => "No cards found"]);
+    die();
+} else {
+
+    http_response_code(200);
+    echo json_encode([$cardValue]);
+    die();
+}
+?>
