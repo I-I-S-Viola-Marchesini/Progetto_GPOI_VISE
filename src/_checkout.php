@@ -14,8 +14,7 @@ $cardArr = json_decode($response);
 <main class="d-flex align-items-end mt-5">
     <div class="container p-0 text-center shadow-lg rounded-3 bg-white">
         <div class="row" style="min-height: 80vh;">
-            <div class="col-12 col-lg-6 d-none d-lg-flex justify-content-center align-items-center"
-                style="border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; background-color: #EEEEEE;">
+            <div class="col-12 col-lg-6 d-none d-lg-flex justify-content-center align-items-center" style="border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; background-color: #EEEEEE;">
                 <div class="card shadow-lg" style="width: 25rem;">
                     <div class="card-body" style="padding-top: 70px;">
                         <div class="logo_container d-none d-lg-flex">
@@ -42,8 +41,7 @@ $cardArr = json_decode($response);
             <div class="col-12 rounded-3 col-lg-6 bg-white p-4">
                 <div class="row mb-3">
                     <h3 class="text-center">Pagamento tramite Vise</h3>
-                    <nav class="d-flex justify-content-center" style="--bs-breadcrumb-divider: '>';"
-                        aria-label="breadcrumb">
+                    <nav class="d-flex justify-content-center" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item active"><span class="fw-bold" step_id="1">
                                     Dati personali
@@ -69,8 +67,7 @@ $cardArr = json_decode($response);
                         <h5 class="mb-3">Questo pagamento sarà effettuato a nome di:</h5>
                     </div>
                     <div class="row d-flex justify-content-center align-items-center w-100 p-4 pb-0">
-                        <img src="<?php echo $_SESSION['profilePicture'] ?>" class="rounded-circle"
-                            style="width: 120px;" alt="" srcset="">
+                        <img src="<?php echo $_SESSION['profilePicture'] ?>" class="rounded-circle" style="width: 120px;" alt="" srcset="">
                     </div>
                     <div class="row w-100 mt-0">
                         <h4 class="text-center">
@@ -103,13 +100,13 @@ $cardArr = json_decode($response);
                                 <?php
                                 if (isset($cardArr)) {
                                     foreach ($cardArr as &$card) {
-                                        ?>
-                                                <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="" id="<?php echo $card->id ?>">
-                                                <?php
+                                ?>
+                                        <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="card" id="<?php echo $card->id ?>">
+                                <?php
                                     }
                                 }
                                 ?>
-                                    <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="googlePay" id="googlePay">
+                                <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="googlePay" id="googlePay">
                             </form>
                         </div>
                         <div class="col-11">
@@ -117,20 +114,17 @@ $cardArr = json_decode($response);
                             if (isset($cardArr)) {
 
                                 foreach ($cardArr as &$card) {
-                                    ?>
+                            ?>
                                     <span class="d-flex align-items-center mb-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2"
-                                            style="width: 25px; height: 25px;" fill="currentColor"
-                                            class="bi bi-credit-card-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2" style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+                                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
                                         </svg>
                                         <label class="name_label mb-2" id="label_<?php echo $card->id ?>" class="form-check-label">
-                                        <?php echo $card->card_name . ' (**** **** **** ' . substr($card->pan, -4) . ')' ?>
+                                            <?php echo $card->card_name . ' (**** **** **** ' . substr($card->pan, -4) . ')' ?>
                                             </small>
                                         </label>
                                     </span>
-                                    <?php
+                            <?php
                                 }
                             }
                             ?>
@@ -153,21 +147,17 @@ $cardArr = json_decode($response);
                                 </label>
                             </div>
                             <div class="text-center">
-                                <button id="none_pay_button"
-                                    class="col-8 col-xl-6 btn btn-secondary disabled rounded-pill">Seleziona per
+                                <button id="none_pay_button" class="col-8 col-xl-6 btn btn-secondary disabled rounded-pill">Seleziona per
                                     continuare</button>
-                                <button id="card_pay_button" class="col-8 col-xl-6 btn btn-primary rounded-pill"
-                                    style="width: 75%;"></button>
+                                <button id="card_pay_button" class="col-8 col-xl-6 btn btn-primary rounded-pill" style="width: 75%;"></button>
                                 <span id="card_pay_button_spinner" style="display: none;">
                                     <div class="spinner-border text-light" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
                                 </span>
                                 <span id="card_pay_button_checkmark" style="display: none;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-check-lg" viewBox="0 0 16 16">
-                                        <path
-                                            d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
                                     </svg>
                                 </span>
                                 <div id="google_pay_button"></div>
@@ -260,18 +250,25 @@ $cardArr = json_decode($response);
     //     // Oggetto contenente la configurazione del pagamento
     //     var config = {
     //         baseConfig: {
-    //             apiKey: '<?php //echo $APIKEY; ?>',
+    //             apiKey: '<?php //echo $APIKEY; 
+                            ?>',
     //             enviroment: XPay.Environments.INTEG
     //         },
     //         paymentParams: {
-    //             amount: '<?php //echo $importo; ?>',
-    //             transactionId: '<?php //echo $codiceTransazione; ?>',
-    //             currency: '<?php //echo $divisa; ?>',
-    //             timeStamp: '<?php //echo $timestamp; ?>',
-    //             mac: '<?php //echo $mac; ?>'
+    //             amount: '<?php //echo $importo; 
+                            ?>',
+    //             transactionId: '<?php //echo $codiceTransazione; 
+                                    ?>',
+    //             currency: '<?php //echo $divisa; 
+                                ?>',
+    //             timeStamp: '<?php //echo $timestamp; 
+                                ?>',
+    //             mac: '<?php //echo $mac; 
+                            ?>'
     //         },
     //         customParams: {
-    // num_contratto: '<?php //echo $numeroContratto; ?>'
+    // num_contratto: '<?php //echo $numeroContratto; 
+                        ?>'
     //         },
     //         language: XPay.LANGUAGE.ITA
     //     };
@@ -280,15 +277,15 @@ $cardArr = json_decode($response);
     //     XPay.initLightbox(config);
     // });
 
-    $('#google_pay_go_back').click(function () {
+    $('#google_pay_go_back').click(function() {
         $('#google_pay_waiting').hide();
         $('#choose_method').show();
     });
 
-    $('#confirm_data_button').click(function () {
+    $('#confirm_data_button').click(function() {
         $('#confirm_data_button').html($('#card_pay_button_spinner').html());
         $('#confirm_data_button').attr('disabled', true);
-        setTimeout(function () {
+        setTimeout(function() {
             $('#confirm_data_button').html($('#card_pay_button_checkmark').html());
             $('span[step_id="1"]').removeClass('fw-bold');
             $('span[step_id="2"]').addClass('fw-bold');
@@ -297,13 +294,13 @@ $cardArr = json_decode($response);
         }, 200);
     });
 
-    document.getElementById('card_pay_button').addEventListener('click', function (e) {
+    document.getElementById('card_pay_button').addEventListener('click', function(e) {
         // Avvio del pagamento
         $('#card_pay_button').html($('#card_pay_button_spinner').html());
         $('#card_pay_button').attr('disabled', true);
-        $('#xpay_iframe').attr('src', '<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/nexi_checkout/ricorrente/"; ?>pay.php/?importo=6900');
+        $('#xpay_iframe').attr('src', '<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/src/XPay_Service/ricorrente/start.php?amount=6999&sender=" . $_SESSION['username'] . "&receiver=boldi&card=e"; ?>');
         let loaded = 0;
-        $('#xpay_iframe').on('load', function () {
+        $('#xpay_iframe').on('load', function() {
             let iframe_href = undefined;
             try {
                 iframe_href = document.getElementById("xpay_iframe").contentWindow.location.href;
@@ -338,7 +335,7 @@ $cardArr = json_decode($response);
 
     });
 
-    window.addEventListener("XPay_Payment_Result", function (event) {
+    window.addEventListener("XPay_Payment_Result", function(event) {
         alert(event.detail.messaggio);
         $('#card_pay_button').html($('#card_pay_button_checkmark').html());
     });
@@ -410,8 +407,8 @@ $cardArr = json_decode($response);
      */
     const cardPaymentMethod = Object.assign({},
         baseCardPaymentMethod, {
-        tokenizationSpecification: tokenizationSpecification
-    }
+            tokenizationSpecification: tokenizationSpecification
+        }
     );
 
     /**
@@ -434,8 +431,8 @@ $cardArr = json_decode($response);
     function getGoogleIsReadyToPayRequest() {
         return Object.assign({},
             baseRequest, {
-            allowedPaymentMethods: [baseCardPaymentMethod]
-        }
+                allowedPaymentMethods: [baseCardPaymentMethod]
+            }
         );
     }
 
@@ -482,14 +479,14 @@ $cardArr = json_decode($response);
     function onGooglePayLoaded() {
         const paymentsClient = getGooglePaymentsClient();
         paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
-            .then(function (response) {
+            .then(function(response) {
                 if (response.result) {
                     addGooglePayButton();
                     // @todo prefetch payment data to improve performance after confirming site functionality
                     // prefetchGooglePaymentData();
                 }
             })
-            .catch(function (err) {
+            .catch(function(err) {
                 // show error in developer console for debugging
                 console.error(err);
             });
@@ -560,11 +557,11 @@ $cardArr = json_decode($response);
 
         const paymentsClient = getGooglePaymentsClient();
         paymentsClient.loadPaymentData(paymentDataRequest)
-            .then(function (paymentData) {
+            .then(function(paymentData) {
                 // handle the response
                 processPayment(paymentData);
             })
-            .catch(function (err) {
+            .catch(function(err) {
                 // show error in developer console for debugging
                 console.error(err);
             });
