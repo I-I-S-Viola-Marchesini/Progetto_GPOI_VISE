@@ -12,19 +12,15 @@
             <div class="col-md-6 text-center">
                 <div class="row">
                     <img src="<?php
-                        if (isset($getProfilePictureUrl)) {
-                            echo $getProfilePictureUrl;
-                        }
+                    echo $_SESSION['profilePicture'];
                     ?>" alt="" style="width: auto; height: 150px;" class="mx-auto rounded-circle">
                 </div>
                 <div class="row mt-4">
                     <?php
-                    if (isset($userJson->name, $userJson->last_name, $userJson->email)) {
-                        echo '  
-                        <h4 class="fw-bold">' . $userJson->name . ' ' . $userJson->last_name . '</h4>
-                        <h6>' . $userJson->email . '</h6>
-                        ';
-                    }
+                    echo '  
+                    <h4 class="fw-bold">' . $_SESSION['firstName'] . ' ' . $_SESSION['lastName']  . '</h4>
+                    <h6>' . $_SESSION['email']  . '</h6>
+                    ';
                     ?>
                 </div>
             </div>
@@ -44,7 +40,7 @@
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="name-container">
                                 <label class="fw-bold mb-2">Nome:</label>
-                                <input type="text" name="name" class="form-control" id="name" value="Mario"
+                                <input type="text" name="name" class="form-control" id="name" value="<?php echo $_SESSION['firstName']; ?>"
                                     maxlength="30" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci il tuo nome
@@ -57,7 +53,7 @@
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="last-name-container">
                                 <label class="fw-bold mb-2">Cognome:</label>
-                                <input type="text" name="surname" class="form-control" id="last-name" value="Rossi"
+                                <input type="text" name="surname" class="form-control" id="last-name" value="<?php echo $_SESSION['lastName']; ?>"
                                     placeholder=" " maxlength="30" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci il tuo cognome
@@ -70,7 +66,7 @@
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="username-container">
                                 <label class="fw-bold mb-2">Username:</label>
-                                <input type="text" name="username" class="form-control" id="username" value="mariorossi"
+                                <input type="text" name="username" class="form-control" id="username" value="<?php echo $_SESSION['username']; ?>"
                                     placeholder=" " maxlength="30" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci il tuo username
@@ -86,7 +82,7 @@
                             <div class="form" id="cell-number-container">
                                 <label class="fw-bold mb-2">Numero di cellulare:</label>
                                 <input type="text" name="phone_number" inputmode="numeric" pattern="[0-9]*"
-                                    value="323 424 5724" class="form-control" id="cell-number" maxlength="20"
+                                    value="<?php echo $_SESSION['mobileNumber']; ?>" class="form-control" id="cell-number" maxlength="20"
                                     placeholder=" " required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci il tuo numero di cellulare
@@ -100,7 +96,7 @@
                             <div class="form" id="tax-code-container">
                                 <label class="fw-bold mb-2">Codice fiscale:</label>
                                 <input type="text" name="tax_code" class="form-control" id="tax-code" placeholder=" "
-                                    maxlength="16" value="MRNDL894JR" required disabled>
+                                    maxlength="16" value="<?php echo $_SESSION['taxCode']; ?>" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci il tuo codice fiscale
                                 </div>
@@ -113,7 +109,7 @@
                             <div class="form" id="birth-date-container">
                                 <label class="fw-bold mb-2">Data di nascita:</label>
                                 <input type="date" name="birth_date" class="form-control" id="birth-date"
-                                    placeholder=" " value="2004-04-04" required disabled>
+                                    placeholder=" " value="<?php echo $_SESSION['birthDate']; ?>" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci la tua data di nascita
                                 </div>
@@ -128,7 +124,7 @@
                             <div class="form" id="email-container">
                                 <label class="fw-bold mb-2">Indirizzo email:</label>
                                 <input type="email" name="email" class="form-control" id="email" placeholder=" "
-                                    maxlength="60" value="mariorossi@gmail.com" required disabled>
+                                    maxlength="60" value="<?php echo $_SESSION['email']; ?>" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci il tuo indirizzo email
                                 </div>
@@ -136,18 +132,18 @@
                         </div>
                     </div>
 
-                    <div class="row justify-content-center">
+                    <!-- <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">
                             <div class="form" id="password-container">
                                 <label class="fw-bold mb-2">Password:</label>
                                 <input type="password" name="password" class="form-control" id="password"
-                                    placeholder=" " maxlength="30" minlength="8" value="amongu" required disabled>
+                                    placeholder=" " maxlength="30" minlength="8" value="<?php //echo $_SESSION['password']; ?>" required disabled>
                                 <div class="invalid-feedback">
                                     Inserisci la tua password
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="row justify-content-center">
                         <div class="col-lg-9 mt-4">

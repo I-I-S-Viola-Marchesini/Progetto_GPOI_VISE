@@ -1,4 +1,5 @@
 <?php
+
 ?>
 
 <title>
@@ -17,8 +18,8 @@
                         <div class="fw-bold my-3 mx-2">
                             <span class="fs-1">€
                                 <?php
-                                if (isset($_user)) {
-                                    $url = $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_user;
+                                if (isset($_SESSION['username'])) {
+                                    $url = $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_SESSION['username'];
 
                                     // $curl = curl_init();
                                 
@@ -58,7 +59,7 @@
                     <!-- Row bottoni denaro -->
                     <div class="row my-2 text-center">
                         <div class="col-6 px-4">
-                            <a class="btn btn btn-outline-primary rounded-3 w-100" href="?page=moneysending">
+                            <a class="btn btn btn-outline-primary rounded-3 w-100" href="?page=moneySending">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                     class="bi bi-currency-euro mb-1" viewBox="0 0 16 16">
                                     <path
@@ -69,7 +70,8 @@
                             </a>
                         </div>
                         <div class="col-6 px-4">
-                            <button class="btn btn btn-outline-secondary rounded-3 w-100" data-bs-toggle="tooltip" data-bs-title="Temporaneamente non disponibile...">
+                            <button class="btn btn btn-outline-secondary rounded-3 w-100" data-bs-toggle="tooltip"
+                                data-bs-title="Temporaneamente non disponibile...">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                     class="bi bi-cash mb-1" viewBox="0 0 16 16">
                                     <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
@@ -135,40 +137,14 @@
                         <table id="recent-activities-table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Seq.</th>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>Ricevente</th>
+                                    <th>Destinatario</th>
+                                    <th>Data</th>
+                                    <th>Importo (€)</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
-
-                                
-                                
-                                ?>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>2011-04-25</td>
-                                    <td>$320,800</td>
-                                </tr>
-                                
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Seq.</th>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -177,12 +153,39 @@
     </div>
     <script>
         $(document).ready(function () {
-            $('#recent-activities-table').DataTable({
-                rowReorder: true,
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/it-IT.json',
-                }
-            });
+            showRecentActivities();
         });
+
+        function showRecentActivities() {
+            getActivities(function (activityArray) {
+                $('#recent-activities-table').DataTable({
+                    rowReorder: true,
+                    language: {
+                        url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/it-IT.json',
+                    },
+                    data: activityArray,
+                    columns: [
+                        { data: "sender_user_id" },
+                        { data: "receiver_user_id" },
+                        { data: "payment_date_time" },
+                        { data: "amount" }
+                    ]
+                });
+            });
+        }
+
+        function getActivities(_callback) {
+            $.ajax({
+                url: "<?php echo 'http://' . $_apiURI . '/src/API/API/Payment/getArchivePaymentByUsername.php?username=' . $_SESSION['username']?>",
+                type: "GET",
+                success: function (result) {
+                    console.log(result);
+                    _callback(result);
+                },
+                error: function (xhr, textError, errorStatus) {
+                    alert(errorStatus);
+                },
+            });
+        }
     </script>
 </main>

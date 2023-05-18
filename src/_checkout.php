@@ -1,4 +1,5 @@
 <?php
+
 ?>
 
 <script src="https://int-ecommerce.nexi.it/ecomm/XPayBuild/js?alias=<?php echo $APIKEY; ?>"></script>
@@ -63,7 +64,7 @@
                         <h5 class="mb-3">Questo pagamento sarà effettuato a nome di:</h5>
                     </div>
                     <div class="row d-flex justify-content-center align-items-center w-100 p-4 pb-0">
-                        <img src="<?php echo $_SESSION['ProfilePicture'] ?>" class="rounded-circle" style="width: 120px;" alt="" srcset="">
+                        <img src="<?php echo $_SESSION['profilePicture'] ?>" class="rounded-circle" style="width: 120px;" alt="" srcset="">
                     </div>
                     <div class="row w-100 mt-0">
                         <h4 class="text-center">
@@ -75,7 +76,7 @@
                         <p class="text-center">
                         <?php echo $_SESSION['email'] ?>
                             <br>
-                            <?php echo $_SESSION['birthDate']->format('d/m/Y') ?>
+                            <?php echo $_SESSION['birthDate'] ?>
                         </p>
                     </div>
                     <div class="row mt-5">

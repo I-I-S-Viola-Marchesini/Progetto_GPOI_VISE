@@ -6,9 +6,9 @@
             <!-- colonna mittente -->
             <div class="col-md-6">
                 <div class="row text-center">
-                    <img src="img/propic-placeholder.jpg" alt="" style="width:auto; height:150px;" class="rounded-circle mx-auto">
-                    <h4 class="mt-4">Ciao, <span class="fw-bold">Mario Rossi</span>!</h4>
-                    <h6>mariorossi@gmail.com</h6>
+                    <img src="<?php echo($_SESSION['profilePicture'])?>" alt="" style="width:auto; height:150px;" class="rounded-circle mx-auto">
+                    <h4 class="mt-4">Ciao, <span class="fw-bold"><?php echo( $_SESSION['firstName'] . ' ' . $_SESSION['lastName']); ?></span>!</h4>
+                    <h6><?php echo($_SESSION['email']); ?></h6>
                 </div>
             </div>
             <!-- /colonna mittente -->
@@ -46,7 +46,7 @@
                             <div class="col-md-5 mt-4">
                                 <div class="input-group" id="email-container">
                                     <span class="input-group-text">€</span>
-                                    <input type="text" name="email" class="form-control" id="email" maxlength="10" required placeholder="10000,00" inputmode="numeric" pattern="[0-9]*">
+                                    <input type="text" name="email" class="form-control" id="email" maxlength="7" required placeholder="10000,00" inputmode="numeric" pattern="[0-9]*">
                                     <!-- <label for="email" class="form-label ms-1"></label> -->
                                     <div class="invalid-feedback">
                                         Inserisci un numero valido
