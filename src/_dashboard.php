@@ -20,23 +20,6 @@
                                 <?php
                                 if (isset($_SESSION['username'])) {
                                     $url = $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_SESSION['username'];
-
-                                    // $curl = curl_init();
-                                
-                                    // curl_setopt_array($curl, array(
-                                    //     CURLOPT_URL => $_apiURI . '/src/API/API/user_account/getBalance.php?username=' . $_user,
-                                    //     CURLOPT_RETURNTRANSFER => true,
-                                    //     CURLOPT_ENCODING => '',
-                                    //     CURLOPT_MAXREDIRS => 10,
-                                    //     CURLOPT_TIMEOUT => 0,
-                                    //     CURLOPT_FOLLOWLOCATION => true,
-                                    //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                                    //     CURLOPT_CUSTOMREQUEST => 'GET',
-                                    // )
-                                    // );
-                                
-                                    // $response = curl_exec($curl);
-                                    // curl_close($curl);
                                 
                                     $response = sendHttpRequest($url, 'GET')['response'];
                                     $json = json_decode($response);

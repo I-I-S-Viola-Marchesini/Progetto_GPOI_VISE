@@ -5,7 +5,7 @@ require(__DIR__ . "/../../Model/Card.php");
 header("Content-type: application/json; charset=UTF-8");
 header('Access-Control-Allow-Origin: *');
 
-if(!isset($_GET['username'])){
+if (!isset($_GET['username'])) {
     http_response_code(400);
     echo json_encode(["message" => "Fill every field"]);
     die();
@@ -16,16 +16,19 @@ $db = new Database();
 $conn = $db->connect();
 $card = new Card($conn);
 
-$cardValue = $card->getCardByUserID($username);
+$stmt = $card->getCardByUserID($username);
 
-if (!$cardValue) {
-    http_response_code(404);
-    echo json_encode(["response" => "No cards found"]);
-    die();
+if ($stmt->num_rows > 0) {
+    $card_array = array();
+    while ($record = mysqli_fetch_assoc($stmt)) // Trasforma una riga in un array e lo fa per tutte le righe di un record.
+    {
+        $payment_array[] = $record;
+    }
+    $json = json_encode($payment_array);
+    echo $json;
+    return $json;
 } else {
-
-    http_response_code(200);
-    echo json_encode([$cardValue]);
-    die();
+    echo "No record";
+    http_response_code(204);
 }
 ?>

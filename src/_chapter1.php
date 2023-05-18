@@ -22,7 +22,7 @@
                 </div>
 
                 <h1 class="text-center my-4">Capitolo 1: L'Origine di Vise</h1>
-                <p>Nel tranquillo paesino di Green Valley, situato nella pittoresca campagna italiana, un gruppo di
+                <p>Nel tranquillo paesino di Grosseto, situato nella pittoresca campagna italiana, un gruppo di
                     golfisti si era riunito presso il loro club preferito. Questi uomini e donne, accomunati dalla
                     passione per il golf, erano stanchi dei complessi sistemi di pagamento che li costringevano a
                     lunghe attese e procedure complicate. Decisi a trovare una soluzione migliore, si sedettero

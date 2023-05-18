@@ -1,5 +1,8 @@
 <?php
-
+$url = $_apiURI . '\src\API\API\card\GetBasicCardInformation.php?username=' . $_SESSION['username'];
+$request = sendHttpRequest($url, 'GET');
+$response = $request['response'];
+$cardArr = json_decode($response);
 ?>
 
 <!-- <script src="https://int-ecommerce.nexi.it/ecomm/XPayBuild/js?alias=<?php echo $APIKEY; ?>"></script> -->
@@ -11,7 +14,8 @@
 <main class="d-flex align-items-end mt-5">
     <div class="container p-0 text-center shadow-lg rounded-3 bg-white">
         <div class="row" style="min-height: 80vh;">
-            <div class="col-12 col-lg-6 d-none d-lg-flex justify-content-center align-items-center" style="border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; background-color: #EEEEEE;">
+            <div class="col-12 col-lg-6 d-none d-lg-flex justify-content-center align-items-center"
+                style="border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem; background-color: #EEEEEE;">
                 <div class="card shadow-lg" style="width: 25rem;">
                     <div class="card-body" style="padding-top: 70px;">
                         <div class="logo_container d-none d-lg-flex">
@@ -38,7 +42,8 @@
             <div class="col-12 rounded-3 col-lg-6 bg-white p-4">
                 <div class="row mb-3">
                     <h3 class="text-center">Pagamento tramite Vise</h3>
-                    <nav class="d-flex justify-content-center" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <nav class="d-flex justify-content-center" style="--bs-breadcrumb-divider: '>';"
+                        aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item active"><span class="fw-bold" step_id="1">
                                     Dati personali
@@ -64,7 +69,8 @@
                         <h5 class="mb-3">Questo pagamento sarà effettuato a nome di:</h5>
                     </div>
                     <div class="row d-flex justify-content-center align-items-center w-100 p-4 pb-0">
-                        <img src="<?php echo $_SESSION['profilePicture'] ?>" class="rounded-circle" style="width: 120px;" alt="" srcset="">
+                        <img src="<?php echo $_SESSION['profilePicture'] ?>" class="rounded-circle"
+                            style="width: 120px;" alt="" srcset="">
                     </div>
                     <div class="row w-100 mt-0">
                         <h4 class="text-center">
@@ -74,7 +80,7 @@
                     </div>
                     <div class="row w-100">
                         <p class="text-center">
-                        <?php echo $_SESSION['email'] ?>
+                            <?php echo $_SESSION['email'] ?>
                             <br>
                             <?php echo $_SESSION['birthDate'] ?>
                         </p>
@@ -94,72 +100,70 @@
                     <div class="row">
                         <div class="col-1">
                             <form id="cards_radio_input" name="paymentMethodForm">
-                                <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="card" id="exampleCard">
-                                <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="card" id="secondExampleCard">
-                                <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="card" id="thirdExampleCard">
-                                <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="googlePay" id="googlePay">
+                                <?php
+                                foreach ($cardArr as &$card) {
+                                    ?>
+                                    <input class="form-check-input mb-2" style="height: 25px; width: 25px;" type="radio" name="paymentMethod" value="<?php echo $card->id ?>" id="exampleCard">
+                                    <?php
+                                }
+                                ?>
                             </form>
                         </div>
                         <div class="col-11">
-                            <span class="d-flex align-items-center mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2" style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
-                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
-                                </svg>
-                                <label class="name_label mb-2" id="label_exampleCard" class="form-check-label">
-                                    Postepay Evolution Connect <small class="text-muted">(** 4820)</small>
-                                </label>
-                            </span>
-                            <span class="d-flex align-items-center mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2" style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
-                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
-                                </svg>
-                                <label class="name_label mb-2" id="label_secondExampleCard" class="form-check-label">
-                                    Intesa San Paolo Debit <small class="text-muted">(** 1739)</small>
-                                </label>
-                            </span>
-                            <span class="d-flex align-items-center mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2" style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
-                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
-                                </svg>
-                                <label class="name_label mb-2" id="label_thirdExampleCard" class="form-check-label">
-                                    Unicredit Visa <small class="text-muted">(** 5679)</small>
-                                </label>
-                            </span>
-                            <span class="d-flex align-items-center mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2" style="width: 25px; height: 25px;" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
-                                    <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
-                                </svg>
-                                <label class="name_label mb-2" id="label" class="form-check-label" for="googlePay">
-                                    Google Pay
-                                </label>
-                            </span>
+                            <?php
+                            foreach ($cardArr as &$card) {
+                                ?>
+                                <span class="d-flex align-items-center mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mx-2 mb-2"
+                                        style="width: 25px; height: 25px;" fill="currentColor"
+                                        class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z" />
+                                    </svg>
+                                    <label class="name_label mb-2" id="label_exampleCard" class="form-check-label">
+                                        <?php echo $card->card_name ?> <small class="text-muted">(**
+                                            <?php echo substr($card->pan, -4) ?>)
+                                        </small>
+                                    </label>
+                                </span>
+                                <?php
+                            }
+                            ?>
+
+
                         </div>
                         <div class="row mt-5">
                             <div class="form-check d-flex justify-content-center mb-3">
                                 <input class="form-check-input" type="checkbox" value="" id="use_vise_credit" checked>
                                 <span class="m-1"></span>
                                 <label class="form-check-label" for="use_vise_credit">
-                                Usa <span class="fw-bold" id="vise_credit_value">25,40€</span> dal tuo conto Vise
+                                    Usa <span class="fw-bold" id="vise_credit_value">25,40€</span> dal tuo conto Vise
                                 </label>
                             </div>
                             <div class="text-center">
-                                <button id="none_pay_button" class="col-8 col-xl-6 btn btn-secondary disabled rounded-pill">Seleziona per continuare</button>
-                                <button id="card_pay_button" class="col-8 col-xl-6 btn btn-primary rounded-pill" style="width: 75%;"></button>
+                                <button id="none_pay_button"
+                                    class="col-8 col-xl-6 btn btn-secondary disabled rounded-pill">Seleziona per
+                                    continuare</button>
+                                <button id="card_pay_button" class="col-8 col-xl-6 btn btn-primary rounded-pill"
+                                    style="width: 75%;"></button>
                                 <span id="card_pay_button_spinner" style="display: none;">
                                     <div class="spinner-border text-light" role="status">
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
                                 </span>
                                 <span id="card_pay_button_checkmark" style="display: none;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-                                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-check-lg" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
                                     </svg>
                                 </span>
                                 <div id="google_pay_button"></div>
                             </div>
                         </div>
                         <div class="text-center mt-3 ">
-                            <a class="text-decoration-none" href="http://pear.com">Annulla il pagamento e torna su Pear.com</a>
+                            <a class="text-decoration-none" href="http://pear.com">Annulla il pagamento e torna su
+                                Pear.com</a>
                         </div>
                     </div>
                 </span>
@@ -255,7 +259,7 @@
     //             mac: '<?php //echo $mac; ?>'
     //         },
     //         customParams: {
-                // num_contratto: '<?php //echo $numeroContratto; ?>'
+    // num_contratto: '<?php //echo $numeroContratto; ?>'
     //         },
     //         language: XPay.LANGUAGE.ITA
     //     };
@@ -264,15 +268,15 @@
     //     XPay.initLightbox(config);
     // });
 
-    $('#google_pay_go_back').click(function() {
+    $('#google_pay_go_back').click(function () {
         $('#google_pay_waiting').hide();
         $('#choose_method').show();
     });
 
-    $('#confirm_data_button').click(function() {
+    $('#confirm_data_button').click(function () {
         $('#confirm_data_button').html($('#card_pay_button_spinner').html());
         $('#confirm_data_button').attr('disabled', true);
-        setTimeout(function() {
+        setTimeout(function () {
             $('#confirm_data_button').html($('#card_pay_button_checkmark').html());
             $('span[step_id="1"]').removeClass('fw-bold');
             $('span[step_id="2"]').addClass('fw-bold');
@@ -281,24 +285,24 @@
         }, 200);
     });
 
-    document.getElementById('card_pay_button').addEventListener('click', function(e) {
+    document.getElementById('card_pay_button').addEventListener('click', function (e) {
         // Avvio del pagamento
         $('#card_pay_button').html($('#card_pay_button_spinner').html());
         $('#card_pay_button').attr('disabled', true);
         $('#xpay_iframe').attr('src', '<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/nexi_checkout/ricorrente/"; ?>pay.php/?importo=6900');
         let loaded = 0;
-        $('#xpay_iframe').on('load', function() {
+        $('#xpay_iframe').on('load', function () {
             let iframe_href = undefined;
-            try{
+            try {
                 iframe_href = document.getElementById("xpay_iframe").contentWindow.location.href;
                 //alert(document.getElementById("xpay_iframe").contentWindow.type);
-            }catch(e){
+            } catch (e) {
                 iframe_href = undefined
             }
 
-            if(iframe_href == undefined || iframe_href == null){
+            if (iframe_href == undefined || iframe_href == null) {
                 // nothing
-            }else if(iframe_href.includes('esito=ANNULLO')){
+            } else if (iframe_href.includes('esito=ANNULLO')) {
                 $('span[step_id="3"]').removeClass('fw-bold');
                 $('span[step_id="2"]').addClass('fw-bold');
                 $('#choose_method').show();
@@ -322,7 +326,7 @@
 
     });
 
-    window.addEventListener("XPay_Payment_Result", function(event) {
+    window.addEventListener("XPay_Payment_Result", function (event) {
         alert(event.detail.messaggio);
         $('#card_pay_button').html($('#card_pay_button_checkmark').html());
     });
@@ -394,8 +398,8 @@
      */
     const cardPaymentMethod = Object.assign({},
         baseCardPaymentMethod, {
-            tokenizationSpecification: tokenizationSpecification
-        }
+        tokenizationSpecification: tokenizationSpecification
+    }
     );
 
     /**
@@ -418,8 +422,8 @@
     function getGoogleIsReadyToPayRequest() {
         return Object.assign({},
             baseRequest, {
-                allowedPaymentMethods: [baseCardPaymentMethod]
-            }
+            allowedPaymentMethods: [baseCardPaymentMethod]
+        }
         );
     }
 
@@ -466,14 +470,14 @@
     function onGooglePayLoaded() {
         const paymentsClient = getGooglePaymentsClient();
         paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
-            .then(function(response) {
+            .then(function (response) {
                 if (response.result) {
                     addGooglePayButton();
                     // @todo prefetch payment data to improve performance after confirming site functionality
                     // prefetchGooglePaymentData();
                 }
             })
-            .catch(function(err) {
+            .catch(function (err) {
                 // show error in developer console for debugging
                 console.error(err);
             });
@@ -544,11 +548,11 @@
 
         const paymentsClient = getGooglePaymentsClient();
         paymentsClient.loadPaymentData(paymentDataRequest)
-            .then(function(paymentData) {
+            .then(function (paymentData) {
                 // handle the response
                 processPayment(paymentData);
             })
-            .catch(function(err) {
+            .catch(function (err) {
                 // show error in developer console for debugging
                 console.error(err);
             });
