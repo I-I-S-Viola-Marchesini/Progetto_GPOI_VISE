@@ -74,7 +74,7 @@ $cardArr = json_decode($response);
                         <span class="text-start text-primary fw-bold">Le mie carte</span>
                         <hr class="m-0">
                         <?php
-                        if(isset($cardArr)){
+                        if (isset($cardArr)) {
 
                             foreach ($cardArr as &$card) {
                                 ?>
@@ -92,11 +92,15 @@ $cardArr = json_decode($response);
                                 </span>
                                 <?php
                             }
+                        } else {
+                            ?><span class="text-center text-primary fw-bold my-2">Nessuna carta disponibile</span>
+                            <?php
                         }
                         ?>
                         <div class="row my-2">
                             <div class="col-6">
-                                <button class="btn btn-outline-secondary btn-sm rounded-pill">
+                                <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill"
+                                    data-bs-toggle="modal" data-bs-target="#addCardModal">
                                     Aggiungi una carta
 
                                 </button>
@@ -130,6 +134,62 @@ $cardArr = json_decode($response);
                             <tbody>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card name modal -->
+            <div class="modal fade" id="addCardModal" tabindex="-1" aria-labelledby="addCardModal"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="addCardModal">Inserisci il nome della nuova carta</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="post">
+                                <div class="row justify-content-center">
+                                    <div class="col-12">
+                                        <div class="form-floating" id="username-container">
+                                            <input type="text" name="username" class="form-control" id="username"
+                                                placeholder=" " maxlength="30" required>
+                                            <label for="username" class="form-label ms-1">Inserisci il nome della carta</label>
+                                            <div class="invalid-feedback">
+                                                Inserisci il tuo username
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary"
+                                data-bs-dismiss="modal">Annulla</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#iframeModal">Avanti</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Iframe modal -->
+        <div class="modal fade" id="iframeModal" tabindex="-1" aria-labelledby="iframeModal"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modal2">Aggiungi una nuova carta</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary"
+                                data-bs-dismiss="modal">Annulla</button>
+                            <button type="button" class="btn btn-primary">Avanti</button>
+                        </div>
                     </div>
                 </div>
             </div>
