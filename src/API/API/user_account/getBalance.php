@@ -20,7 +20,7 @@ $balance = new UserAccount($conn);
 
 $result_balance = $balance->getUserAccountBalance($username);
 
-$result_balance = $result_balance->fetch_assoc();
+$result_balance = $result_balance->fetch_assoc()['balance'];
 
 if($result_balance == false){
     http_response_code(401);
@@ -29,7 +29,7 @@ if($result_balance == false){
 }
 else{
     http_response_code(200);
-    echo json_encode($result_balance);
+    echo json_encode(["balance" => $result_balance]);
     die();
 }
 

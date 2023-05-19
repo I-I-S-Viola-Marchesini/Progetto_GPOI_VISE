@@ -62,15 +62,13 @@
             </button>
         </div>
         <div class="bg-white shadow-sm rounded-5 d-none d-lg-flex container-nav-3">
-            <?php
-            if (isset($_SESSION['username'])) {
-                echo '<button class="btn btn-link text-dark tooltip-trg tooltip-show-start" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_notifications" data-bs-placement="bottom" data-bs-title="5">
+            <?php if (isset($_SESSION['username'])): ?>
+                <!-- <button class="btn btn-link text-dark tooltip-trg tooltip-show-start" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_notifications" data-bs-placement="bottom" data-bs-title="5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
                         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
                     </svg>
-                </button>';
-            }
-            ?>
+                </button> -->
+            <?php endif; ?>
             <button class="btn btn-link text-dark" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvas_account_mng">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

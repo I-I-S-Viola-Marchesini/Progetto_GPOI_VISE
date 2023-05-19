@@ -102,4 +102,12 @@ class UserAccount
 
         return $stmt;
     }
+
+    public function updateBalance($username, $amount){
+        $query = "UPDATE $this->table_name 
+        SET balance ='$amount'
+        WHERE username='$username'";
+        $stmt = $this->conn->query($query);
+        return $this->conn->affected_rows;
+    }
 }

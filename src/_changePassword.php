@@ -44,8 +44,8 @@ if (!isset($_POST['oldPassword'], $_POST['newPassword'])) {
                 <div class="col-md-12">
                     <form method="POST" class="needs-validation" id="information-form" novalidate>
 
-                        <div class="row px-5 justify-content-center">
-                            <div class="col-4">
+                        <div class="row g-3 px-5 justify-content-center">
+                            <div class="col-12 col-md-4">
                                 <div class="form" id="password-container">
                                     <label class="fw-bold mb-2">Password attuale:</label>
                                     <input type="password" name="oldPassword" class="form-control" id="old-password"
@@ -56,7 +56,7 @@ if (!isset($_POST['oldPassword'], $_POST['newPassword'])) {
                                 </div>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-12 col-md-4">
                                 <div class="form" id="newPassword-container">
                                     <label class="fw-bold mb-2">Password nuova:</label>
                                     <input type="password" name="newPassword" class="form-control" id="new-password"
@@ -67,7 +67,7 @@ if (!isset($_POST['oldPassword'], $_POST['newPassword'])) {
                                 </div>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-12 col-md-4">
                                 <div class="form" id="confirmNewPassword-container">
                                     <label class="fw-bold mb-2">Conferma password nuova:</label>
                                     <input type="password" id="password-confirmation" name="confirmNewPassword"
@@ -112,7 +112,7 @@ if (!isset($_POST['oldPassword'], $_POST['newPassword'])) {
                         </div>
 
                         <div class="row mt-5 text-center">
-                            <div class="col-6 mx-auto">
+                            <div class="col-8 col-md-6 mx-auto">
                                 <button id="confirm-button" type="submit" class="btn btn-primary px-5">
                                     Conferma modifiche
                                 </button>

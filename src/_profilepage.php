@@ -54,11 +54,11 @@ if (!isset($_POST['name'], $_POST['surname'], $_SESSION['username'], $_POST['pho
             </div>
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-12">
                     <form method="POST" class="needs-validation" id="information-form" novalidate>
 
-                        <div class="row px-5 justify-content-center">
-                            <div class="col-6">
+                        <div class="row g-2 px-5 justify-content-center">
+                            <div class="col-12 col-md-6">
                                 <div class="form" id="name-container">
                                     <label class="fw-bold mb-2">Nome:</label>
                                     <input type="text" name="name" class="form-control" id="name"
@@ -68,7 +68,7 @@ if (!isset($_POST['name'], $_POST['surname'], $_SESSION['username'], $_POST['pho
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 col-md-6">
                                 <div class="form" id="last-name-container">
                                     <label class="fw-bold mb-2">Cognome:</label>
                                     <input type="text" name="surname" class="form-control" id="last-name"
@@ -83,8 +83,8 @@ if (!isset($_POST['name'], $_POST['surname'], $_SESSION['username'], $_POST['pho
 
                         <hr style="margin: 5vh 15vw 5vh 15vw;">
 
-                        <div class="row px-5 justify-content-center">
-                            <div class="col-6">
+                        <div class="row g-2 px-5 justify-content-center">
+                            <div class="col-12 col-md-6">
                                 <div class="form" id="email-container">
                                     <label class="fw-bold mb-2">Indirizzo email:</label>
                                     <input type="email" name="email" class="form-control" id="email" placeholder=" "
@@ -94,7 +94,7 @@ if (!isset($_POST['name'], $_POST['surname'], $_SESSION['username'], $_POST['pho
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 col-md-6">
                                 <div class="form" id="cell-number-container">
                                     <label class="fw-bold mb-2">Numero di cellulare:</label>
                                     <input type="text" name="phone_number" inputmode="numeric" pattern="[0-9]*"
@@ -111,8 +111,8 @@ if (!isset($_POST['name'], $_POST['surname'], $_SESSION['username'], $_POST['pho
                         <hr style="margin: 5vh 15vw 5vh 15vw;">
 
 
-                        <div class="row px-5 justify-content-center">
-                            <div class="col-6">
+                        <div class="row g-2 px-5 justify-content-center">
+                            <div class="col-12 col-md-6">
                                 <div class="form" id="tax-code-container">
                                     <label class="fw-bold mb-2">Codice fiscale:</label>
                                     <input type="text" name="tax_code" class="form-control" id="tax-code"
@@ -124,7 +124,7 @@ if (!isset($_POST['name'], $_POST['surname'], $_SESSION['username'], $_POST['pho
                                 </div>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-12 col-md-6">
                                 <div class="form" id="birth-date-container">
                                     <label class="fw-bold mb-2">Data di nascita:</label>
                                     <input type="date" name="birth_date" class="form-control" id="birth-date"
@@ -138,11 +138,11 @@ if (!isset($_POST['name'], $_POST['surname'], $_SESSION['username'], $_POST['pho
 
                         <hr style="margin: 5vh 15vw 5vh 15vw;">
                         <div class="row justify-content-center">
-                            <button type="submit" class="col-4 btn btn-primary" id="edit-button">Modifica le tue
+                            <button type="submit" class="col-8 col-md-4 btn btn-primary" id="edit-button">Modifica le tue
                                 informazioni</button>
-                            <button type="submit" class="col-3 btn btn-primary mx-2" id="submit-button"
+                            <button type="submit" class="col-4 col-md-3 btn btn-primary mx-2" id="submit-button"
                                 style="display:none">Conferma</button>
-                            <button type="submit" class="col-3 btn btn-outline-secondary mx-2" id="cancel-button"
+                            <button type="submit" class="col-4 col-md-3 btn btn-outline-secondary mx-2" id="cancel-button"
                                 style="display:none">Annulla</button>
 
                         </div>

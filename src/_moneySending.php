@@ -1,3 +1,23 @@
+<?php
+require(__DIR__ . '\API\API\Payment\paymentGateway.php');
+use PaymentGateway\ViseGateway;
+
+if (isset($_POST['user'], $_POST['amount'])) {
+    $viseGateway = new ViseGateway($_POST['amount'], $_SESSION['username'], $_POST['user'], $_apiURI);
+    $balance = $viseGateway->getUserBalance($_SESSION['username']);
+    if ($balance >= $_POST['amount'] && strtolower($_POST['user']) != strtolower($_SESSION['username'])) {
+
+        $viseGateway->useTransactionCode($viseGateway->createTransactionCode());
+        $transaction = $viseGateway->addTransaction();
+
+        $viseGateway->updateBalance();
+    }
+
+    unset($_POST['user'], $_POST['amount']);
+}
+
+
+?>
 <title>Vise | Invia denaro</title>
 
 <main class="d-flex align-items-center mt-5">
@@ -6,9 +26,14 @@
             <!-- colonna mittente -->
             <div class="col-md-6">
                 <div class="row text-center">
-                    <img src="<?php echo($_SESSION['profilePicture'])?>" alt="" style="width:auto; height:150px;" class="rounded-circle mx-auto">
-                    <h4 class="mt-4">Ciao, <span class="fw-bold"><?php echo( $_SESSION['firstName'] . ' ' . $_SESSION['lastName']); ?></span>!</h4>
-                    <h6><?php echo($_SESSION['email']); ?></h6>
+                    <img src="<?php echo ($_SESSION['profilePicture']) ?>" alt="" style="width:auto; height:150px;"
+                        class="rounded-circle mx-auto">
+                    <h4 class="mt-4">Ciao, <span class="fw-bold">
+                            <?php echo ($_SESSION['firstName'] . ' ' . $_SESSION['lastName']); ?>
+                        </span>!</h4>
+                    <h6>
+                        <?php echo ($_SESSION['email']); ?>
+                    </h6>
                 </div>
             </div>
             <!-- /colonna mittente -->
@@ -24,7 +49,8 @@
                         <div class="row justify-content-center">
                             <div class="col-md-9 mt-4">
                                 <div class="form-floating" id="email-container">
-                                    <input type="text" name="email" class="form-control" id="email" maxlength="30" required placeholder=" ">
+                                    <input type="text" name="user" class="form-control" id="user" maxlength="30"
+                                        required placeholder=" ">
                                     <label for="email" class="form-label ms-1">Indirizzo email o username</label>
                                     <div class="invalid-feedback">
                                         Inserisci un utente Vise esistente
@@ -46,7 +72,8 @@
                             <div class="col-md-5 mt-4">
                                 <div class="input-group" id="email-container">
                                     <span class="input-group-text">€</span>
-                                    <input type="text" name="" class="form-control" id="email" maxlength="7" required placeholder="10000.00" inputmode="numeric" pattern="^\d*(\.\d{0,2})?$">
+                                    <input type="text" name="amount" class="form-control" id="amount" maxlength="7"
+                                        required placeholder="10000.00" inputmode="numeric" pattern="^\d*(\.\d{0,2})?$">
                                     <div class="invalid-feedback">
                                         Inserisci un numero valido
                                     </div>

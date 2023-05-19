@@ -59,75 +59,17 @@ class Payment
     //la destinazione e l'importo .
     public function addNewTransaction($sender_user_id, $sender_card_id, $receiver_user_id, $payment_date, $amount)
     {
-        $query = "SELECT balance 
-        FROM $this->table_user 
-        WHERE username = '$sender_user_id'";
-
-        $result_balance = $this->conn->query($query);
-        $row = mysqli_fetch_assoc($result_balance);
-
-        $current_balance = $row['balance'];
+        $query = "INSERT INTO $this->table_name (sender_user_id, receiver_user_id, payment_date_time, amount, account_payment, card_payment, sender_card_id)
+            VALUES ('$sender_user_id', '$receiver_user_id', '$payment_date', '$amount', 1, 0, '$sender_card_id')";
 
         $stmt = $this->conn->query($query);
 
-        if ($current_balance >= $amount) {
-
-            $new_balance = $current_balance - $amount;
-
-            $query = "UPDATE $this->table_user SET balance = '$new_balance' 
-            WHERE username = '$sender_user_id'";
-
-            $stmt = $this->conn->query($query);
-
-            if ($stmt == false) {
-                echo "error 1";
-                return $stmt;
-            }
-
-            $query = "INSERT INTO $this->table_name (sender_user_id, receiver_user_id, payment_date_time, amount, account_payment, card_payment, sender_card_id)
-            VALUES ('$sender_user_id', '$receiver_user_id', '$payment_date', '$amount', 1, 0, '$sender_card_id')";
-
-            $stmt = $this->conn->query($query);
-
-            if ($stmt == false) {
-                echo "error 2";
-                return $stmt;
-            }
-            return $stmt;
-        } else if ($current_balance > 0 && $current_balance < $amount) {
-            $query = "UPDATE $this->table_user SET balance = 0 
-            WHERE username = '$sender_user_id'";
-
-            $stmt = $this->conn->query($query);
-
-            if ($stmt == false) {
-                echo "error 3";
-                return $stmt;
-            }
-
-            $query = "INSERT INTO $this->table_name (sender_user_id, receiver_user_id, payment_date_time, amount, account_payment, card_payment, sender_card_id)
-            VALUES ('$sender_user_id', '$receiver_user_id', '$payment_date', '$amount', 1, 1, '$sender_card_id')";
-
-            $stmt = $this->conn->query($query);
-
-            if ($stmt == false) {
-                echo "error 4";
-                return $stmt;
-            }
-
-            return $stmt;
-        } else {
-            $query = "INSERT INTO $this->table_name (sender_user_id, receiver_user_id, payment_date_time, amount, account_payment, card_payment, sender_card_id)
-            VALUES ('$sender_user_id', '$receiver_user_id', '$payment_date', '$amount', 0, 1, '$sender_card_id')";
-
-            $stmt = $this->conn->query($query);
-
-            if ($stmt == false) {
-                echo "error 5";
-                return $stmt;
-            }
+        if ($stmt == false) {
+            echo "error 2";
             return $stmt;
         }
+        return $stmt;
+
     }
 
     // La funzione getArchivePaymentByUsername() restituisce tutti i pagamenti effettuati da un utente in base al suo username.
@@ -145,15 +87,16 @@ class Payment
 
     // La funzione insertTransaction() inserisce una nuova transazione nel database, si devono passare lo user id del mittente, del destinatario, la data e ora di pagamento
     //la destinazione e l'importo .
-    public function insertTransaction($sender_user_id, $sender_card_id, $receiver_user_id, $payment_date, $amount)
+    public function insertTransaction($sender_user_id, $receiver_user_id, $payment_date, $amount, $account_payment, $card_payment, $sender_card_id = null)
     {
         $query = "INSERT INTO $this->table_name (sender_user_id, receiver_user_id, payment_date_time, amount, account_payment, card_payment, sender_card_id)
-        VALUES ('$sender_user_id', '$receiver_user_id', '$payment_date', '$amount', 1, 0, '$sender_card_id')";
+        VALUES ('$sender_user_id', '$receiver_user_id', '$payment_date', '$amount', '$account_payment', '$card_payment', '$sender_card_id')";
 
         $stmt = $this->conn->query($query);
 
         return $stmt;
     }
+
 
     // La funzione modifyBalance() modifica il saldo di un utente, si devono passare lo user id del mittente e l'importo .
     public function modifyBalance($sender_user_id, $amount)
@@ -169,13 +112,22 @@ class Payment
 
         $new_balance = $current_balance - $amount;
 
-        if($current_balance < $amount)
-        {
+        if ($current_balance < $amount) {
             return false;
         }
 
         $query = "UPDATE $this->table_user SET balance = '$new_balance' 
         WHERE username = '$sender_user_id'";
+
+        $stmt = $this->conn->query($query);
+
+        return $stmt;
+    }
+
+    public function payFromViseToVise($sender_user_id, $receiver_user_id, $payment_date, $amount)
+    {
+        $query = "INSERT INTO $this->table_name (sender_user_id, receiver_user_id, payment_date_time, amount, account_payment, card_payment)
+        VALUES ('$sender_user_id', '$receiver_user_id', '$payment_date', '$amount', 1, 0)";
 
         $stmt = $this->conn->query($query);
 

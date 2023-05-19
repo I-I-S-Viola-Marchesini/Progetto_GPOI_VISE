@@ -43,7 +43,7 @@ CREATE TABLE payment(
     sender_user_id VARCHAR(16) NOT NULL, -- indico il mittente e il relativo conto VISE
     receiver_user_id VARCHAR(16) NOT NULL, -- indico il destinatario e il relativo conto VISE in cui verrà inserito il denaro inviato dal mittente
     payment_date_time DATETIME NOT NULL,
-    amount DECIMAL(4,2) NOT NULL, -- importo del pagamento in euro, il massimo è 9999,99
+    amount DECIMAL(6,2) NOT NULL, -- importo del pagamento in euro, il massimo è 9999,99
     account_payment BOOLEAN NOT NULL, -- se true indica che parte del denaro proviene dal conto del mittente
     card_payment BOOLEAN NOT NULL, -- se true indica che parte del denaro proviene dalla carta del mittente
     sender_card_id INT -- viene usato quando il mittente usa la carta

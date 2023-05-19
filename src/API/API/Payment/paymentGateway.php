@@ -4,7 +4,8 @@ namespace PaymentGateway;
 
 use DateTime;
 
-class ViseGateway{
+class ViseGateway
+{
 
     public $amount;
     public $transactionCode = null;
@@ -30,8 +31,9 @@ class ViseGateway{
         return ["response" => $response, "code" => $httpcode];
     }
 
-    
-    public function __construct($amount, $sender, $receiver, $serverUrl){
+
+    public function __construct($amount, $sender, $receiver, $serverUrl)
+    {
         $this->amount = $amount;
         $this->sender = $sender;
         $this->receiver = $receiver;
@@ -39,79 +41,109 @@ class ViseGateway{
     }
 
 
-    public function useTransactionCode($transactionCode){
+    public function useTransactionCode($transactionCode)
+    {
         $this->transactionCode = $transactionCode;
     }
 
-    public function createTransactionCode(){
+    public function createTransactionCode()
+    {
         return "VISE-" . date('YmdHis');
     }
 
-    function getUserBalance(){
-        $getUserBalanceUrl = $this->serverUrl . "/src/API/API/user_account/getBalance.php?username=" . $this->sender;
+    function getUserBalance($user)
+    {
+        $getUserBalanceUrl = $this->serverUrl . "/src/API/API/user_account/getBalance.php?username=" . $user;
         $getUserBalanceResponse = $this->sendHttpRequest($getUserBalanceUrl, 'GET')['response'];
         $userBalanceJson = json_decode($getUserBalanceResponse);
         if (isset($userBalanceJson->balance)) {
+            echo $userBalanceJson->balance . "\n";
             return $userBalanceJson->balance;
         } else {
             return false;
         }
     }
 
-    public function updateBalance($amount)
+    public function updateBalance()
     {
-        $updateBalanceUrl = $this->serverUrl . "/src/API/API/Payment/removeBalance.php";
-        $updateBalanceData = [
-            "sender_user_id" => $this->sender,
-            "amount" => $amount
+        $updateBalanceUrl = $this->serverUrl . "/src/API/API/user_account/updateBalance.php";
+        $senderBalance = $this->getUserBalance($this->sender);
+        $receiverBalance = $this->getUserBalance($this->receiver);
+
+        $updateSenderBalanceData = [
+            "username" => $this->sender,
+            "amount" => $senderBalance - $this->amount
         ];
-        $updateBalanceResponse = $this->sendHttpRequest($updateBalanceUrl, 'POST', json_encode($updateBalanceData))['response'];
-        $updateBalanceJson = json_decode($updateBalanceResponse);
-        if (isset($updateBalanceJson->response) && $updateBalanceJson->response == "Balance updated") {
+        $updateReceiverBalanceData = [
+            "username" => $this->receiver,
+            "amount" => $receiverBalance + $this->amount
+        ];
+        $updateSenderBalanceResponse = $this->sendHttpRequest($updateBalanceUrl, 'POST', json_encode($updateSenderBalanceData));
+        $updateSenderBalanceJson = json_decode($updateSenderBalanceResponse['response']);
+        echo json_encode($updateSenderBalanceJson);
+
+        $updateReceiverBalanceResponse = $this->sendHttpRequest($updateBalanceUrl, 'POST', json_encode($updateReceiverBalanceData));
+        $updateReceiverBalanceJson = json_decode($updateReceiverBalanceResponse['response']);
+        if ($updateSenderBalanceResponse['code'] != 200 || $updateReceiverBalanceResponse['code'] != 200) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function addTransaction(){
+    public function addTransaction()
+    {
 
-            if($this->transactionCode == null){ // if transaction code is not set
-                return json_encode(["errorCode" => "0001"]);
-            }
+        if ($this->transactionCode == null) { // if transaction code is not set
+            return json_encode(["errorCode" => "0001"]);
+        }
 
-            if($this->amount <= 0 && $this->amount > 999999){ // if amount is not valid
-                return json_encode(["errorCode" => "0002"]);
-            }
+        if ($this->amount <= 0 && $this->amount > 999999) { // if amount is not valid
+            return json_encode(["errorCode" => "0002"]);
+        }
 
-            if($this->sender == $this->receiver){ // if sender and receiver are the same
-                return json_encode(["errorCode" => "0003"]);
-            }
-            
-            $data = [
-                "sender_user_id" => $this->sender,
-                "sender_card_id" => "1",
-                "receiver_user_id" => $this->receiver,
-                "payment_date" => date('Y-m-d H:i:s'),
-                "amount" => $this->amount
-            ];
-    
-            $raw_addPaymentResponse = sendHttpRequest($this->serverUrl . "API/API/Payment/addPayment.php", "POST", $data)['response'];
-            $addPaymentResponse = json_decode($raw_addPaymentResponse);
-    
-            if (isset($addPaymentResponse->response) && $addPaymentResponse->response == "Payment added") {
-                return true;
-            } else {
-                return false;
-            }
-    
+        if ($this->sender == $this->receiver) { // if sender and receiver are the same
+            return json_encode(["errorCode" => "0003"]);
+        }
+
+        $data = [
+            "sender_user_id" => $this->sender,
+            "sender_card_id" => "1",
+            "receiver_user_id" => $this->receiver,
+            "payment_date" => date('Y-m-d H:i:s'),
+            "amount" => $this->amount
+        ];
+
+        // $body = '{
+        //         "sender_user_id": "' . $this->sender . '",
+        //         "sender_card_id": "1",
+        //         "receiver_user_id": "' . $this->receiver . '",
+        //         "payment_date": "' . date('Y-m-d H:i:s') . '",
+        //         "amount": "' . $this->amount . '"
+        //     }';
+
+        $data = json_encode($data);
+
+        $request = $this->sendHttpRequest($this->serverUrl . "/src/API/API/Payment/addPayment.php", "POST", $data);
+
+        $raw_addPaymentResponse = $request['response'];
+
+        $addPaymentResponse = json_decode($raw_addPaymentResponse);
+
+        if (isset($addPaymentResponse->response) && $addPaymentResponse->response == "Payment added") {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }
 
 
 
-class NexiGateway{
+class NexiGateway
+{
 
     public $codTrans;
     public $importo; /* <-- 5000 = 50,00 EURO (prime due cifre a destra per i centesimi) */
@@ -124,7 +156,8 @@ class NexiGateway{
     public $requestParams = array();
 
 
-    public function __construct($codTrans, $importo, $numContratto){
+    public function __construct($codTrans, $importo, $numContratto)
+    {
 
         $merchantServerUrl = "http://" . $_SERVER['HTTP_HOST'] . "/nexi_checkout/ricorrente/";
         $mac = sha1('codTrans=' . $codTrans . 'divisa=' . 'EUR' . 'importo=' . $importo . $this->chiaveSegreta);
@@ -134,24 +167,29 @@ class NexiGateway{
             'importo' => $importo,
             'num_contratto' => "NC_TEST_20230513094208",
             'mac' => $mac,
-            'url' => $merchantServerUrl . 'esito.php', //necessita HTTP:// oppure HTTPS://
-            'url_back' => $merchantServerUrl . 'back.php', //necessita HTTP:// oppure HTTPS://
+            'url' => $merchantServerUrl . 'esito.php',
+            //necessita HTTP:// oppure HTTPS://
+            'url_back' => $merchantServerUrl . 'back.php',
+            //necessita HTTP:// oppure HTTPS://
             'alias' => "ALIAS_WEB_00069162",
             'divisa' => 'EUR',
-            'urlpost' => "<URL NOTIFICA POST ESITO TRANSAZIONE>", //necessita HTTP:// oppure HTTPS://
+            'urlpost' => "<URL NOTIFICA POST ESITO TRANSAZIONE>",
+            //necessita HTTP:// oppure HTTPS://
             'tipo_servizio' => 'paga_oc3d',
             'tipo_richiesta' => 'PR', /* <-- PR = Pagamento Ricorrente */
         );
 
     }
 
-    public function GetParams(){
+    public function GetParams()
+    {
         return $this->requestParams;
     }
 
 }
 
-class Gateway extends ViseGateway{
+class Gateway extends ViseGateway
+{
 
     public $NexiGateway;
 
@@ -161,7 +199,8 @@ class Gateway extends ViseGateway{
         return $this->NexiGateway->GetParams();
     }
 
-    public function NexiGetRequestUrl(){
+    public function NexiGetRequestUrl()
+    {
         return $this->NexiGateway->requestUrl;
     }
 }
