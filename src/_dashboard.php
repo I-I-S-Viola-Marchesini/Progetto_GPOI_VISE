@@ -125,7 +125,7 @@ $cardArr = json_decode($response);
                         <table id="recent-activities-table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Ricevente</th>
+                                    <th>Mittente</th>
                                     <th>Destinatario</th>
                                     <th>Data</th>
                                     <th>Importo (€)</th>
